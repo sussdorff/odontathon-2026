@@ -238,6 +238,131 @@ function collectBillingItems() {
   return items
 }
 
+// --- Cost Calculation ---
+async function calculateCosts() {
+  const billingItems = collectBillingItems()
+  if (billingItems.length === 0) { alert('Keine Abrechnungspositionen ausgewählt'); return }
+
+  const kassenart = document.getElementById('kassenart-select').value || undefined
+  const festzuschussBefund = document.getElementById('festzuschuss-input').value.trim() || undefined
+  const bonusTier = document.getElementById('bonus-select').value || undefined
+
+  const btn = document.getElementById('calculate-btn')
+  btn.disabled = true
+  btn.textContent = 'Berechne...'
+
+  try {
+    const res = await fetch('/api/billing/calculate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items: billingItems.map(it => ({
+          code: it.code,
+          system: it.system,
+          factor: it.multiplier,
+          kassenart,
+        })),
+        festzuschussBefund,
+        bonusTier,
+        kassenart,
+      }),
+    })
+    const data = await res.json()
+    renderCostSummary(data)
+    updateRowPrices(data.breakdown)
+  } catch (err) {
+    alert(`Fehler: ${err.message}`)
+  } finally {
+    btn.disabled = false
+    btn.textContent = 'Kosten berechnen'
+  }
+}
+
+function renderCostSummary(data) {
+  const el = document.getElementById('cost-summary')
+  el.classList.remove('hidden')
+  el.replaceChildren()
+
+  const h3 = document.createElement('h3')
+  h3.textContent = 'Kostenkalkulation'
+  el.appendChild(h3)
+
+  const totals = document.createElement('div')
+  totals.className = 'cost-totals'
+
+  function addTotalCard(amount, label, extraClass) {
+    const card = document.createElement('div')
+    card.className = 'cost-total-item'
+    const amountEl = document.createElement('div')
+    amountEl.className = 'amount' + (extraClass ? ' ' + extraClass : '')
+    amountEl.textContent = amount.toFixed(2) + '\u20AC'
+    const labelEl = document.createElement('div')
+    labelEl.className = 'label'
+    labelEl.textContent = label
+    card.appendChild(amountEl)
+    card.appendChild(labelEl)
+    totals.appendChild(card)
+  }
+
+  addTotalCard(data.totalCost, 'Gesamtkosten', '')
+  if (data.festzuschuss > 0) {
+    addTotalCard(data.festzuschuss, 'Festzuschuss', 'zuschuss')
+    addTotalCard(data.patientShare, 'Eigenanteil', 'patient')
+  }
+  el.appendChild(totals)
+
+  if (data.festzuschussError) {
+    const errEl = document.createElement('div')
+    errEl.style.cssText = 'font-size:0.8rem;color:#e53e3e;margin-bottom:0.5rem'
+    errEl.textContent = 'Festzuschuss-Fehler: ' + data.festzuschussError
+    el.appendChild(errEl)
+  }
+
+  const bdContainer = document.createElement('div')
+  bdContainer.className = 'cost-breakdown'
+  for (const b of data.breakdown) {
+    const row = document.createElement('div')
+    row.className = 'cost-breakdown-row'
+    const codeLabel = document.createElement('span')
+    codeLabel.className = 'code-label'
+    codeLabel.textContent = b.system + ' ' + b.code
+    const price = document.createElement('span')
+    price.className = b.error ? 'price error' : 'price'
+    price.textContent = b.error ? b.error : b.price.toFixed(2) + '\u20AC'
+    row.appendChild(codeLabel)
+    row.appendChild(price)
+    bdContainer.appendChild(row)
+  }
+  el.appendChild(bdContainer)
+}
+
+function updateRowPrices(breakdown) {
+  if (!breakdown) return
+  const priceMap = new Map()
+  for (const b of breakdown) {
+    priceMap.set(b.system + ':' + b.code, b)
+  }
+  const rows = document.querySelectorAll('.billing-row')
+  for (const row of rows) {
+    const code = row.querySelector('.item-code')?.value?.trim()
+    const system = row.querySelector('.item-system')?.value
+    if (!code || !system) continue
+
+    const existingPrice = row.querySelector('.item-price')
+    if (existingPrice) existingPrice.remove()
+
+    const entry = priceMap.get(system + ':' + code)
+    if (entry) {
+      const span = document.createElement('span')
+      span.className = 'item-price'
+      span.textContent = entry.error ? '\u2014' : entry.price.toFixed(2) + '\u20AC'
+      if (entry.error) span.title = entry.error
+      const removeBtn = row.querySelector('.btn-remove')
+      row.insertBefore(span, removeBtn)
+    }
+  }
+}
+
 // --- Analysis ---
 async function startAnalysis() {
   const patientId = selectedPatient?.id

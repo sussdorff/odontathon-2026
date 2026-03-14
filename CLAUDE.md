@@ -13,7 +13,7 @@ NOT a fork of MIRA — a standalone project that reuses MIRA's infrastructure pa
 - **Backend**: Hono (TypeScript) in `src/`
 - **FHIR Server**: Aidbox (R4 4.0.1)
 - **Voice**: TBD (STT/TTS integration)
-- **Frontend**: TBD — tech stack pending (colleagues' code not yet merged; see bead dent-k38)
+- **Frontend**: Vanilla HTML/CSS/JS (static, served via Hono `serveStatic` from `src/ui/static/`)
 
 ## Architecture
 

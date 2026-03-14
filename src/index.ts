@@ -9,6 +9,7 @@ import {
   multiplierRules,
 } from './lib/billing/rules'
 import { RuleEngine } from './lib/billing/engine'
+import { calculateGOZPrice, calculateBEMAPrice, calculatePatientShare } from './lib/billing/calculator'
 import { agentRoutes } from './api/agent-routes'
 import { practiceRulesRoutes } from './api/practice-rules-routes'
 
@@ -253,6 +254,64 @@ app.get('/api/catalog/search', async (c) => {
   })
 
   return c.json({ results })
+})
+
+// Billing calculator API
+app.post('/api/billing/calculate', async (c) => {
+  const body = await c.req.json()
+  const { items, festzuschussBefund, bonusTier, kassenart } = body
+
+  if (!Array.isArray(items) || items.length === 0) {
+    return c.json({ error: 'items array is required and must not be empty' }, 400)
+  }
+
+  const breakdown: Array<{ code: string; system: string; price: number; error?: string }> = []
+
+  for (const item of items) {
+    try {
+      let price: number
+      if (item.system === 'GOZ') {
+        price = calculateGOZPrice(item.code, item.factor ?? 2.3)
+      } else if (item.system === 'BEMA') {
+        const kk = item.kassenart ?? kassenart
+        if (!kk) {
+          breakdown.push({ code: item.code, system: item.system, price: 0, error: 'Kassenart fehlt' })
+          continue
+        }
+        price = calculateBEMAPrice(item.code, kk)
+      } else {
+        breakdown.push({ code: item.code, system: item.system, price: 0, error: `Unbekanntes System: ${item.system}` })
+        continue
+      }
+      breakdown.push({ code: item.code, system: item.system, price })
+    } catch (err: any) {
+      breakdown.push({ code: item.code, system: item.system, price: 0, error: err.message })
+    }
+  }
+
+  const totalCost = Math.round(breakdown.reduce((sum, b) => sum + b.price, 0) * 100) / 100
+
+  let festzuschuss = 0
+  let patientShare = totalCost
+  if (festzuschussBefund) {
+    try {
+      const shareItems = items
+        .filter((it: any) => !breakdown.find(b => b.code === it.code && b.error))
+        .map((it: any) => ({
+          code: it.code,
+          system: it.system,
+          factor: it.factor,
+          kassenart: it.kassenart ?? kassenart,
+        }))
+      const result = calculatePatientShare(shareItems, festzuschussBefund, bonusTier ?? '60pct', kassenart)
+      festzuschuss = result.festzuschuss
+      patientShare = result.patientShare
+    } catch (err: any) {
+      return c.json({ totalCost, festzuschuss: 0, patientShare: totalCost, breakdown, festzuschussError: err.message })
+    }
+  }
+
+  return c.json({ totalCost, festzuschuss, patientShare, breakdown })
 })
 
 // Agent & practice rules API

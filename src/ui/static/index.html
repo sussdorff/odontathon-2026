@@ -32,6 +32,33 @@
         </div>
       </div>
 
+      <div class="form-row">
+        <div class="form-group half">
+          <label for="kassenart-select">Kassenart (BEMA)</label>
+          <select id="kassenart-select">
+            <option value="">— Nur für GKV —</option>
+            <option value="AOK">AOK</option>
+            <option value="BKK">BKK</option>
+            <option value="IKK">IKK</option>
+            <option value="vdek">vdek</option>
+          </select>
+        </div>
+        <div class="form-group half">
+          <label for="bonus-select">Bonusstufe (ZE)</label>
+          <select id="bonus-select">
+            <option value="60pct">Kein Bonus (60%)</option>
+            <option value="70pct">5 Jahre (70%)</option>
+            <option value="75pct">10 Jahre (75%)</option>
+            <option value="100pct">Härtefall (100%)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="festzuschuss-input">Festzuschuss-Befundklasse (z.B. 1.1)</label>
+        <input type="text" id="festzuschuss-input" placeholder="z.B. 1.1 — leer für Privatpatienten">
+      </div>
+
       <div class="form-group">
         <label>Abrechnungspositionen</label>
         <div id="suggestions-hint" class="suggestions-hint hidden"></div>
@@ -42,7 +69,12 @@
         </div>
       </div>
 
-      <button class="btn-primary" id="analyze-btn" onclick="startAnalysis()">Analyse starten</button>
+      <div id="cost-summary" class="cost-summary hidden"></div>
+
+      <div class="button-row">
+        <button class="btn-primary" id="calculate-btn" onclick="calculateCosts()">Kosten berechnen</button>
+        <button class="btn-primary" id="analyze-btn" onclick="startAnalysis()">Analyse starten</button>
+      </div>
     </section>
 
     <section class="panel" id="progress-panel">
