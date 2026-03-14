@@ -343,12 +343,11 @@ export const coverageRichterErika = makeGkvCoverage(
   70,
 )
 
-export const coverageBergLukas = makeGkvCoverage(
+export const coverageBergLukas = makePkvCoverage(
   'coverage-berg-lukas',
   'patient-berg-lukas',
-  'org-tk',
-  'A100000013',
-  0,
+  'org-signal-iduna',
+  'PKV2026-0004',
 )
 
 export const coverageVogelHildegard = makeGkvCoverage(

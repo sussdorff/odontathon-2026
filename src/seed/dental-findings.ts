@@ -362,16 +362,18 @@ function buildScenario12Findings(): FhirResource[] {
   ]
 }
 
-// ─── Szenario 13: Lukas Berg (22) — Einzelimplantat 35 (Agenesie), kein Bonusheft (GKV 50%) ─
+// ─── Szenario 13: Lukas Berg (22, PKV) — Einzelimplantat 35 (Agenesie) ──────────────────────
 // Nach KFO-Behandlung. Zahn 35 hypoplastisch/fehlend (Zahnanlage fehlte). Implantat geplant.
-// HKP: Einzelimplantat 35 (Agenesie-Lücke, andersartig). 50% auf Regelversorgung.
+// Zahn 46: Sekundärkaries unter bestehender Füllung → cp Dycal + neue Kompositfüllung (bereits versorgt).
+// HKP: Einzelimplantat 35 (Agenesie-Lücke). PKV-GOZ-Abrechnung.
 function buildScenario13Findings(): FhirResource[] {
   const slug = 'berg-lukas'
   const id = 'patient-berg-lukas'
   return [
-    buildFinding(slug, id, 35, 'absent'),           // Agenesie, Implantat geplant
-    buildFinding(slug, id, 45, 'filled', ['O']),    // kontralateral versorgt
+    buildFinding(slug, id, 35, 'absent'),                    // Agenesie, Implantat geplant
+    buildFinding(slug, id, 45, 'filled', ['O']),             // kontralateral versorgt
     buildFinding(slug, id, 36, 'filled', ['O', 'D']),
+    buildFinding(slug, id, 46, 'filled', ['M', 'O', 'D']),  // Sekundärkaries versorgt, cp Dycal + Komposit
   ]
 }
 
@@ -439,7 +441,7 @@ export const dentalFindings: FhirResource[] = [
   ...buildScenario10Findings(),  // Rainer Hoffmann — Teleskopprothese UK, PKV
   ...buildScenario11Findings(),  // Gerda Klein — Freiend UK, Teilprothese, 50%
   ...buildScenario12Findings(),  // Erika Richter — Brücke OK + Prothese UK, 70%
-  ...buildScenario13Findings(),  // Lukas Berg — Implantat 35 (Agenesie), 50%
+  ...buildScenario13Findings(),  // Lukas Berg — Implantat 35 (Agenesie), PKV + Zahn 46 versorgt
   ...buildScenario14Findings(),  // Hildegard Vogel — Totalprothese UK, 50%
   ...buildScenario15Findings(),  // Stefan Weber — 3 Implantate + verblockte Brücke, PKV
 ]

@@ -7,6 +7,12 @@ and this project uses [CalVer](https://calver.org/) versioning (YYYY.0M.MICRO).
 
 ## [Unreleased]
 
+### Maintenance
+
+- VERSION v2026.03.11 + changelog
+
+## [2026.03.11] - 2026-03-14
+
 ### Added
 
 - **agent**: Kostenkalkulator + Claude Billing Coach Agent (dent-fbu + dent-4nv)
@@ -14,6 +20,7 @@ and this project uses [CalVer](https://calver.org/) versioning (YYYY.0M.MICRO).
 ### Maintenance
 
 - VERSION v2026.03.10
+- CHANGELOG aktualisiert
 
 ### Merge
 
