@@ -254,5 +254,36 @@
   { "code": "100 c", "kuerzel": "", "beschreibung": "Teilunterfütterung einer Prothese", "punktzahl": 44, "bereich": "ZE" },
   { "code": "100 d", "kuerzel": "", "beschreibung": "Vollständige Unterfütterung einer Prothese im indirekten Verfahren", "punktzahl": 55, "bereich": "ZE" },
   { "code": "100 e", "kuerzel": "", "beschreibung": "Vollständige Unterfütterung einer Prothese im indirekten Verfahren einschließlich funktioneller Randgestaltung im Oberkiefer", "punktzahl": 81, "bereich": "ZE" },
-  { "code": "100 f", "kuerzel": "", "beschreibung": "Vollständige Unterfütterung einer Prothese im indirekten Verfahren einschließlich funktioneller Randgestaltung im Unterkiefer", "punktzahl": 81, "bereich": "ZE" }
+  { "code": "100 f", "kuerzel": "", "beschreibung": "Vollständige Unterfütterung einer Prothese im indirekten Verfahren einschließlich funktioneller Randgestaltung im Unterkiefer", "punktzahl": 81, "bereich": "ZE" },
+
+  { "code": "40a", "kuerzel": "I2", "beschreibung": "Infiltrationsanästhesie, intraligamentär", "punktzahl": 8, "bereich": "KCH" },
+  { "code": "40b", "kuerzel": "I3", "beschreibung": "Infiltrationsanästhesie, intrapulpär", "punktzahl": 8, "bereich": "KCH" },
+  { "code": "41c", "kuerzel": "L3", "beschreibung": "Leitungsanästhesie des 2. oder 3. Trigeminusastes an der Schädelbasis", "punktzahl": 20, "bereich": "KCH" },
+  { "code": "42", "kuerzel": "Nark", "beschreibung": "Oberflächenanästhesie der Mund- oder Nasenschleimhaut, je Sitzung", "punktzahl": 4, "bereich": "KCH" },
+
+  { "code": "183", "kuerzel": "Wg1", "beschreibung": "Wegegeld bei einem Besuch innerhalb eines Radius von 2 Kilometern", "punktzahl": 0, "bereich": "KCH" },
+  { "code": "184", "kuerzel": "Wg2", "beschreibung": "Wegegeld bei einem Besuch innerhalb eines Radius von mehr als 2 Kilometern bis zu 5 Kilometern", "punktzahl": 0, "bereich": "KCH" },
+  { "code": "185", "kuerzel": "Wg3", "beschreibung": "Wegegeld bei einem Besuch bei mehr als 5 Kilometern, für jeden angefangenen Kilometer", "punktzahl": 0, "bereich": "KCH" },
+  { "code": "186", "kuerzel": "Re1", "beschreibung": "Reiseentschädigung bei Abwesenheit bis zu 8 Stunden", "punktzahl": 0, "bereich": "KCH" },
+  { "code": "187", "kuerzel": "Re2", "beschreibung": "Reiseentschädigung bei Abwesenheit von mehr als 8 Stunden", "punktzahl": 0, "bereich": "KCH" },
+
+  { "code": "IP 3", "kuerzel": "", "beschreibung": "Lokale Fluoridierung zur Zahnschmelzhärtung, je Sitzung", "punktzahl": 7, "bereich": "KCH" },
+  { "code": "FU3", "kuerzel": "", "beschreibung": "Früherkennungsuntersuchung eines Kindes vom 6. bis zum vollendeten 9. Lebensjahr", "punktzahl": 18, "bereich": "KCH" },
+  { "code": "FU4", "kuerzel": "", "beschreibung": "Früherkennungsuntersuchung eines Kindes vom 10. bis zum vollendeten 17. Lebensjahr (einmal je Kalenderhalbjahr)", "punktzahl": 18, "bereich": "KCH" },
+
+  { "code": "Ä 920", "kuerzel": "Rö1", "beschreibung": "Röntgenologische Darstellung einer Speicheldrüse (Sialographie)", "punktzahl": 25, "bereich": "KCH" },
+  { "code": "Ä 921", "kuerzel": "", "beschreibung": "Kontrastuntersuchung eines Kiefergelenks", "punktzahl": 30, "bereich": "KCH" },
+  { "code": "Ä 922", "kuerzel": "", "beschreibung": "Kontrastuntersuchung einer Kieferhöhle", "punktzahl": 20, "bereich": "KCH" },
+  { "code": "Ä 923", "kuerzel": "", "beschreibung": "Röntgenologische Darstellung einer Fistel", "punktzahl": 12, "bereich": "KCH" },
+  { "code": "Ä 924", "kuerzel": "", "beschreibung": "Aufbissaufnahme", "punktzahl": 12, "bereich": "KCH" },
+  { "code": "Ä 926", "kuerzel": "", "beschreibung": "Röntgenologische Diagnostik mittels Schichtaufnahme (Tomographie) eines Kiefergelenks", "punktzahl": 30, "bereich": "KCH" },
+  { "code": "Ä 927", "kuerzel": "", "beschreibung": "Röntgenologische Diagnostik mittels Schichtaufnahme (Tomographie) beider Kiefergelenke", "punktzahl": 50, "bereich": "KCH" },
+
+  { "code": "Ä 930", "kuerzel": "", "beschreibung": "Intubationsnarkose, bis zu 30 Minuten Dauer", "punktzahl": 120, "bereich": "KCH" },
+  { "code": "Ä 931", "kuerzel": "", "beschreibung": "Intubationsnarkose, jede weiteren angefangenen 30 Minuten", "punktzahl": 60, "bereich": "KCH" },
+  { "code": "Ä 932", "kuerzel": "", "beschreibung": "Narkose im Rahmen der zahnärztlichen Behandlung von Patienten mit mangelnder Kooperationsfähigkeit, bis zu 30 Minuten", "punktzahl": 120, "bereich": "KCH" },
+  { "code": "Ä 933", "kuerzel": "", "beschreibung": "Narkose im Rahmen der zahnärztlichen Behandlung von Patienten mit mangelnder Kooperationsfähigkeit, jede weiteren angefangenen 30 Minuten", "punktzahl": 60, "bereich": "KCH" },
+
+  { "code": "91 f", "kuerzel": "", "beschreibung": "Provisorische Krone, laborgefertigt", "punktzahl": 40, "bereich": "ZE" },
+  { "code": "91 g", "kuerzel": "", "beschreibung": "Provisorische Brücke, laborgefertigt, je Spanne", "punktzahl": 55, "bereich": "ZE" }
 ]

@@ -12,7 +12,7 @@
         "title": "Bewertungsmaßstab zahnärztlicher Leistungen (BEMA)",
         "status": "active",
         "content": "complete",
-        "count": 256,
+        "count": 281,
         "property": [
           {
             "code": "bereich",
@@ -2971,6 +2971,296 @@
           {
             "code": "100 f",
             "display": "Vollständige Unterfütterung einer Prothese im indirekten Verfahren einschließlich funktioneller Randgestaltung im Unterkiefer",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "ZE"
+              }
+            ]
+          },
+          {
+            "code": "40a",
+            "display": "Infiltrationsanästhesie, intraligamentär",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "I2"
+              }
+            ]
+          },
+          {
+            "code": "40b",
+            "display": "Infiltrationsanästhesie, intrapulpär",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "I3"
+              }
+            ]
+          },
+          {
+            "code": "41c",
+            "display": "Leitungsanästhesie des 2. oder 3. Trigeminusastes an der Schädelbasis",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "L3"
+              }
+            ]
+          },
+          {
+            "code": "42",
+            "display": "Oberflächenanästhesie der Mund- oder Nasenschleimhaut, je Sitzung",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "Nark"
+              }
+            ]
+          },
+          {
+            "code": "183",
+            "display": "Wegegeld bei einem Besuch innerhalb eines Radius von 2 Kilometern",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "Wg1"
+              }
+            ]
+          },
+          {
+            "code": "184",
+            "display": "Wegegeld bei einem Besuch innerhalb eines Radius von mehr als 2 Kilometern bis zu 5 Kilometern",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "Wg2"
+              }
+            ]
+          },
+          {
+            "code": "185",
+            "display": "Wegegeld bei einem Besuch bei mehr als 5 Kilometern, für jeden angefangenen Kilometer",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "Wg3"
+              }
+            ]
+          },
+          {
+            "code": "186",
+            "display": "Reiseentschädigung bei Abwesenheit bis zu 8 Stunden",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "Re1"
+              }
+            ]
+          },
+          {
+            "code": "187",
+            "display": "Reiseentschädigung bei Abwesenheit von mehr als 8 Stunden",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "Re2"
+              }
+            ]
+          },
+          {
+            "code": "IP 3",
+            "display": "Lokale Fluoridierung zur Zahnschmelzhärtung, je Sitzung",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "FU3",
+            "display": "Früherkennungsuntersuchung eines Kindes vom 6. bis zum vollendeten 9. Lebensjahr",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "FU4",
+            "display": "Früherkennungsuntersuchung eines Kindes vom 10. bis zum vollendeten 17. Lebensjahr (einmal je Kalenderhalbjahr)",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 920",
+            "display": "Röntgenologische Darstellung einer Speicheldrüse (Sialographie)",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "code": "kuerzel",
+                "valueString": "Rö1"
+              }
+            ]
+          },
+          {
+            "code": "Ä 921",
+            "display": "Kontrastuntersuchung eines Kiefergelenks",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 922",
+            "display": "Kontrastuntersuchung einer Kieferhöhle",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 923",
+            "display": "Röntgenologische Darstellung einer Fistel",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 924",
+            "display": "Aufbissaufnahme",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 926",
+            "display": "Röntgenologische Diagnostik mittels Schichtaufnahme (Tomographie) eines Kiefergelenks",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 927",
+            "display": "Röntgenologische Diagnostik mittels Schichtaufnahme (Tomographie) beider Kiefergelenke",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 930",
+            "display": "Intubationsnarkose, bis zu 30 Minuten Dauer",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 931",
+            "display": "Intubationsnarkose, jede weiteren angefangenen 30 Minuten",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 932",
+            "display": "Narkose im Rahmen der zahnärztlichen Behandlung von Patienten mit mangelnder Kooperationsfähigkeit, bis zu 30 Minuten",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "Ä 933",
+            "display": "Narkose im Rahmen der zahnärztlichen Behandlung von Patienten mit mangelnder Kooperationsfähigkeit, jede weiteren angefangenen 30 Minuten",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "KCH"
+              }
+            ]
+          },
+          {
+            "code": "91 f",
+            "display": "Provisorische Krone, laborgefertigt",
+            "property": [
+              {
+                "code": "bereich",
+                "valueString": "ZE"
+              }
+            ]
+          },
+          {
+            "code": "91 g",
+            "display": "Provisorische Brücke, laborgefertigt, je Spanne",
             "property": [
               {
                 "code": "bereich",
@@ -11687,6 +11977,856 @@
       "request": {
         "method": "PUT",
         "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F100-f"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/40a",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/40a",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "40a",
+              "display": "Infiltrationsanästhesie, intraligamentär"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 8
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F40a"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/40b",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/40b",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "40b",
+              "display": "Infiltrationsanästhesie, intrapulpär"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 8
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F40b"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/41c",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/41c",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "41c",
+              "display": "Leitungsanästhesie des 2. oder 3. Trigeminusastes an der Schädelbasis"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 20
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F41c"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/42",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/42",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "42",
+              "display": "Oberflächenanästhesie der Mund- oder Nasenschleimhaut, je Sitzung"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 4
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F42"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/183",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/183",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "183",
+              "display": "Wegegeld bei einem Besuch innerhalb eines Radius von 2 Kilometern"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 0
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F183"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/184",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/184",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "184",
+              "display": "Wegegeld bei einem Besuch innerhalb eines Radius von mehr als 2 Kilometern bis zu 5 Kilometern"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 0
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F184"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/185",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/185",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "185",
+              "display": "Wegegeld bei einem Besuch bei mehr als 5 Kilometern, für jeden angefangenen Kilometer"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 0
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F185"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/186",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/186",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "186",
+              "display": "Reiseentschädigung bei Abwesenheit bis zu 8 Stunden"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 0
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F186"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/187",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/187",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "187",
+              "display": "Reiseentschädigung bei Abwesenheit von mehr als 8 Stunden"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 0
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F187"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/IP-3",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/IP-3",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "IP 3",
+              "display": "Lokale Fluoridierung zur Zahnschmelzhärtung, je Sitzung"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 7
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2FIP-3"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/FU3",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/FU3",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "FU3",
+              "display": "Früherkennungsuntersuchung eines Kindes vom 6. bis zum vollendeten 9. Lebensjahr"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 18
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2FFU3"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/FU4",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/FU4",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "FU4",
+              "display": "Früherkennungsuntersuchung eines Kindes vom 10. bis zum vollendeten 17. Lebensjahr (einmal je Kalenderhalbjahr)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 18
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2FFU4"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-920",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-920",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 920",
+              "display": "Röntgenologische Darstellung einer Speicheldrüse (Sialographie)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 25
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-920"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-921",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-921",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 921",
+              "display": "Kontrastuntersuchung eines Kiefergelenks"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 30
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-921"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-922",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-922",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 922",
+              "display": "Kontrastuntersuchung einer Kieferhöhle"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 20
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-922"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-923",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-923",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 923",
+              "display": "Röntgenologische Darstellung einer Fistel"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 12
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-923"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-924",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-924",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 924",
+              "display": "Aufbissaufnahme"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 12
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-924"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-926",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-926",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 926",
+              "display": "Röntgenologische Diagnostik mittels Schichtaufnahme (Tomographie) eines Kiefergelenks"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 30
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-926"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-927",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-927",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 927",
+              "display": "Röntgenologische Diagnostik mittels Schichtaufnahme (Tomographie) beider Kiefergelenke"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 50
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-927"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-930",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-930",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 930",
+              "display": "Intubationsnarkose, bis zu 30 Minuten Dauer"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 120
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-930"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-931",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-931",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 931",
+              "display": "Intubationsnarkose, jede weiteren angefangenen 30 Minuten"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 60
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-931"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-932",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-932",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 932",
+              "display": "Narkose im Rahmen der zahnärztlichen Behandlung von Patienten mit mangelnder Kooperationsfähigkeit, bis zu 30 Minuten"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 120
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-932"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/_-933",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/_-933",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "Ä 933",
+              "display": "Narkose im Rahmen der zahnärztlichen Behandlung von Patienten mit mangelnder Kooperationsfähigkeit, jede weiteren angefangenen 30 Minuten"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 60
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F_-933"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/91-f",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/91-f",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "91 f",
+              "display": "Provisorische Krone, laborgefertigt"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 40
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F91-f"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/bema/91-g",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/bema/91-g",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/bema",
+              "code": "91 g",
+              "display": "Provisorische Brücke, laborgefertigt, je Spanne"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Punktzahl"
+                },
+                "factor": 55
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fbema%2F91-g"
       }
     }
   ]
