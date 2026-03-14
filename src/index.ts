@@ -58,6 +58,7 @@ app.get('/api/rules', (c) => {
   return c.json({ total, rules })
 })
 
+<<<<<<< HEAD
 // Patients API — list seeded patients with coverage & findings summary
 app.get('/api/patients', async (c) => {
   const headers = { Authorization: aidboxConfig.authHeader }
@@ -367,7 +368,6 @@ app.all('/fhir/*', async (c) => {
 // Static UI — serve React build output (after all API routes)
 app.use('/*', serveStatic({ root: './frontend/dist' }))
 app.use('/*', serveStatic({ root: './frontend/dist', path: 'index.html' }))
-
 const port = parseInt(process.env.PORT ?? '3001')
 if (import.meta.main) {
   console.log(`Dental Agent API running on port ${port}`)
