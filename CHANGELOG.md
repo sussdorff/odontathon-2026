@@ -1,3 +1,9 @@
+## [2026.03.7] - 2026-03-14
+
+### 🚀 Features
+
+- *(seed)* Past invoice data for pattern-based billing suggestions (30 Claims: Kompositfüllung, Brücke, WKB)
+
 ## [unreleased]
 
 ### 🚀 Features
