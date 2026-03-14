@@ -28,6 +28,7 @@ services:
       aidbox-db:
         condition: service_healthy
     environment:
+      AIDBOX_LICENSE_ID: ${AIDBOX_LICENSE_ID}
       AIDBOX_LICENSE: ${AIDBOX_LICENSE_KEY}
       AIDBOX_ADMIN_ID: ${AIDBOX_ADMIN_ID}
       AIDBOX_ADMIN_PASSWORD: ${AIDBOX_ADMIN_PASSWORD}
@@ -44,7 +45,7 @@ services:
       PGUSER: ${AIDBOX_DB_USER:-postgres}
       PGPASSWORD: ${AIDBOX_DB_PASSWORD}
     ports:
-      - "8080:8080"
+      - "${AIDBOX_HOST_PORT:-8085}:8080"
     volumes:
       - ./aidbox/seed:/var/aidbox/seed:ro
     restart: unless-stopped

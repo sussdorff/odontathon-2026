@@ -2,6 +2,7 @@
   "name": "odontathon-2026",
   "version": "0.1.0",
   "description": "Dental Billing Voice Agent — Odontathon 2026",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
