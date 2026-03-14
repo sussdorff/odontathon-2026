@@ -1,0 +1,61 @@
+{
+  "id": "par-nachbehandlung",
+  "name": "PAR-Nachbehandlung",
+  "category": "parodontologie",
+  "relatedBillingCodes": ["P220", "P221", "P222", "P223"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "fullMouthTherapie",
+      "label": "Full-Mouth-Therapie / Desinfektion",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "kontrolleNachParo",
+      "label": "Kontrolle / Nachbehandlung nach parodontalchirurgischen Maßnahmen",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "nachkontrolleNachPzr",
+      "label": "Kontrolle / Nachkontrolle nach PZR / Zahnsteinentfernung",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "chxGelZahn",
+      "label": "CHX-Gel appliziert an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "perioChipRegio",
+      "label": "PerioChip gelegt regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "perioChipRef",
+      "label": "PerioChip Ref./Lot.",
+      "type": "text",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "entfernungNaehteRegio",
+      "label": "Entfernung von Nähten regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "wundversorgung"
+    }
+  ]
+}

@@ -1,0 +1,417 @@
+{
+  "id": "wurzelspitzenresektion",
+  "name": "Wurzelspitzenresektion (WSR)",
+  "category": "chirurgie",
+  "relatedBillingCodes": ["Ä55", "Ä56", "Ä57"],
+  "bfsSource": true,
+  "fields": [
+    {
+      "id": "kostenAufklaerungPrivat",
+      "label": "Über Kosten aufgeklärt und Privatvereinbarung unterschrieben",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "einverstaendnisVorhanden",
+      "label": "Einverständniserklärung vorhanden",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "fullMouthTherapie",
+      "label": "Full-Mouth-Therapie / Desinfektion",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "roentgenKontrolleApikal",
+      "label": "Röntgenaufnahme zur Kontrolle des apikalen Befundes erstellt",
+      "type": "boolean",
+      "required": false,
+      "group": "roentgen"
+    },
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieZahn",
+      "label": "Infiltrationsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieMaterial",
+      "label": "Infiltrationsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieZahn",
+      "label": "Leitungsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieMaterial",
+      "label": "Leitungsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "ampullenAnzahl",
+      "label": "Anzahl Ampullen Anästhetikum",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "vollnarkoseArzt",
+      "label": "Vollnarkose/ITN durchgeführt durch",
+      "type": "text",
+      "required": false,
+      "placeholder": "Name des Arztes",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "analgosedierung",
+      "label": "Analgosedierung / Lachgassedierung durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "protokollSedierung",
+      "label": "Protokoll zur Sedierung",
+      "type": "boolean",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "werteVorGabe",
+      "label": "Werte vor der Gabe: Blutdruck / O2-Sättigung",
+      "type": "text",
+      "required": false,
+      "placeholder": "RR: ... / O2: ...",
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "werteNachGabe1",
+      "label": "X ml-Gabe Werte 1: Blutdruck / O2-Sättigung",
+      "type": "text",
+      "required": false,
+      "placeholder": "RR: ... / O2: ...",
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "werteNachGabe2",
+      "label": "X ml-Gabe Werte 2: Blutdruck / O2-Sättigung",
+      "type": "text",
+      "required": false,
+      "placeholder": "RR: ... / O2: ...",
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "beendigungOpWerte",
+      "label": "Beendigung der OP / Werte: Blutdruck / O2-Sättigung",
+      "type": "text",
+      "required": false,
+      "placeholder": "RR: ... / O2: ...",
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "zustandPatient",
+      "label": "Zustand Patient",
+      "type": "enum",
+      "required": false,
+      "options": ["wach", "schläfrig aber erweckbar", "somnolent", "Vitalfunktionen stabil", "Übelkeit"],
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "schnittfuehrung",
+      "label": "Schnittführung",
+      "type": "text",
+      "required": false,
+      "placeholder": "Beschreibung",
+      "group": "operation"
+    },
+    {
+      "id": "mukoperiostLappen",
+      "label": "Bildung eines Mukoperiostlappens",
+      "type": "boolean",
+      "required": false,
+      "group": "operation"
+    },
+    {
+      "id": "wsrZahn",
+      "label": "Wurzelspitzenresektion an Zahn durchgeführt",
+      "type": "tooth_reference",
+      "required": true,
+      "placeholder": "FDI-Zahnschema",
+      "group": "operation"
+    },
+    {
+      "id": "anzahlWurzeln",
+      "label": "Anzahl der Wurzeln",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "operation"
+    },
+    {
+      "id": "palatinaleWurzelGesonderterZugang",
+      "label": "Palatinale Wurzel reseziert durch gesonderten Zugang",
+      "type": "boolean",
+      "required": false,
+      "group": "operation"
+    },
+    {
+      "id": "zyste",
+      "label": "Zyste, Größe, regio",
+      "type": "text",
+      "required": false,
+      "placeholder": "Größe und Regio",
+      "group": "operation"
+    },
+    {
+      "id": "operationsmikroskop",
+      "label": "Operationsmikroskop angewandt",
+      "type": "boolean",
+      "required": false,
+      "group": "operation"
+    },
+    {
+      "id": "retrogradeAufbereitung",
+      "label": "Retrograde Wurzelkanalaufbereitung",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "nickelTitanFeilen",
+      "label": "Nickel-Titan-Feilen verwendet Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "laserSterilisation",
+      "label": "Sterilisation des Wurzelkanals / der Wurzelkanäle mittels Laser",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "retrogradeAbschlussfuellung",
+      "label": "Retrograde Abschlussfüllung",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "retrogradeAbschlussfuellungRegio",
+      "label": "Retrograde Abschlussfüllung regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "retrogradeAbschlussfuellungMaterial",
+      "label": "Retrograde Abschlussfüllung Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "mav",
+      "label": "MAV",
+      "type": "boolean",
+      "required": false,
+      "group": "operation"
+    },
+    {
+      "id": "knochengewinnungRegio",
+      "label": "Knochengewinnung / Knochenaufbereitung regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "augmentation"
+    },
+    {
+      "id": "knochenAufbauMaterial",
+      "label": "Aufbau des Knochens/Kieferkamms mit Knochenersatzmaterial",
+      "type": "material_ref",
+      "required": false,
+      "group": "augmentation"
+    },
+    {
+      "id": "knochenAufbauZaehne",
+      "label": "Knochenaufbau an den Zähnen",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "augmentation"
+    },
+    {
+      "id": "knochendefektAuffuellung",
+      "label": "Auffüllen des Knochendefektes mittels",
+      "type": "material_ref",
+      "required": false,
+      "group": "augmentation"
+    },
+    {
+      "id": "membranZaehne",
+      "label": "Verwendung einer Membran an den Zähnen",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "augmentation"
+    },
+    {
+      "id": "membranBezeichnung",
+      "label": "Membran Bezeichnung / Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "augmentation"
+    },
+    {
+      "id": "augmentatFixierungMethode",
+      "label": "Fixierung des Augmentats/Membran mittels",
+      "type": "text",
+      "required": false,
+      "placeholder": "Methode, Bezeichnung, Anzahl, Ref./Lot.",
+      "group": "augmentation"
+    },
+    {
+      "id": "blutgerinnungMaterial",
+      "label": "Material zur Förderung der Blutgerinnung Bezeichnung / Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "wundversorgung"
+    },
+    {
+      "id": "wundversorgungRegio",
+      "label": "Wundversorgung, atraumatisches Nahtmaterial regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "wundversorgung"
+    },
+    {
+      "id": "wundversorgungRef",
+      "label": "Nahtmaterial Ref.",
+      "type": "material_ref",
+      "required": false,
+      "group": "wundversorgung"
+    },
+    {
+      "id": "einfacheHautlappenplastik",
+      "label": "Einfache Hautlappenplastik durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "plastik"
+    },
+    {
+      "id": "schwierigHautlappenplastik",
+      "label": "Schwierige Hautlappenplastik durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "plastik"
+    },
+    {
+      "id": "artDerPlastik",
+      "label": "Art der Plastik (z.B. Vestibulumplastik)",
+      "type": "text",
+      "required": false,
+      "placeholder": "Art der Plastik",
+      "group": "plastik"
+    },
+    {
+      "id": "besonderheitenOperation",
+      "label": "Besonderheiten während der Operation",
+      "type": "text",
+      "required": false,
+      "group": "operation"
+    },
+    {
+      "id": "kuehlpackMitgegeben",
+      "label": "Kühlpack mitgegeben",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "rezept",
+      "label": "Rezept",
+      "type": "text",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "au",
+      "label": "AU",
+      "type": "text",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "postoperativeAufklaerung",
+      "label": "Postoperative Aufklärung",
+      "type": "text",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "arztbrief",
+      "label": "Arztbrief",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "naechsterTermin",
+      "label": "Nächster Termin",
+      "type": "date",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "vitalitaetspruefungBfs",
+      "label": "Vitalitätsprüfung (BFS)",
+      "type": "enum",
+      "required": false,
+      "options": ["+", "-"],
+      "group": "bfs"
+    },
+    {
+      "id": "perkussionstest",
+      "label": "Perkussionstest durchgeführt (BFS)",
+      "type": "enum",
+      "required": false,
+      "options": ["+", "-"],
+      "group": "bfs"
+    }
+  ]
+}

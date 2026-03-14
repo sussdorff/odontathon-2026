@@ -1,0 +1,123 @@
+{
+  "id": "eingliederung",
+  "name": "Eingliederung",
+  "category": "prothetik",
+  "relatedBillingCodes": ["E1", "E2", "E3"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieZahn",
+      "label": "Infiltrationsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieMaterial",
+      "label": "Infiltrationsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieZahn",
+      "label": "Leitungsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieMaterial",
+      "label": "Leitungsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "ampullenAnzahl",
+      "label": "Anzahl Ampullen Anästhetikum",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "abnahmeProviRegio",
+      "label": "Abnahme eines Provis regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "provisorium"
+    },
+    {
+      "id": "konditionierenAetzen",
+      "label": "Konditionieren und ätzen der Werkstücke durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "zementiereRegio",
+      "label": "Zementieren von Kronen / Brücken / Teleskopen regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "zementiereMaterial",
+      "label": "Zementieren mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "entfernungZementreste",
+      "label": "Entfernung von Zementresten",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "beseitigungVorkontakteRegio",
+      "label": "Beseitigung grober Vorkontakte regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "okklusion"
+    },
+    {
+      "id": "ueberempfindlicheZaehneRegio",
+      "label": "Behandlung von überempfindlichen Zahnflächen regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "mundschleimhautBehandlungRegio",
+      "label": "Mundschleimhautbehandlung regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    }
+  ]
+}

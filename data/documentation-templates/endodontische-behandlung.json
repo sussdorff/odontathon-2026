@@ -1,0 +1,347 @@
+{
+  "id": "endodontische-behandlung",
+  "name": "Endodontische Behandlung",
+  "category": "endodontie",
+  "relatedBillingCodes": ["Ä40", "Ä41", "Ä42", "Ä43", "Ä44", "Ä45", "Ä46"],
+  "bfsSource": true,
+  "fields": [
+    {
+      "id": "kostenAufklaerungPrivat",
+      "label": "Über Kosten aufgeklärt und Privatvereinbarung unterschrieben",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "fullMouthTherapie",
+      "label": "Full-Mouth-Therapie / Desinfektion",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "vitalitaetspruefungZahn",
+      "label": "Vitalitätsprüfung an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "diagnostik"
+    },
+    {
+      "id": "vitalitaetspruefungErgebnis",
+      "label": "Vitalitätsprüfung Ergebnis",
+      "type": "enum",
+      "required": false,
+      "options": ["+", "-"],
+      "group": "diagnostik"
+    },
+    {
+      "id": "perkussionstest",
+      "label": "Perkussionstest durchgeführt",
+      "type": "enum",
+      "required": false,
+      "options": ["+", "-"],
+      "group": "diagnostik"
+    },
+    {
+      "id": "einverstaendnisVorhanden",
+      "label": "Einverständniserklärung vorhanden",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "roentgenKontrolleApikal",
+      "label": "Röntgenaufnahme zur Kontrolle des apikalen Befundes erstellt",
+      "type": "boolean",
+      "required": false,
+      "group": "roentgen"
+    },
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieZahn",
+      "label": "Infiltrationsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieMaterial",
+      "label": "Infiltrationsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieZahn",
+      "label": "Leitungsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieMaterial",
+      "label": "Leitungsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "ampullenAnzahl",
+      "label": "Anzahl Ampullen Anästhetikum",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "kariesEntfernt",
+      "label": "Karies entfernt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "kariesdetektorAngewandt",
+      "label": "Kariesdetektor angewandt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "kofferdamVon",
+      "label": "Kofferdam von ... bis angelegt",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "behandlung"
+    },
+    {
+      "id": "zahnbelaege",
+      "label": "Weiche / harte Zahnbeläge entfernt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "praeendodontischerAufbau",
+      "label": "Präendodontischer Aufbau",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "trepanation",
+      "label": "Trepanation des Zahnes",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "vitalexstirpation",
+      "label": "Vitalexstirpation aller Kanäle",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "vitalexstirpationAnzahl",
+      "label": "Vitalexstirpation Anzahl Kanäle",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "wurzelkanalAufbereitet",
+      "label": "Wurzelkanal/-kanäle aufbereitet",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "wurzelkanalAnzahl",
+      "label": "Anzahl aufbereiteter Wurzelkanäle",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "nickelTitanFeilen",
+      "label": "Nickel-Titan-Feilen verwendet Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "medikamentoeseEinlage",
+      "label": "Medikamentöse Einlage",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "spuelungMaterial",
+      "label": "Spülung des Kanals / der Kanäle mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "elektrometrischeLaengenbestimmung",
+      "label": "Elektrometrische Längenbestimmung durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "roentgenMessaufnahme",
+      "label": "Röntgenmessaufnahme erstellt",
+      "type": "boolean",
+      "required": false,
+      "group": "roentgen"
+    },
+    {
+      "id": "messlaeange",
+      "label": "Messlänge (mb / db / mp / dp / ml / dl / p / b)",
+      "type": "text",
+      "required": false,
+      "placeholder": "mb: ... db: ... mp: ... dp: ...",
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "operationsmikroskop",
+      "label": "Operationsmikroskop angewandt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "laserSterilisation",
+      "label": "Sterilisation des Wurzelkanals / der Wurzelkanäle mittels Laser",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "wurzelkanalAbgefuelltMaterial",
+      "label": "Wurzelkanal / -kanäle abgefüllt mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "adhaesveBefestigungMaterial",
+      "label": "Adhäsive Befestigung der Wurzelkanalfüllung Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "mta",
+      "label": "MTA",
+      "type": "boolean",
+      "required": false,
+      "group": "kanalbehandlung"
+    },
+    {
+      "id": "stiftmaterialienRegio",
+      "label": "Verwendung von Stiftmaterialien regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "material"
+    },
+    {
+      "id": "stiftmaterialienName",
+      "label": "Stiftmaterial Bezeichnung / Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "material"
+    },
+    {
+      "id": "roentgenNachKontrolle",
+      "label": "Röntgenaufnahme zur Kontrolle nach der Wurzelfüllung",
+      "type": "boolean",
+      "required": false,
+      "group": "roentgen"
+    },
+    {
+      "id": "provisorischerVerschluss",
+      "label": "Provisorischer Verschluss des Zahnes mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "abschluss"
+    },
+    {
+      "id": "zahnbehandlungInnerhalb",
+      "label": "Zahnbehandlung innerhalb der Richtlinie",
+      "type": "boolean",
+      "required": false,
+      "group": "bfs"
+    },
+    {
+      "id": "insuffizienteWurzelkanalFuellung",
+      "label": "Insuffiziente Wurzelkanalfüllung entfernt aus den Kanälen",
+      "type": "text",
+      "required": false,
+      "placeholder": "Kanäle angeben",
+      "group": "bfs"
+    },
+    {
+      "id": "wurzelstiftEntferntAusKanal",
+      "label": "Wurzelstift entfernt aus Kanal",
+      "type": "text",
+      "required": false,
+      "placeholder": "Kanal angeben",
+      "group": "bfs"
+    },
+    {
+      "id": "fremdkoerperEntferntAusKanal",
+      "label": "Fremdkörper entfernt aus Kanal",
+      "type": "text",
+      "required": false,
+      "placeholder": "Kanal angeben",
+      "group": "bfs"
+    },
+    {
+      "id": "endgueltigeFuellungMaterial",
+      "label": "Endgültige Füllung des Zahnes mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "bfs"
+    },
+    {
+      "id": "fuellungsflaechen",
+      "label": "Füllungsflächen",
+      "type": "text",
+      "required": false,
+      "placeholder": "Flächen angeben",
+      "group": "bfs"
+    },
+    {
+      "id": "besondereMassnahmen",
+      "label": "Besondere Maßnahmen",
+      "type": "text",
+      "required": false,
+      "group": "bfs"
+    }
+  ]
+}

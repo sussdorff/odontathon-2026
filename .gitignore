@@ -21,8 +21,11 @@ Thumbs.db
 *.swp
 *.swo
 
-# Aidbox data
+# Aidbox data (runtime volumes — not tracked)
 data/
+# Exception: source PDFs and generated templates are part of the repo
+!data/sources/
+!data/documentation-templates/
 
 # Beads
 .beads/dolt-data/

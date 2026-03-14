@@ -1,0 +1,59 @@
+{
+  "id": "schienentherapie",
+  "name": "Schienentherapie",
+  "category": "konservierend",
+  "relatedBillingCodes": ["Ä70", "Ä71", "Ä75"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "abformungRegio",
+      "label": "Abformung regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "abformung"
+    },
+    {
+      "id": "abformungMaterial",
+      "label": "Abformung Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "eingliederungMitAdjustierung",
+      "label": "Eingliederung einer Schiene mit Adjustierung",
+      "type": "boolean",
+      "required": false,
+      "group": "eingliederung"
+    },
+    {
+      "id": "eingliederungOhneAdjustierung",
+      "label": "Eingliederung einer Schiene ohne Adjustierung",
+      "type": "boolean",
+      "required": false,
+      "group": "eingliederung"
+    },
+    {
+      "id": "kontrolleSchiene",
+      "label": "Kontrolle der Schiene durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "kontrolle"
+    },
+    {
+      "id": "additiveMassnahmen",
+      "label": "Additive Maßnahmen durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "subtraktiveMassnahmen",
+      "label": "Subtraktive Maßnahmen durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    }
+  ]
+}

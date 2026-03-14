@@ -1,0 +1,144 @@
+{
+  "id": "anproben",
+  "name": "Anproben",
+  "category": "prothetik",
+  "relatedBillingCodes": ["A1", "A2"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieZahn",
+      "label": "Infiltrationsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieMaterial",
+      "label": "Infiltrationsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieZahn",
+      "label": "Leitungsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieMaterial",
+      "label": "Leitungsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "ampullenAnzahl",
+      "label": "Anzahl Ampullen Anästhetikum",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "abnahmeWiederbefestigungProviRegio",
+      "label": "Abnahme und Wiederbefestigung eines Provis regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "provisorium"
+    },
+    {
+      "id": "erneuerungProviRegio",
+      "label": "Erneuerung eines Provis regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "provisorium"
+    },
+    {
+      "id": "erneuerungProviMaterial",
+      "label": "Erneuerung Provis Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "provisorium"
+    },
+    {
+      "id": "fadenRegio",
+      "label": "Legen von getränkten Fäden regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "fadenRef",
+      "label": "Fäden Ref.",
+      "type": "material_ref",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "fadenTraenkung",
+      "label": "Fäden Tränkung Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "individuelleAbformungRegio",
+      "label": "Individuelle Abformung regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "abformung"
+    },
+    {
+      "id": "individuelleAbformungMaterial",
+      "label": "Individuelle Abformung Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "ueberempfindlicheZaehneRegio",
+      "label": "Behandlung von überempfindlichen Zahnflächen regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "mundschleimhautBehandlung",
+      "label": "Mundschleimhautbehandlung",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "naechsterTermin",
+      "label": "Nächster Termin",
+      "type": "date",
+      "required": false,
+      "group": "nachsorge"
+    }
+  ]
+}

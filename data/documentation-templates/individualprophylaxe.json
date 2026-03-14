@@ -1,0 +1,111 @@
+{
+  "id": "individualprophylaxe",
+  "name": "Individualprophylaxe",
+  "category": "prophylaxe",
+  "relatedBillingCodes": ["IP1", "IP2", "IP3", "IP4", "IP5"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "fullMouthTherapie",
+      "label": "Full-Mouth-Therapie / Desinfektion",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "zaehneAngefaerbt",
+      "label": "Zähne angefärbt",
+      "type": "boolean",
+      "required": false,
+      "group": "diagnose"
+    },
+    {
+      "id": "psiAufgenommen",
+      "label": "PSI aufgenommen",
+      "type": "boolean",
+      "required": false,
+      "group": "diagnose"
+    },
+    {
+      "id": "apiSbiPbiAufgenommen",
+      "label": "API / SBI / PBI aufgenommen",
+      "type": "boolean",
+      "required": false,
+      "group": "diagnose"
+    },
+    {
+      "id": "mundhygieneUnterweisungDauer",
+      "label": "Mundhygiene Unterweisung (Dauer in Minuten)",
+      "type": "number",
+      "required": false,
+      "placeholder": "Minuten",
+      "group": "unterweisung"
+    },
+    {
+      "id": "motivationRemotivation",
+      "label": "Motivation / Remotivation des Patienten",
+      "type": "boolean",
+      "required": false,
+      "group": "unterweisung"
+    },
+    {
+      "id": "zahnseidEmpfohlen",
+      "label": "Zahnseide empfohlen",
+      "type": "boolean",
+      "required": false,
+      "group": "unterweisung"
+    },
+    {
+      "id": "ernaehrungsberatung",
+      "label": "Ernährungsberatung",
+      "type": "boolean",
+      "required": false,
+      "group": "unterweisung"
+    },
+    {
+      "id": "entfernungBelaege",
+      "label": "Entfernung der supragingivalen/gingivalen Beläge auf Zahn- und Wurzeloberflächen",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "reinigungInterdentalraeume",
+      "label": "Reinigung der Interdentalräume",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "versiegelungFissuren",
+      "label": "Versiegelung der Zahnfissuren an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "fluoridierungMaterial",
+      "label": "Fluoridierung mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "chxGelZahn",
+      "label": "CHX-Gel appliziert an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "mundschleimhautRegio",
+      "label": "Mundschleimhautbehandlung regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    }
+  ]
+}

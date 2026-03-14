@@ -1,0 +1,208 @@
+{
+  "id": "par-therapie",
+  "name": "PAR-Therapie",
+  "category": "parodontologie",
+  "relatedBillingCodes": ["P200", "P201", "P202", "P203", "P204", "P205", "P206", "P207", "P208", "P209", "P210", "P211", "P212"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "fullMouthTherapie",
+      "label": "Full-Mouth-Therapie / Desinfektion",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieZahn",
+      "label": "Infiltrationsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieMaterial",
+      "label": "Infiltrationsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieZahn",
+      "label": "Leitungsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieMaterial",
+      "label": "Leitungsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "ampullenAnzahl",
+      "label": "Anzahl Ampullen Anästhetikum (Ultracain DS forte)",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "entfernungBelaege",
+      "label": "Entfernung harter und weicher Zahnbeläge",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "geschlosseneParodontalchirurgie",
+      "label": "Geschlossene parodontalchirurgische Therapie",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "gingivektomieZaehne",
+      "label": "Gingivektomie an den Zähnen",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "offeneParodontalchirurgie",
+      "label": "Offene parodontalchirurgische Therapie",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "operationsmikroskop",
+      "label": "Operationsmikroskop angewandt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "laser",
+      "label": "Laser",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "membranZaehne",
+      "label": "Verwendung einer Membran an den Zähnen",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "augmentation"
+    },
+    {
+      "id": "membranBezeichnung",
+      "label": "Membran Bezeichnung / Ref.-Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "augmentation"
+    },
+    {
+      "id": "augmentatFixierungMethode",
+      "label": "Fixierung des Augmentats/Membran mittels",
+      "type": "text",
+      "required": false,
+      "placeholder": "Methode, Bezeichnung, Anzahl, Ref./Lot.",
+      "group": "augmentation"
+    },
+    {
+      "id": "schwerigkeHautlappenplastik",
+      "label": "Schwierige Hautlappenplastik",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "wundversorgungRegio",
+      "label": "Wundversorgung, atraumatisches Nahtmaterial regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "wundversorgung"
+    },
+    {
+      "id": "wundversorgungRef",
+      "label": "Nahtmaterial Ref.",
+      "type": "material_ref",
+      "required": false,
+      "group": "wundversorgung"
+    },
+    {
+      "id": "chxGelZahn",
+      "label": "CHX-Gel appliziert an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "perioChipRegio",
+      "label": "PerioChip gelegt regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "perioChipRef",
+      "label": "PerioChip Ref./Lot.",
+      "type": "text",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "mundschleimhautBehandlung",
+      "label": "Mundschleimhautbehandlung",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "einschleifenGebiess",
+      "label": "Einschleifen des natürlichen Gebisses",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "kontrolleNachParo",
+      "label": "Kontrolle / Nachbehandlung nach parodontalchirurgischen Maßnahmen",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "nachkontrolleNachPzr",
+      "label": "Nachkontrolle nach PZR / Zahnsteinentfernung",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "id": "professionelle-zahnreinigung",
+  "name": "Professionelle Zahnreinigung (PZR)",
+  "category": "prophylaxe",
+  "relatedBillingCodes": ["PZR", "Ä1"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "kostenAufklaerungPrivat",
+      "label": "Über Kosten aufgeklärt und Privatvereinbarung unterschrieben",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "fullMouthTherapie",
+      "label": "Full-Mouth-Therapie / Desinfektion",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "zaehneAngefaerbt",
+      "label": "Zähne angefärbt",
+      "type": "boolean",
+      "required": false,
+      "group": "diagnose"
+    },
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "entfernungBelaege",
+      "label": "Entfernung der supragingivalen/gingivalen Beläge auf Zahn- und Wurzeloberflächen",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "reinigungInterdentalraeume",
+      "label": "Reinigung der Interdentalräume",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "oberflaechenPoliturMaterial",
+      "label": "Oberflächenpolitur mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "airFlowAngewandt",
+      "label": "Air Flow angewandt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "mundhygieneUnterweisungDauer",
+      "label": "Mundhygiene Unterweisung (Dauer in Minuten)",
+      "type": "number",
+      "required": false,
+      "placeholder": "Minuten",
+      "group": "unterweisung"
+    },
+    {
+      "id": "psiAufgenommen",
+      "label": "PSI aufgenommen",
+      "type": "boolean",
+      "required": false,
+      "group": "diagnose"
+    },
+    {
+      "id": "paStatusErstellt",
+      "label": "PA-Status erstellt",
+      "type": "boolean",
+      "required": false,
+      "group": "diagnose"
+    },
+    {
+      "id": "apiSbiPbiAufgenommen",
+      "label": "API / SBI / PBI aufgenommen",
+      "type": "boolean",
+      "required": false,
+      "group": "diagnose"
+    },
+    {
+      "id": "zahnseideBuerstchenEmpfohlen",
+      "label": "Zahnseide / Interdentalbürstchen empfohlen",
+      "type": "boolean",
+      "required": false,
+      "group": "unterweisung"
+    },
+    {
+      "id": "ernaehrungsberatung",
+      "label": "Ernährungsberatung",
+      "type": "boolean",
+      "required": false,
+      "group": "unterweisung"
+    },
+    {
+      "id": "fluoridierungMaterial",
+      "label": "Fluoridierung mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "motivationRemotivation",
+      "label": "Motivation / Remotivation des Patienten",
+      "type": "boolean",
+      "required": false,
+      "group": "unterweisung"
+    },
+    {
+      "id": "vorhandeneFuellungPoliert",
+      "label": "Vorhandene Füllung poliert an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "chxGelZahn",
+      "label": "CHX-Gel appliziert an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "prothesenreinigung",
+      "label": "Prothesenreinigung OK / UK durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "ueberempfindlicheZaehneRegio",
+      "label": "Behandlung überempfindlicher Zähne regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "mundschleimhautBehandlung",
+      "label": "Mundschleimhautbehandlung",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "anschliessendeUntersuchungBehandler",
+      "label": "Anschließende eingehende Untersuchung und Beratung durch Behandler",
+      "type": "text",
+      "required": false,
+      "placeholder": "Name des Behandlers",
+      "group": "abschluss"
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "id": "kronen-bruecken-teleskop",
+  "name": "Kronen-/Brücken-/Teleskopversorgung",
+  "category": "prothetik",
+  "relatedBillingCodes": ["K1", "K2", "K3", "K4", "K5", "K6", "B1", "B2", "B3"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "hkpUnterschrieben",
+      "label": "Über Kosten aufgeklärt; HKP liegt unterschrieben vor",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieZahn",
+      "label": "Infiltrationsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieMaterial",
+      "label": "Infiltrationsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieZahn",
+      "label": "Leitungsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieMaterial",
+      "label": "Leitungsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "ampullenAnzahl",
+      "label": "Anzahl Ampullen Anästhetikum",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "situationsabformungMaterial",
+      "label": "Situationsabformung mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "abformungProvisorienRegio",
+      "label": "Abformung für Provisorien regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "abformung"
+    },
+    {
+      "id": "abformungProvisorienMaterial",
+      "label": "Abformung für Provisorien Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "korrekturabformungMaterial",
+      "label": "Korrekturabformung mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "doppelmischabformungMaterial",
+      "label": "Doppelmischabformung mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "individualisierungLoeffel",
+      "label": "Individualisieren eines konfektionierten Löffels",
+      "type": "boolean",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "gesichtsbogen",
+      "label": "Gesichtsbogen angelegt",
+      "type": "boolean",
+      "required": false,
+      "group": "okklusion"
+    },
+    {
+      "id": "stuetzstiftregistrierung",
+      "label": "Stützstiftregistrierung durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "okklusion"
+    },
+    {
+      "id": "bissnahmeMaterial",
+      "label": "Bissnahme mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "okklusion"
+    },
+    {
+      "id": "kofferdamVon",
+      "label": "Kofferdam von ... bis angelegt",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "behandlung"
+    },
+    {
+      "id": "entfernungKronenAnker",
+      "label": "Entfernen von Kronen oder Brückenankern regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "exzisionMundschleimhautRegio",
+      "label": "Exzision von Mundschleimhaut regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "indirekteUeberkappung",
+      "label": "Indirekte Überkappung",
+      "type": "boolean",
+      "required": false,
+      "group": "ueberkappung"
+    },
+    {
+      "id": "direkteUeberkappung",
+      "label": "Direkte Überkappung",
+      "type": "boolean",
+      "required": false,
+      "group": "ueberkappung"
+    },
+    {
+      "id": "aufbaufuellungRegio",
+      "label": "Aufbaufüllung regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "fuellungsmaterial",
+      "label": "Füllungsmaterial",
+      "type": "material_ref",
+      "required": false,
+      "group": "material"
+    },
+    {
+      "id": "praeparationRegio",
+      "label": "Präparation regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "faeden",
+      "label": "Fäden Ref. / Tränkung",
+      "type": "material_ref",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "stiftmaterialienRegio",
+      "label": "Verwendung von Stiftmaterialien regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "material"
+    },
+    {
+      "id": "stiftmaterialienName",
+      "label": "Stiftmaterial Bezeichnung / Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "material"
+    },
+    {
+      "id": "zahnfarbenbestimmung",
+      "label": "Zahnfarbenbestimmung",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "herstellungProvisorienRegio",
+      "label": "Herstellung von Provisorien regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "provisorium"
+    },
+    {
+      "id": "herstellungProvisorienMaterial",
+      "label": "Provisorien Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "provisorium"
+    },
+    {
+      "id": "einsetzenProvisMaterial",
+      "label": "Einsetzen eines Provis mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "provisorium"
+    },
+    {
+      "id": "ueberempfindlicheZaehneRegio",
+      "label": "Behandlung von überempfindlichen Zahnflächen regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "mundschleimhautBehandlung",
+      "label": "Mundschleimhautbehandlung",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "rezept",
+      "label": "Rezept",
+      "type": "text",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "au",
+      "label": "AU",
+      "type": "text",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "naechsterTermin",
+      "label": "Nächster Termin",
+      "type": "date",
+      "required": false,
+      "group": "nachsorge"
+    }
+  ]
+}

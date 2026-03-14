@@ -1,0 +1,56 @@
+{
+  "id": "chirurgische-nachbehandlung",
+  "name": "Chirurgische Nachbehandlung",
+  "category": "chirurgie",
+  "relatedBillingCodes": ["Ä60", "Ä61"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "fullMouthTherapie",
+      "label": "Full-Mouth-Therapie / Desinfektion",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "verfahren",
+      "label": "Verfahren",
+      "type": "text",
+      "required": false,
+      "placeholder": "Beschreibung des Verfahrens",
+      "group": "behandlung"
+    },
+    {
+      "id": "kontrolleNachEingriffRegio",
+      "label": "Kontrolle nach chirurgischem Eingriff regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "nachsorge"
+    },
+    {
+      "id": "nachbehandlungNachEingriffRegio",
+      "label": "Nachbehandlung nach chirurgischem Eingriff regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "nachsorge"
+    },
+    {
+      "id": "chirurgischeWundrevisionRegio",
+      "label": "Chirurgische Wundrevision regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "nachsorge"
+    },
+    {
+      "id": "entfernungNaehteRegio",
+      "label": "Entfernung von Nähten regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "nachsorge"
+    }
+  ]
+}

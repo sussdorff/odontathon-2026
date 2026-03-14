@@ -1,0 +1,157 @@
+{
+  "id": "allgemeine-untersuchung",
+  "name": "Allgemeine Untersuchungen",
+  "category": "allgemein",
+  "relatedBillingCodes": ["01", "0100", "Ä1"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "befundNeuAufgenommen",
+      "label": "Befund neu aufgenommen / aktualisiert",
+      "type": "boolean",
+      "required": false,
+      "group": "befund"
+    },
+    {
+      "id": "befundUnveraendert",
+      "label": "Befund unverändert",
+      "type": "boolean",
+      "required": false,
+      "group": "befund"
+    },
+    {
+      "id": "zahnsteinFestgestellt",
+      "label": "Zahnstein / Mundschleimhauterkrankung festgestellt",
+      "type": "boolean",
+      "required": false,
+      "group": "befund"
+    },
+    {
+      "id": "kariesAn",
+      "label": "Karies an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "befund"
+    },
+    {
+      "id": "psiAufgenommen",
+      "label": "PSI aufgenommen",
+      "type": "boolean",
+      "required": false,
+      "group": "befund"
+    },
+    {
+      "id": "paStatusAufgenommen",
+      "label": "PA-Status aufgenommen",
+      "type": "boolean",
+      "required": false,
+      "group": "befund"
+    },
+    {
+      "id": "vitalitaetspruefungZahn",
+      "label": "Vipr. an Zahn",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "diagnostik"
+    },
+    {
+      "id": "vitalitaetspruefungErgebnis",
+      "label": "Vitalitätsprüfung Ergebnis",
+      "type": "enum",
+      "required": false,
+      "options": ["+", "-"],
+      "group": "diagnostik"
+    },
+    {
+      "id": "zahnsteinEntferntVon",
+      "label": "Zahnstein entfernt von",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "behandlung"
+    },
+    {
+      "id": "ueberempfindlicheZahnhaelse",
+      "label": "Behandlung überempfindlicher Zahnhälse durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "mundschleimhautBehandlungMaterial",
+      "label": "Behandlung der Mundschleimhaut mit Material",
+      "type": "material_ref",
+      "required": false,
+      "placeholder": "Dontisolon / [Material]",
+      "group": "behandlung"
+    },
+    {
+      "id": "scharfeKanteZahn",
+      "label": "Scharfe Kante entfernt an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "fuellungspoliturZahn",
+      "label": "Füllungspolitur an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "einverstaendnisVorhanden",
+      "label": "Einverständniserklärung vorhanden",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "roentgenbildZahn",
+      "label": "Röntgenbild von Zahn erstellt",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "roentgen"
+    },
+    {
+      "id": "opgErstellt",
+      "label": "OPG erstellt",
+      "type": "boolean",
+      "required": false,
+      "group": "roentgen"
+    },
+    {
+      "id": "therapieplanungPa",
+      "label": "Therapieplanung: Patient über notwendige PA / PZR aufgeklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "therapieplanungFuellungen",
+      "label": "Patient über notwendige Füllungstherapie aufgeklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "therapieplanungExtraktionen",
+      "label": "Patient über notwendige Extraktionen aufgeklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "therapieplanungZahnersatz",
+      "label": "Patient über notwendigen Zahnersatz aufgeklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    }
+  ]
+}

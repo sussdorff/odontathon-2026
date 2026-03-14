@@ -1,0 +1,242 @@
+{
+  "id": "fuellungstherapie",
+  "name": "Füllungstherapie",
+  "category": "konservierend",
+  "relatedBillingCodes": ["F1", "F2", "F3", "F4", "13a", "13c", "13d", "14a", "14b"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "kostenAufklaerungMehrkosten",
+      "label": "Über Kosten aufgeklärt und Mehrkostenvereinbarung unterschrieben",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "beratung",
+      "label": "Beratung",
+      "type": "boolean",
+      "required": false,
+      "group": "allgemein"
+    },
+    {
+      "id": "symptombezogeneUntersuchung",
+      "label": "Symptombezogene Untersuchung",
+      "type": "boolean",
+      "required": false,
+      "group": "diagnostik"
+    },
+    {
+      "id": "vitalitaetspruefungZahn",
+      "label": "Vitalitätsprüfung an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "diagnostik"
+    },
+    {
+      "id": "vitalitaetspruefungErgebnis",
+      "label": "Vitalitätsprüfung Ergebnis",
+      "type": "enum",
+      "required": false,
+      "options": ["+", "-"],
+      "group": "diagnostik"
+    },
+    {
+      "id": "perkussionstest",
+      "label": "Perkussionstest durchgeführt",
+      "type": "enum",
+      "required": false,
+      "options": ["+", "-"],
+      "group": "diagnostik"
+    },
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieZahn",
+      "label": "Infiltrationsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieMaterial",
+      "label": "Infiltrationsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieZahn",
+      "label": "Leitungsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieMaterial",
+      "label": "Leitungsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "ampullenAnzahl",
+      "label": "Anzahl Ampullen Anästhetikum (Ultracain DS forte)",
+      "type": "number",
+      "required": false,
+      "placeholder": "Anzahl",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "kariesEntfernt",
+      "label": "Karies entfernt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "kariesdetektorAngewandt",
+      "label": "Kariesdetektor angewandt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "kofferdamVon",
+      "label": "Kofferdam von ... bis angelegt",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "behandlung"
+    },
+    {
+      "id": "zahnbelaege",
+      "label": "Weiche / harte Zahnbeläge entfernt",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "zaehneSerariert",
+      "label": "Zähne separiert",
+      "type": "boolean",
+      "required": false,
+      "group": "besondereMassnahmen"
+    },
+    {
+      "id": "zahnfleischVerdraengt",
+      "label": "Beseitigen (Verdrängen) störenden Zahnfleisches",
+      "type": "boolean",
+      "required": false,
+      "group": "besondereMassnahmen"
+    },
+    {
+      "id": "papillenblutungGestillt",
+      "label": "Stillung einer übermäßigen Papillenblutung",
+      "type": "boolean",
+      "required": false,
+      "group": "besondereMassnahmen"
+    },
+    {
+      "id": "praeperationsschutz",
+      "label": "Anlegen eines Präparationsschutzes am Nachbarzahn",
+      "type": "boolean",
+      "required": false,
+      "group": "besondereMassnahmen"
+    },
+    {
+      "id": "matrizenFormgebung",
+      "label": "Matrize / Formgebungshilfe angelegt",
+      "type": "boolean",
+      "required": false,
+      "group": "besondereMassnahmen"
+    },
+    {
+      "id": "indirekteUeberkappung",
+      "label": "Indirekte Überkappung (cp, je Kavität)",
+      "type": "boolean",
+      "required": false,
+      "group": "ueberkappung"
+    },
+    {
+      "id": "direkteUeberkappung",
+      "label": "Direkte Überkappung (p)",
+      "type": "boolean",
+      "required": false,
+      "group": "ueberkappung"
+    },
+    {
+      "id": "stiftmaterialienRegio",
+      "label": "Verwendung von Stiftmaterialien regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "material"
+    },
+    {
+      "id": "stiftmaterialienName",
+      "label": "Stiftmaterial Bezeichnung / Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "material"
+    },
+    {
+      "id": "fuellungF1",
+      "label": "F1 (modpbiv)",
+      "type": "boolean",
+      "required": false,
+      "group": "fuellung"
+    },
+    {
+      "id": "fuellungF2",
+      "label": "F2 (modpbiv)",
+      "type": "boolean",
+      "required": false,
+      "group": "fuellung"
+    },
+    {
+      "id": "fuellungF3",
+      "label": "F3 (modpbiv)",
+      "type": "boolean",
+      "required": false,
+      "group": "fuellung"
+    },
+    {
+      "id": "fuellungF4",
+      "label": "F4 (modpbiv)",
+      "type": "boolean",
+      "required": false,
+      "group": "fuellung"
+    },
+    {
+      "id": "fuellungsmaterial",
+      "label": "Füllungsmaterial Bezeichnung / Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "material"
+    },
+    {
+      "id": "uzMuDurchgefuehrt",
+      "label": "Üz / Mu durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "abschluss"
+    }
+  ]
+}

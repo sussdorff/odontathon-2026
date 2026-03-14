@@ -1,0 +1,80 @@
+{
+  "id": "totalprothesen-modellguss",
+  "name": "Totalprothesen/Modellguss-/Interimsversorgung",
+  "category": "prothetik",
+  "relatedBillingCodes": ["T1", "T2", "T3", "T4"],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "hkpUnterschrieben",
+      "label": "Über Kosten aufgeklärt; HKP liegt unterschrieben vor",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "situationsabformungMaterial",
+      "label": "Situationsabformung mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "individualisierungLoeffel",
+      "label": "Individualisieren eines konfektionierten Löffels",
+      "type": "boolean",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "funktionsabformungRegio",
+      "label": "Funktionsabformung regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "abformung"
+    },
+    {
+      "id": "funktionsabformungMaterial",
+      "label": "Funktionsabformung Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "abformung"
+    },
+    {
+      "id": "gesichtsbogen",
+      "label": "Gesichtsbogen angelegt",
+      "type": "boolean",
+      "required": false,
+      "group": "okklusion"
+    },
+    {
+      "id": "stuetzstiftregistrierung",
+      "label": "Stützstiftregistrierung durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "okklusion"
+    },
+    {
+      "id": "bissnahmeMaterial",
+      "label": "Bissnahme mit",
+      "type": "material_ref",
+      "required": false,
+      "group": "okklusion"
+    },
+    {
+      "id": "zahnfarbenbestimmung",
+      "label": "Zahnfarbenbestimmung",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "naechsterTermin",
+      "label": "Nächster Termin",
+      "type": "date",
+      "required": false,
+      "group": "nachsorge"
+    }
+  ]
+}

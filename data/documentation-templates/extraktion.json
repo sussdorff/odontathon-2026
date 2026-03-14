@@ -1,0 +1,346 @@
+{
+  "id": "extraktion",
+  "name": "Extraktionen",
+  "category": "chirurgie",
+  "relatedBillingCodes": ["Ä50", "Ä51", "Ä52"],
+  "bfsSource": true,
+  "fields": [
+    {
+      "id": "einverstaendnisVorhanden",
+      "label": "Einverständniserklärung vorhanden",
+      "type": "boolean",
+      "required": true,
+      "group": "einwilligung"
+    },
+    {
+      "id": "oberflaechenanästhesieVon",
+      "label": "Oberflächenanästhesie von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "oberflaechenanästhesieMaterial",
+      "label": "Oberflächenanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieZahn",
+      "label": "Infiltrationsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "infiltrationsanaesthesieMaterial",
+      "label": "Infiltrationsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieZahn",
+      "label": "Leitungsanästhesie an",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "leitungsanaesthesieMaterial",
+      "label": "Leitungsanästhesie Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "vollnarkoseArzt",
+      "label": "Vollnarkose/ITN durchgeführt durch",
+      "type": "text",
+      "required": false,
+      "placeholder": "Name des Arztes",
+      "group": "anaesthesie"
+    },
+    {
+      "id": "analgosedierung",
+      "label": "Analgosedierung / Lachgassedierung durchgeführt",
+      "type": "boolean",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "protokollSedierung",
+      "label": "Protokoll zur Sedierung",
+      "type": "boolean",
+      "required": false,
+      "group": "anaesthesie"
+    },
+    {
+      "id": "werteVorGabe",
+      "label": "Werte vor der Gabe: Blutdruck / O2-Sättigung",
+      "type": "text",
+      "required": false,
+      "placeholder": "RR: ... / O2: ...",
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "werteNachGabe1",
+      "label": "X ml-Gabe Werte 1: Blutdruck / O2-Sättigung",
+      "type": "text",
+      "required": false,
+      "placeholder": "RR: ... / O2: ...",
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "werteNachGabe2",
+      "label": "X ml-Gabe Werte 2: Blutdruck / O2-Sättigung",
+      "type": "text",
+      "required": false,
+      "placeholder": "RR: ... / O2: ...",
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "beendigungOpWerte",
+      "label": "Beendigung der OP / Werte: Blutdruck / O2-Sättigung",
+      "type": "text",
+      "required": false,
+      "placeholder": "RR: ... / O2: ...",
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "zustandPatient",
+      "label": "Zustand Patient",
+      "type": "enum",
+      "required": false,
+      "options": ["wach", "schläfrig aber erweckbar", "somnolent", "Vitalfunktionen stabil", "Übelkeit"],
+      "group": "sedierungVitals"
+    },
+    {
+      "id": "ohnmacht",
+      "label": "Ohnmacht",
+      "type": "boolean",
+      "required": false,
+      "group": "komplikationen"
+    },
+    {
+      "id": "zahnentfernungRegio",
+      "label": "Zahnentfernung mittels Extraktion regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "zahnTiefZerstoert",
+      "label": "Zahn tief zerstört",
+      "type": "boolean",
+      "required": false,
+      "group": "behandlung"
+    },
+    {
+      "id": "extrahierteZaehne",
+      "label": "Extrahierte Zähne (X1/X2/X3)",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "behandlung"
+    },
+    {
+      "id": "schnittfuehrungVon",
+      "label": "Schnittführung von ... bis",
+      "type": "range",
+      "required": false,
+      "placeholder": "von Zahn ... bis Zahn ...",
+      "group": "operation"
+    },
+    {
+      "id": "mukoperiostLappenRegio",
+      "label": "Bildung eines Mukoperiostlappens regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "operation"
+    },
+    {
+      "id": "knochenEntferntRegio",
+      "label": "Knochen entfernt regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "operation"
+    },
+    {
+      "id": "zahnGeteiltRegio",
+      "label": "Zahn geteilt regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "operation"
+    },
+    {
+      "id": "zyste",
+      "label": "Zyste, Größe, Regio",
+      "type": "text",
+      "required": false,
+      "placeholder": "Größe und Regio",
+      "group": "operation"
+    },
+    {
+      "id": "blutungGestilltMittels",
+      "label": "Blutung gestillt mittels",
+      "type": "enum",
+      "required": false,
+      "options": ["Kauter", "umstechen", "abbinden", "Knochenbolzung"],
+      "group": "behandlung"
+    },
+    {
+      "id": "mav",
+      "label": "MAV regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "komplikationen"
+    },
+    {
+      "id": "neurolyse",
+      "label": "Neurolyse",
+      "type": "boolean",
+      "required": false,
+      "group": "operation"
+    },
+    {
+      "id": "socketPreservationMaterial",
+      "label": "Socket-/Ridgepreservation mittels",
+      "type": "material_ref",
+      "required": false,
+      "group": "augmentation"
+    },
+    {
+      "id": "membranZaehne",
+      "label": "Verwendung einer Membran an den Zähnen",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "augmentation"
+    },
+    {
+      "id": "membranBezeichnung",
+      "label": "Membran Bezeichnung / Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "augmentation"
+    },
+    {
+      "id": "augmentatFixierungMethode",
+      "label": "Fixierung des Augmentats/Membran mittels",
+      "type": "text",
+      "required": false,
+      "placeholder": "Methode, Bezeichnung, Anzahl, Ref./Lot.",
+      "group": "augmentation"
+    },
+    {
+      "id": "blutgerinnungMaterial",
+      "label": "Material zur Förderung der Blutgerinnung Bezeichnung / Ref./Lot.",
+      "type": "material_ref",
+      "required": false,
+      "group": "wundversorgung"
+    },
+    {
+      "id": "streifeneinlageRegio",
+      "label": "Streifeneinlage regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "wundversorgung"
+    },
+    {
+      "id": "streifeneinlageMaterial",
+      "label": "Streifeneinlage Material",
+      "type": "material_ref",
+      "required": false,
+      "group": "wundversorgung"
+    },
+    {
+      "id": "wundversorgungRegio",
+      "label": "Wundversorgung, atraumatisches Nahtmaterial regio",
+      "type": "tooth_reference",
+      "required": false,
+      "placeholder": "FDI-Zahnschema",
+      "group": "wundversorgung"
+    },
+    {
+      "id": "wundversorgungRef",
+      "label": "Nahtmaterial Ref.",
+      "type": "material_ref",
+      "required": false,
+      "group": "wundversorgung"
+    },
+    {
+      "id": "opgRo2Begruendung",
+      "label": "OPG/RÖ2 Begründung",
+      "type": "text",
+      "required": false,
+      "group": "roentgen"
+    },
+    {
+      "id": "besonderheitenOperation",
+      "label": "Besonderheiten während der Operation",
+      "type": "text",
+      "required": false,
+      "group": "operation"
+    },
+    {
+      "id": "tupferEingelegt",
+      "label": "Tupfer eingelegt",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "kuehlpackMitgegeben",
+      "label": "Kühlpack mitgegeben",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "rezept",
+      "label": "Rezept",
+      "type": "text",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "au",
+      "label": "AU",
+      "type": "text",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "postoperativeAufklaerung",
+      "label": "Postoperative Aufklärung",
+      "type": "text",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "arztbrief",
+      "label": "Arztbrief",
+      "type": "boolean",
+      "required": false,
+      "group": "nachsorge"
+    },
+    {
+      "id": "naechsterTermin",
+      "label": "Nächster Termin",
+      "type": "date",
+      "required": false,
+      "group": "nachsorge"
+    }
+  ]
+}

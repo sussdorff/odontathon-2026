@@ -1,0 +1,65 @@
+{
+  "id": "postoperative-aufklaerung",
+  "name": "Postoperative Aufklärung (Patienteninfo)",
+  "category": "chirurgie",
+  "relatedBillingCodes": [],
+  "bfsSource": false,
+  "fields": [
+    {
+      "id": "direkteHinweiseErlaeutert",
+      "label": "Direkt postoperative Hinweise erläutert",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "kuehlungErklaert",
+      "label": "Kühlung erklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "rauchverbotErklaert",
+      "label": "Rauchen-Verbot erklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "zahnMundpflegeErklaert",
+      "label": "Zahn- und Mundpflege erklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "essenTrinkenHinweiseErklaert",
+      "label": "Essen und Trinken Hinweise erklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "antibiotikaHinweiseErklaert",
+      "label": "Antibiotika-Hinweise (falls verschrieben) erklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "blutungNachblutungErklaert",
+      "label": "Blutung / Nachblutung Verhaltensregeln erklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    },
+    {
+      "id": "komplikationenNotfallkontaktErklaert",
+      "label": "Komplikationen und Notfallkontakt erklärt",
+      "type": "boolean",
+      "required": false,
+      "group": "aufklaerung"
+    }
+  ]
+}
