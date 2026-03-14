@@ -12,7 +12,7 @@
         "title": "Gebührenordnung für Zahnärzte (GOZ)",
         "status": "active",
         "content": "complete",
-        "count": 209,
+        "count": 215,
         "property": [
           {
             "code": "abschnitt",
@@ -124,6 +124,16 @@
           {
             "code": "0110",
             "display": "Zuschlag für die Anwendung eines Operationsmikroskops bei den Leistungen nach den Nummern 2195, 2330, 2340, 2360, 2410, 2440, 3020, 3030, 3040, 3045, 3060, 3110, 3120, 3190, 3200, 4090, 4100, 4130, 4133, 9100, 9110, 9120, 9130 und 9170Der Zuschlag nach der Nummer 0110 ist je Behandlungstag nur einmal und nur mit dem einfachen Gebührensatz berechnungsfähig.",
+            "property": [
+              {
+                "code": "abschnitt",
+                "valueString": "A. Allgemeine zahnärztliche Leistungen"
+              }
+            ]
+          },
+          {
+            "code": "0120",
+            "display": "Zuschlag für die Anwendung eines Lasers bei den Leistungen nach den Nummern 2410, 3070, 3080, 3210, 3240, 4080, 4090, 4100, 4130, 4133 und 9160Der Zuschlag nach der Nummer 0120 beträgt 100 v. H. des einfachen Gebührensatzes der betreffenden Leistung, jedoch nicht mehr als 68 Euro.Der Zuschlag nach der Nummer 0120 ist je Behandlungstag nur einmal berechnungsfähig.",
             "property": [
               {
                 "code": "abschnitt",
@@ -414,6 +424,26 @@
           {
             "code": "2220",
             "display": "Versorgung eines Zahnes durch eine Teilkrone mit Retentionsrillen oder -kästen oder mit Pinledges einschließlich Rekonstruktion der gesamten Kaufläche, auch Versorgung eines Zahnes durch ein VeneerNeben den Leistungen nach den Nummern 2200 bis 2220 sind die Leistungen nach den Nummern 2050 bis 2130 nicht berechnungsfähig.Die Leistung nach der Nummer 2210 ist im Zusammenhang mit Implantaten nicht berechnungsfähig.Durch die Leistungen nach den Nummern 2150 bis 2170 und 2200 bis 2220 sind folgende zahnärztliche Leistungen abgegolten: Präparieren des Zahnes oder Implantats, Relationsbestimmung, Abformungen, Einproben, provisorisches Eingliedern, festes Einfügen der Einlagefüllung oder der Krone oder der Teilkrone oder des Veneers, Nachkontrolle und Korrekturen.Die Leistung nach der Nummer 2200 umfasst auch die Verschraubung und Abdeckung mit Füllungsmaterial.Zu den Kronen nach den Nummern 2200 bis 2220 gehören Kronen (Voll- und Teilkronen) jeder zahntechnischen Ausführung.",
+            "property": [
+              {
+                "code": "abschnitt",
+                "valueString": "C. Konservierende Leistungen"
+              }
+            ]
+          },
+          {
+            "code": "2230",
+            "display": "Enden die Leistungen mit der Präparation eines Zahnes oder der Abdrucknahme beim Implantat, so ist die Hälfte der jeweiligen Gebühr berechnungsfähig.",
+            "property": [
+              {
+                "code": "abschnitt",
+                "valueString": "C. Konservierende Leistungen"
+              }
+            ]
+          },
+          {
+            "code": "2240",
+            "display": "Sind darüber hinaus weitere Maßnahmen erfolgt, so sind drei Viertel der jeweiligen Gebühr berechnungsfähig.Die Leistungen nach den Nummern 2230 oder 2240 sind nur berechnungsfähig, wenn es dem Zahnarzt objektiv auf Dauer unmöglich war, die Behandlung fortzusetzen oder eine Fortsetzung aus medizinischen Gründen nicht indiziert war.",
             "property": [
               {
                 "code": "abschnitt",
@@ -1152,6 +1182,26 @@
             ]
           },
           {
+            "code": "5050",
+            "display": "Enden die Leistungen mit der Präparation der Brückenpfeiler oder Prothesenanker mit Verbindungselementen oder der Abdrucknahme beim Implantat, so ist die Hälfte der jeweiligen Gebühr berechnungsfähig.",
+            "property": [
+              {
+                "code": "abschnitt",
+                "valueString": "F.Prothetische Leistungen"
+              }
+            ]
+          },
+          {
+            "code": "5060",
+            "display": "Sind darüber hinaus weitere Maßnahmen erfolgt, so sind drei Viertel der jeweiligen Gebühr berechnungsfähig.Die Leistungen nach den Nummern 5050 oder 5060 sind nur berechnungsfähig, wenn es dem Zahnarzt objektiv auf Dauer unmöglich war, die Behandlung fortzusetzen, oder eine Fortsetzung aus medizinischen Gründen nicht indiziert war.",
+            "property": [
+              {
+                "code": "abschnitt",
+                "valueString": "F.Prothetische Leistungen"
+              }
+            ]
+          },
+          {
             "code": "5070",
             "display": "Versorgung eines Lückengebisses durch eine Brücke oder Prothese: Verbindung von Kronen oder Einlagefüllungen durch Brückenglieder, Prothesenspannen oder Stege, je zu überbrückende Spanne oder Freiendsattel",
             "property": [
@@ -1304,6 +1354,16 @@
           {
             "code": "5230",
             "display": "Versorgung eines zahnlosen Kiefers durch eine totale Prothese oder Deckprothese bei Verwendung einer Kunststoff- oder Metallbasis, im UnterkieferEine Deckprothese setzt eine Basisgestaltung wie bei einer totalen Prothese voraus.Durch die Leistungen nach den Nummern 5200 bis 5230 sind folgende Leistungen abgegolten:Anatomische Abformungen (auch des Gegenkiefers), Bestimmung der Kieferrelation, Einproben, Einpassen bzw. Einfügen, Nachkontrolle und Korrekturen.",
+            "property": [
+              {
+                "code": "abschnitt",
+                "valueString": "F.Prothetische Leistungen"
+              }
+            ]
+          },
+          {
+            "code": "5240",
+            "display": "Teilleistungen nach den Nummern 5200 und 5230:Für Maßnahmen bis einschließlich Bestimmung der Kieferrelation ist die Hälfte der jeweiligen Gebühr berechnungsfähig; bei weitergehenden Maßnahmen sind drei Viertel der jeweiligen Gebühr berechnungsfähig.",
             "property": [
               {
                 "code": "abschnitt",
@@ -2743,6 +2803,58 @@
       "request": {
         "method": "PUT",
         "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F0110"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/goz/0120",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/goz/0120",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/goz",
+              "code": "0120",
+              "display": "Zuschlag für die Anwendung eines Lasers bei den Leistungen nach den Nummern 2410, 3070, 3080, 3210, 3240, 4080, 4090, 4100, 4130, 4133 und 9160Der Zuschlag nach der Nummer 0120 beträgt 100 v. H. des einfachen Gebührensatzes der betreffenden Leistung, jedoch nicht mehr als 68 Euro.Der Zuschlag nach der Nummer 0120 ist je Behandlungstag nur einmal berechnungsfähig."
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Prozentual (siehe Beschreibung)"
+                }
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://dental-agent.de/fhir/StructureDefinition/goz-multiplier-range",
+            "extension": [
+              {
+                "url": "min",
+                "valueDecimal": 1
+              },
+              {
+                "url": "default",
+                "valueDecimal": 2.3
+              },
+              {
+                "url": "max",
+                "valueDecimal": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F0120"
       }
     },
     {
@@ -4396,6 +4508,110 @@
       "request": {
         "method": "PUT",
         "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F2220"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/goz/2230",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/goz/2230",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/goz",
+              "code": "2230",
+              "display": "Enden die Leistungen mit der Präparation eines Zahnes oder der Abdrucknahme beim Implantat, so ist die Hälfte der jeweiligen Gebühr berechnungsfähig."
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Prozentual (siehe Beschreibung)"
+                }
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://dental-agent.de/fhir/StructureDefinition/goz-multiplier-range",
+            "extension": [
+              {
+                "url": "min",
+                "valueDecimal": 1
+              },
+              {
+                "url": "default",
+                "valueDecimal": 2.3
+              },
+              {
+                "url": "max",
+                "valueDecimal": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F2230"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/goz/2240",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/goz/2240",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/goz",
+              "code": "2240",
+              "display": "Sind darüber hinaus weitere Maßnahmen erfolgt, so sind drei Viertel der jeweiligen Gebühr berechnungsfähig.Die Leistungen nach den Nummern 2230 oder 2240 sind nur berechnungsfähig, wenn es dem Zahnarzt objektiv auf Dauer unmöglich war, die Behandlung fortzusetzen oder eine Fortsetzung aus medizinischen Gründen nicht indiziert war."
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Prozentual (siehe Beschreibung)"
+                }
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://dental-agent.de/fhir/StructureDefinition/goz-multiplier-range",
+            "extension": [
+              {
+                "url": "min",
+                "valueDecimal": 1
+              },
+              {
+                "url": "default",
+                "valueDecimal": 2.3
+              },
+              {
+                "url": "max",
+                "valueDecimal": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F2240"
       }
     },
     {
@@ -8560,6 +8776,110 @@
       }
     },
     {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/goz/5050",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/goz/5050",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/goz",
+              "code": "5050",
+              "display": "Enden die Leistungen mit der Präparation der Brückenpfeiler oder Prothesenanker mit Verbindungselementen oder der Abdrucknahme beim Implantat, so ist die Hälfte der jeweiligen Gebühr berechnungsfähig."
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Prozentual (siehe Beschreibung)"
+                }
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://dental-agent.de/fhir/StructureDefinition/goz-multiplier-range",
+            "extension": [
+              {
+                "url": "min",
+                "valueDecimal": 1
+              },
+              {
+                "url": "default",
+                "valueDecimal": 2.3
+              },
+              {
+                "url": "max",
+                "valueDecimal": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F5050"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/goz/5060",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/goz/5060",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/goz",
+              "code": "5060",
+              "display": "Sind darüber hinaus weitere Maßnahmen erfolgt, so sind drei Viertel der jeweiligen Gebühr berechnungsfähig.Die Leistungen nach den Nummern 5050 oder 5060 sind nur berechnungsfähig, wenn es dem Zahnarzt objektiv auf Dauer unmöglich war, die Behandlung fortzusetzen, oder eine Fortsetzung aus medizinischen Gründen nicht indiziert war."
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Prozentual (siehe Beschreibung)"
+                }
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://dental-agent.de/fhir/StructureDefinition/goz-multiplier-range",
+            "extension": [
+              {
+                "url": "min",
+                "valueDecimal": 1
+              },
+              {
+                "url": "default",
+                "valueDecimal": 2.3
+              },
+              {
+                "url": "max",
+                "valueDecimal": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F5060"
+      }
+    },
+    {
       "fullUrl": "http://fhir.de/ChargeItemDefinition/goz/5070",
       "resource": {
         "resourceType": "ChargeItemDefinition",
@@ -9469,6 +9789,58 @@
       "request": {
         "method": "PUT",
         "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F5230"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/goz/5240",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/goz/5240",
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/goz",
+              "code": "5240",
+              "display": "Teilleistungen nach den Nummern 5200 und 5230:Für Maßnahmen bis einschließlich Bestimmung der Kieferrelation ist die Hälfte der jeweiligen Gebühr berechnungsfähig; bei weitergehenden Maßnahmen sind drei Viertel der jeweiligen Gebühr berechnungsfähig."
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "text": "Prozentual (siehe Beschreibung)"
+                }
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://dental-agent.de/fhir/StructureDefinition/goz-multiplier-range",
+            "extension": [
+              {
+                "url": "min",
+                "valueDecimal": 1
+              },
+              {
+                "url": "default",
+                "valueDecimal": 2.3
+              },
+              {
+                "url": "max",
+                "valueDecimal": 3.5
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fgoz%2F5240"
       }
     },
     {

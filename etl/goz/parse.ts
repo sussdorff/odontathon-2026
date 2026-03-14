@@ -21,9 +21,10 @@ const PUNKTWERT_EUR = 0.0562421
 interface GozEntry {
   nummer: string
   beschreibung: string
-  punktzahl: number
-  euro_einfachsatz: number
+  punktzahl: number | null
+  euro_einfachsatz: number | null
   abschnitt: string
+  hinweis?: string
 }
 
 async function downloadXml(localPath?: string): Promise<Document> {
@@ -154,10 +155,15 @@ function parseGoz(doc: Document): GozEntry[] {
       // Must be a 4-digit number code
       if (!/^\d{4}$/.test(nummer.trim())) continue
 
-      const punktzahl = parseInt(punktzahlStr.replace(/\D/g, ''), 10)
-      if (isNaN(punktzahl) || punktzahl <= 0) continue
+      const punktzahlNum = parseInt(punktzahlStr.replace(/\D/g, ''), 10)
+      const hasPunktzahl = !isNaN(punktzahlNum) && punktzahlNum > 0
 
-      const euro = Math.round(punktzahl * PUNKTWERT_EUR * 100) / 100
+      // Include positions without Punktzahl (e.g. percentage-based Teilleistungen like 0120, 2230, 2240, 5050, 5060, 5240)
+      const punktzahl = hasPunktzahl ? punktzahlNum : null
+      const euro = hasPunktzahl ? Math.round(punktzahlNum * PUNKTWERT_EUR * 100) / 100 : null
+
+      // For entries without a fixed point value, extract any hint from the Punktzahl column
+      const hinweis = !hasPunktzahl && punktzahlStr.trim() ? punktzahlStr.trim() : undefined
 
       entries.push({
         nummer: nummer.trim(),
@@ -165,6 +171,7 @@ function parseGoz(doc: Document): GozEntry[] {
         punktzahl,
         euro_einfachsatz: euro,
         abschnitt: currentAbschnitt,
+        ...(hinweis ? { hinweis } : {}),
       })
     }
   }

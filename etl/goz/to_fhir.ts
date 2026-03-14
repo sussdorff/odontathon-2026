@@ -27,9 +27,10 @@ const MULTIPLIER_MAX = 3.5
 interface GozEntry {
   nummer: string
   beschreibung: string
-  punktzahl: number
-  euro_einfachsatz: number
+  punktzahl: number | null
+  euro_einfachsatz: number | null
   abschnitt: string
+  hinweis?: string
 }
 
 function buildCodeSystem(entries: GozEntry[]) {
@@ -61,21 +62,25 @@ function buildCodeSystem(entries: GozEntry[]) {
 }
 
 function buildChargeItemDefinition(entry: GozEntry) {
-  return {
+  // For percentage-based Teilleistungen (e.g. 0120, 2230, 2240, 5050, 5060, 5240),
+  // no fixed Punktzahl exists — omit priceComponent factor/amount.
+  const priceComponent: Record<string, unknown>[] = entry.punktzahl !== null
+    ? [{
+        type: 'base',
+        code: { text: 'Punktzahl' },
+        factor: entry.punktzahl,
+        amount: { value: entry.euro_einfachsatz, currency: 'EUR' },
+      }]
+    : [{ type: 'base', code: { text: 'Prozentual (siehe Beschreibung)' } }]
+
+  const cid: Record<string, unknown> = {
     resourceType: 'ChargeItemDefinition',
     url: `${CHARGEITEM_URL_PREFIX}/${entry.nummer}`,
     status: 'active',
     code: {
       coding: [{ system: CODESYSTEM_URL, code: entry.nummer, display: entry.beschreibung }],
     },
-    propertyGroup: [{
-      priceComponent: [{
-        type: 'base',
-        code: { text: 'Punktzahl' },
-        factor: entry.punktzahl,
-        amount: { value: entry.euro_einfachsatz, currency: 'EUR' },
-      }],
-    }],
+    propertyGroup: [{ priceComponent }],
     extension: [{
       url: MULTIPLIER_EXTENSION_URL,
       extension: [
@@ -85,6 +90,7 @@ function buildChargeItemDefinition(entry: GozEntry) {
       ],
     }],
   }
+  return cid
 }
 
 function buildBundle(entries: GozEntry[]) {
