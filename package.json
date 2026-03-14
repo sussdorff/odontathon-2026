@@ -16,7 +16,10 @@
     "etl:kuerzel": "bun run etl/kuerzel/to_fhir.ts",
     "etl:punktwerte": "bun run etl/punktwerte/to_fhir.ts",
     "etl:all": "bun run etl:goz && bun run etl:bema && bun run etl:festzuschuss && bun run etl:kuerzel && bun run etl:punktwerte",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "dev:frontend": "cd frontend && bun run dev",
+    "build:frontend": "cd frontend && bun run build",
+    "dev:all": "bun run dev & bun run dev:frontend"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.76",

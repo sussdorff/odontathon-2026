@@ -13,7 +13,7 @@ NOT a fork of MIRA — a standalone project that reuses MIRA's infrastructure pa
 - **Backend**: Hono (TypeScript) in `src/`
 - **FHIR Server**: Aidbox (R4 4.0.1)
 - **Voice**: TBD (STT/TTS integration)
-- **Frontend**: Vanilla HTML/CSS/JS (static, served via Hono `serveStatic` from `src/ui/static/`)
+- **Frontend**: React 19 + Vite + TypeScript (in `frontend/`, MIRA-style stack: Tailwind v4, shadcn/ui patterns, Zustand, TanStack Query)
 
 ## Architecture
 
@@ -40,7 +40,10 @@ Focus for hackathon: Challenge 1 (Billing Coach).
 
 ## Commands
 
-- `bun run dev` — Start dev server
+- `bun run dev` — Start API dev server (port 3001)
+- `bun run dev:frontend` — Start Vite React dev server (port 3000, proxies /api to 3001)
+- `bun run dev:all` — Start both API + frontend dev servers
+- `bun run build:frontend` — Build React frontend to frontend/dist/
 - `bun run seed:catalogs` — Load GOZ/BEMA into Aidbox
 - `bun run etl:goz` — Parse + convert GOZ catalog
 - `bun run etl:bema` — Parse + convert BEMA catalog

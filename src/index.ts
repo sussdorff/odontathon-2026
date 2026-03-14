@@ -227,31 +227,57 @@ app.get('/api/patients/:id/suggestions', async (c) => {
 })
 
 // Catalog search for code autocomplete
+// In-memory catalog cache for fast search
+let catalogCache: Array<{ code: string; system: 'GOZ' | 'BEMA'; title: string; punktzahl?: number }> | null = null
+
+async function getCatalogCache() {
+  if (catalogCache) return catalogCache
+  const headers = { Authorization: aidboxConfig.authHeader }
+  const res = await fetch(`${aidboxConfig.fhirBaseUrl}/ChargeItemDefinition?_count=600`, { headers })
+  const bundle = await res.json()
+  catalogCache = (bundle.entry ?? [])
+    .map((e: any) => {
+      const r = e.resource
+      const coding = r.code?.coding?.[0]
+      if (!coding) return null
+      const sys = coding.system?.includes('goz') ? 'GOZ' as const : coding.system?.includes('bema') ? 'BEMA' as const : null
+      if (!sys) return null
+      const punktzahl = r.propertyGroup?.[0]?.priceComponent?.[0]?.factor
+      return {
+        code: coding.code,
+        system: sys,
+        title: coding.display ?? '',
+        punktzahl: typeof punktzahl === 'number' ? punktzahl : undefined,
+      }
+    })
+    .filter(Boolean) as typeof catalogCache
+  return catalogCache!
+}
+
 app.get('/api/catalog/search', async (c) => {
   const q = c.req.query('q') ?? ''
-  const system = c.req.query('system') // optional: GOZ or BEMA
+  const system = c.req.query('system') as 'GOZ' | 'BEMA' | undefined
   if (q.length < 1) return c.json({ results: [] })
 
-  const headers = { Authorization: aidboxConfig.authHeader }
-  const systemFilter = system === 'GOZ'
-    ? '&code=http://fhir.de/CodeSystem/goz|'
-    : system === 'BEMA'
-    ? '&code=http://fhir.de/CodeSystem/bema|'
-    : ''
+  const catalog = await getCatalogCache()
+  const qLower = q.toLowerCase()
 
-  const url = `${aidboxConfig.fhirBaseUrl}/ChargeItemDefinition?_count=20&title:contains=${encodeURIComponent(q)}${systemFilter}`
-  const res = await fetch(url, { headers })
-  const bundle = await res.json()
-
-  const results = (bundle.entry ?? []).map((e: any) => {
-    const r = e.resource
-    const coding = r.code?.coding?.[0]
-    return {
-      code: coding?.code ?? r.id,
-      system: coding?.system?.includes('goz') ? 'GOZ' : 'BEMA',
-      title: r.title ?? r.description ?? '',
-    }
-  })
+  const results = catalog
+    .filter((entry) => {
+      if (system && entry.system !== system) return false
+      return (
+        entry.code.toLowerCase().includes(qLower) ||
+        entry.title.toLowerCase().includes(qLower)
+      )
+    })
+    .sort((a, b) => {
+      // Exact prefix match on code first
+      const aPrefix = a.code.toLowerCase().startsWith(qLower) ? 0 : 1
+      const bPrefix = b.code.toLowerCase().startsWith(qLower) ? 0 : 1
+      if (aPrefix !== bPrefix) return aPrefix - bPrefix
+      return a.code.localeCompare(b.code)
+    })
+    .slice(0, 20)
 
   return c.json({ results })
 })
@@ -338,8 +364,9 @@ app.all('/fhir/*', async (c) => {
   })
 })
 
-// Static UI (after all API routes)
-app.use('/*', serveStatic({ root: './src/ui/static' }))
+// Static UI — serve React build output (after all API routes)
+app.use('/*', serveStatic({ root: './frontend/dist' }))
+app.use('/*', serveStatic({ root: './frontend/dist', path: 'index.html' }))
 
 const port = parseInt(process.env.PORT ?? '3001')
 if (import.meta.main) {

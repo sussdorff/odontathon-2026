@@ -27,6 +27,9 @@ data/
 !data/sources/
 !data/documentation-templates/
 
+# Playwright CLI snapshots
+.playwright-cli/
+
 # Beads
 .beads/dolt-data/
 
