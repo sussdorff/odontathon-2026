@@ -1,4 +1,19 @@
-## v2026.03.2 — 2026-03-14
+## [unreleased]
+
+### 🚀 Features
+
+- *(documentation)* ETL Dokumentationsvorlagen - 17 JSON-Templates + TypeScript-Typen
+- *(bema)* BEMA-Katalog um 25 fehlende Positionen erweitert (256→281)
+## [2026.03.3] - 2026-03-14
+
+### 🚀 Features
+
+- *(billing)* Rule Engine + BEMA catalog erweitert
+
+### 📚 Documentation
+
+- Add AIDBOX_LICENSE_ID to .env.sample
+## [2026.03.2] - 2026-03-14
 
 ### 🚀 Features
 
@@ -12,39 +27,39 @@
 
 - Worktree-bead-572 — Dental-Katalog ETL Pipeline (GOZ 215, BEMA 256, Festzuschüsse 48, Kürzel, Punktwerte Berlin)
 
+### 📚 Documentation
+
+- Changelog v2026.03.2
+
 ### ⚙️ Miscellaneous Tasks
 
 - Merge package.json — add license, seed:practice, keep ETL scripts
-# Changelog — Odontathon 2026 Dental Billing Agent
+## [2026.03.1] - 2026-03-14
 
-## v2026.03.0 — 2026-03-14
+### 💼 Other
 
-### Features
-- **Seed: Stammdaten** — 15 HKP-Szenarien, 15 Patienten/Coverages, 148 Zahnbefund-Observations, idempotent
-- **Seed: Kataloge** — GOZ/BEMA ChargeItemDefinition Bundles via `seed:catalogs`
-- **Projekt-Scaffold** — Hono-Backend, Aidbox FHIR R4, ETL-Pipeline (GOZ/BEMA), Voice-Agent-Struktur
+- Worktree-bead-6y1 — Seed Stammdaten + 15 HKP-Szenarien
 
-### Fixes
-- Stale Observations werden vor Re-Seed per Patient bereinigt (Aidbox conditional delete)
+### ⚙️ Miscellaneous Tasks
 
-### Dokumentation
-- `docs/szenarien.md` — 15 HKP-Szenarien für Odontathon-Kollegen dokumentiert
+- Add data/logs/.claude to gitignore, include beads PRIME.md
+## [2026.03.0] - 2026-03-14
 
-### Szenarien (seed:practice)
-| # | Szenario | Patient |
-|---|----------|---------|
-| 1 | Einfache Brücke, 50% Bonus | Anna Müller |
-| 2 | 5-gliedrige Brücke, 60% | Klaus Schmidt |
-| 3 | Gleichartige Versorgung (Vollkeramik), 70% | Petra Wagner |
-| 4 | PAR + ZE Kombination | Hans-Jürgen Becker |
-| 5 | Teilprothese UK | Monika Fischer |
-| 6 | Einzelimplantat, andersartig | Mehmet Yılmaz |
-| 7 | Traumatischer Frontzahnverlust | Sophie Braun |
-| 8 | PKV, 2 Implantate (GOZ) | Wolfgang Schulz |
-| 9 | Kronenerneuerung (3× kw) | Fatima Al-Hassan |
-| 10 | Teleskopprothese, PKV | Rainer Hoffmann |
-| 11 | Freiendlücke beidseits, kein Bonus | Gerda Klein |
-| 12 | Kombinierter ZE (Brücke + Teilprothese) | Erika Richter |
-| 13 | Agenesie nach KFO | Lukas Berg |
-| 14 | Totalprothese nach Parodontitis | Hildegard Vogel |
-| 15 | Implantatgetragene Brücke (3 Impl.), PKV | Stefan Weber |
+### 🚀 Features
+
+- Project scaffold with Aidbox, dental billing catalogs, and voice agent structure
+- *(seed)* Stammdaten seed — 15 Orgs/Pract, 10 Patienten, ~100 Zahnbefunde
+- *(seed)* 15 HKP-Szenarien, szenario-getriebene Befunde, Szenariendokumentation
+
+### 🐛 Bug Fixes
+
+- *(seed)* Cleanup stale Observations per-patient before re-seed
+
+### 📚 Documentation
+
+- README, MIT license, docker-compose port 8085
+- Add CHANGELOG.md for v2026.03.0
+
+### ⚙️ Miscellaneous Tasks
+
+- Initial commit
