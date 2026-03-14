@@ -44,7 +44,7 @@ export interface RequirementRule {
   description: string
 }
 
-export type FrequencyPeriod = 'per-session' | 'per-year' | 'per-2-years' | 'per-3-years' | 'per-lifetime'
+export type FrequencyPeriod = 'per-session' | 'per-quarter' | 'per-halfyear' | 'per-year' | 'per-2-years' | 'per-3-years' | 'per-lifetime'
 
 export interface FrequencyRule {
   type: 'frequency'

@@ -158,4 +158,242 @@ export const exclusionRules: ExclusionRule[] = [
     description: 'GOZ 4000 (Parodontalstatus) nicht neben GOZ 4005 (Parodontaler Screening-Index) in gleicher Sitzung',
     sameSession: true,
   },
+
+  // --- Prävention § 22a SGB V — PBa/PBb Ausschlüsse ---
+  {
+    type: 'exclusion', id: 'excl-174a-ip1',
+    codeA: '174a', systemA: 'BEMA', codeB: 'IP1', systemB: 'BEMA',
+    description: 'BEMA 174a (PBa Mundgesundheitsstatus) nicht neben BEMA IP1 am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174a-ip2',
+    codeA: '174a', systemA: 'BEMA', codeB: 'IP2', systemB: 'BEMA',
+    description: 'BEMA 174a (PBa Mundgesundheitsstatus) nicht neben BEMA IP2 am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174a-fu1',
+    codeA: '174a', systemA: 'BEMA', codeB: 'FU1', systemB: 'BEMA',
+    description: 'BEMA 174a (PBa Mundgesundheitsstatus) nicht neben BEMA FU1 am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174a-fu2',
+    codeA: '174a', systemA: 'BEMA', codeB: 'FU2', systemB: 'BEMA',
+    description: 'BEMA 174a (PBa Mundgesundheitsstatus) nicht neben BEMA FU2 am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174a-mhu',
+    codeA: '174a', systemA: 'BEMA', codeB: 'MHU', systemB: 'BEMA',
+    description: 'BEMA 174a (PBa Mundgesundheitsstatus) nicht neben BEMA MHU am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174a-upta',
+    codeA: '174a', systemA: 'BEMA', codeB: 'UPTa', systemB: 'BEMA',
+    description: 'BEMA 174a (PBa Mundgesundheitsstatus) nicht neben BEMA UPTa am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174a-uptb',
+    codeA: '174a', systemA: 'BEMA', codeB: 'UPTb', systemB: 'BEMA',
+    description: 'BEMA 174a (PBa Mundgesundheitsstatus) nicht neben BEMA UPTb am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174b-ip1',
+    codeA: '174b', systemA: 'BEMA', codeB: 'IP1', systemB: 'BEMA',
+    description: 'BEMA 174b (PBb Mundgesundheitsaufklärung) nicht neben BEMA IP1 am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174b-ip2',
+    codeA: '174b', systemA: 'BEMA', codeB: 'IP2', systemB: 'BEMA',
+    description: 'BEMA 174b (PBb Mundgesundheitsaufklärung) nicht neben BEMA IP2 am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174b-fu1',
+    codeA: '174b', systemA: 'BEMA', codeB: 'FU1', systemB: 'BEMA',
+    description: 'BEMA 174b (PBb Mundgesundheitsaufklärung) nicht neben BEMA FU1 am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174b-fu2',
+    codeA: '174b', systemA: 'BEMA', codeB: 'FU2', systemB: 'BEMA',
+    description: 'BEMA 174b (PBb Mundgesundheitsaufklärung) nicht neben BEMA FU2 am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174b-mhu',
+    codeA: '174b', systemA: 'BEMA', codeB: 'MHU', systemB: 'BEMA',
+    description: 'BEMA 174b (PBb Mundgesundheitsaufklärung) nicht neben BEMA MHU am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174b-upta',
+    codeA: '174b', systemA: 'BEMA', codeB: 'UPTa', systemB: 'BEMA',
+    description: 'BEMA 174b (PBb Mundgesundheitsaufklärung) nicht neben BEMA UPTa am selben Tag',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-174b-uptb',
+    codeA: '174b', systemA: 'BEMA', codeB: 'UPTb', systemB: 'BEMA',
+    description: 'BEMA 174b (PBb Mundgesundheitsaufklärung) nicht neben BEMA UPTb am selben Tag',
+    sameSession: true,
+  },
+
+  // --- PBZst / Zst Ausschluss ---
+  {
+    type: 'exclusion', id: 'excl-107a-107',
+    codeA: '107a', systemA: 'BEMA', codeB: '107', systemB: 'BEMA',
+    description: 'BEMA 107a (PBZst) nicht neben BEMA 107 (Zst) — nur eine Zahnsteinentfernung abrechenbar',
+    sameSession: true,
+  },
+
+  // --- 01/Ae1 nicht neben Besuchsleistungen ---
+  {
+    type: 'exclusion', id: 'excl-01-151',
+    codeA: '01', systemA: 'BEMA', codeB: '151', systemB: 'BEMA',
+    description: 'BEMA 01 nicht neben BEMA 151 (Bs1 Besuch) — Untersuchung bei Besuch nicht zusätzlich berechenbar',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-01-152',
+    codeA: '01', systemA: 'BEMA', codeB: '152', systemB: 'BEMA',
+    description: 'BEMA 01 nicht neben BEMA 152 (Bs2 Besuch je weiteren)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-01-153',
+    codeA: '01', systemA: 'BEMA', codeB: '153', systemB: 'BEMA',
+    description: 'BEMA 01 nicht neben BEMA 153 (Bs3 Besuch Einrichtung)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-01-154',
+    codeA: '01', systemA: 'BEMA', codeB: '154', systemB: 'BEMA',
+    description: 'BEMA 01 nicht neben BEMA 154 (Bs4 Besuch Pflegeeinrichtung mit Vertrag)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-01-155',
+    codeA: '01', systemA: 'BEMA', codeB: '155', systemB: 'BEMA',
+    description: 'BEMA 01 nicht neben BEMA 155 (Bs5 Besuch je weiteren mit Vertrag)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-ae1-151',
+    codeA: 'Ae1', systemA: 'BEMA', codeB: '151', systemB: 'BEMA',
+    description: 'BEMA Ae1 nicht neben BEMA 151 (Bs1 Besuch)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-ae1-152',
+    codeA: 'Ae1', systemA: 'BEMA', codeB: '152', systemB: 'BEMA',
+    description: 'BEMA Ae1 nicht neben BEMA 152 (Bs2 Besuch je weiteren)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-ae1-153',
+    codeA: 'Ae1', systemA: 'BEMA', codeB: '153', systemB: 'BEMA',
+    description: 'BEMA Ae1 nicht neben BEMA 153 (Bs3 Besuch Einrichtung)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-ae1-154',
+    codeA: 'Ae1', systemA: 'BEMA', codeB: '154', systemB: 'BEMA',
+    description: 'BEMA Ae1 nicht neben BEMA 154 (Bs4 Besuch Pflegeeinrichtung mit Vertrag)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-ae1-155',
+    codeA: 'Ae1', systemA: 'BEMA', codeB: '155', systemB: 'BEMA',
+    description: 'BEMA Ae1 nicht neben BEMA 155 (Bs5 Besuch je weiteren mit Vertrag)',
+    sameSession: true,
+  },
+
+  // --- Videosprechstunde ist alleinige Leistung ---
+  {
+    type: 'exclusion', id: 'excl-vs-01',
+    codeA: 'VS', systemA: 'BEMA', codeB: '01', systemB: 'BEMA',
+    description: 'BEMA VS (Videosprechstunde) nur als alleinige Leistung — nicht neben BEMA 01',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-vs-151',
+    codeA: 'VS', systemA: 'BEMA', codeB: '151', systemB: 'BEMA',
+    description: 'BEMA VS (Videosprechstunde) nur als alleinige Leistung — nicht neben BEMA 151 (Bs1)',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-vs-174a',
+    codeA: 'VS', systemA: 'BEMA', codeB: '174a', systemB: 'BEMA',
+    description: 'BEMA VS (Videosprechstunde) nur als alleinige Leistung — nicht neben BEMA 174a (PBa)',
+    sameSession: true,
+  },
+
+  // --- Zeitzuschläge sind untereinander exklusiv ---
+  {
+    type: 'exclusion', id: 'excl-161a-161b',
+    codeA: '161a', systemA: 'BEMA', codeB: '161b', systemB: 'BEMA',
+    description: 'BEMA 161a (ZBs1a) nicht neben 161b (ZBs1b) — Zeitzuschläge Erstbesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-161a-161c',
+    codeA: '161a', systemA: 'BEMA', codeB: '161c', systemB: 'BEMA',
+    description: 'BEMA 161a (ZBs1a) nicht neben 161c (ZBs1c) — Zeitzuschläge Erstbesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-161a-161d',
+    codeA: '161a', systemA: 'BEMA', codeB: '161d', systemB: 'BEMA',
+    description: 'BEMA 161a (ZBs1a) nicht neben 161d (ZBs1d) — Zeitzuschläge Erstbesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-161a-161e',
+    codeA: '161a', systemA: 'BEMA', codeB: '161e', systemB: 'BEMA',
+    description: 'BEMA 161a (ZBs1a) nicht neben 161e (ZBs1e) — Zeitzuschläge Erstbesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-161a-161f',
+    codeA: '161a', systemA: 'BEMA', codeB: '161f', systemB: 'BEMA',
+    description: 'BEMA 161a (ZBs1a) nicht neben 161f (ZBs1f) — Zeitzuschläge Erstbesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-162a-162b',
+    codeA: '162a', systemA: 'BEMA', codeB: '162b', systemB: 'BEMA',
+    description: 'BEMA 162a (ZBs2a) nicht neben 162b (ZBs2b) — Zeitzuschläge Folgebesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-162a-162c',
+    codeA: '162a', systemA: 'BEMA', codeB: '162c', systemB: 'BEMA',
+    description: 'BEMA 162a (ZBs2a) nicht neben 162c (ZBs2c) — Zeitzuschläge Folgebesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-162a-162d',
+    codeA: '162a', systemA: 'BEMA', codeB: '162d', systemB: 'BEMA',
+    description: 'BEMA 162a (ZBs2a) nicht neben 162d (ZBs2d) — Zeitzuschläge Folgebesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-162a-162e',
+    codeA: '162a', systemA: 'BEMA', codeB: '162e', systemB: 'BEMA',
+    description: 'BEMA 162a (ZBs2a) nicht neben 162e (ZBs2e) — Zeitzuschläge Folgebesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
+  {
+    type: 'exclusion', id: 'excl-162a-162f',
+    codeA: '162a', systemA: 'BEMA', codeB: '162f', systemB: 'BEMA',
+    description: 'BEMA 162a (ZBs2a) nicht neben 162f (ZBs2f) — Zeitzuschläge Folgebesuch sind untereinander exklusiv',
+    sameSession: true,
+  },
 ]

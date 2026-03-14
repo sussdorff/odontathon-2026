@@ -116,6 +116,14 @@ export class RuleEngine {
       const d = new Date(h.date)
       switch (rule.period) {
         case 'per-session': return h.date === now.toISOString().split('T')[0]
+        case 'per-quarter': {
+          const qStart = new Date(now.getFullYear(), Math.floor(now.getMonth() / 3) * 3, 1)
+          return d >= qStart
+        }
+        case 'per-halfyear': {
+          const hStart = new Date(now.getFullYear(), now.getMonth() < 6 ? 0 : 6, 1)
+          return d >= hStart
+        }
         case 'per-year': return d >= new Date(now.getFullYear() - 1, now.getMonth(), now.getDate())
         case 'per-2-years': return d >= new Date(now.getFullYear() - 2, now.getMonth(), now.getDate())
         case 'per-3-years': return d >= new Date(now.getFullYear() - 3, now.getMonth(), now.getDate())

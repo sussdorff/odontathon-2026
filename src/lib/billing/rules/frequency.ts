@@ -97,4 +97,42 @@ export const frequencyRules: FrequencyRule[] = [
     maxCount: 4, period: 'per-year', scope: 'per-case',
     description: 'BEMA UPT: max 4x pro Jahr in den ersten 2 Jahren nach PAR-Therapie',
   },
+
+  // --- Prävention § 22a SGB V ---
+  {
+    type: 'frequency', id: 'freq-174a', code: '174a', system: 'BEMA',
+    maxCount: 1, period: 'per-halfyear', scope: 'per-case',
+    description: 'BEMA 174a (PBa Mundgesundheitsstatus): max 1x pro Kalenderhalbjahr',
+  },
+  {
+    type: 'frequency', id: 'freq-174b', code: '174b', system: 'BEMA',
+    maxCount: 1, period: 'per-halfyear', scope: 'per-case',
+    description: 'BEMA 174b (PBb Mundgesundheitsaufklärung): max 1x pro Kalenderhalbjahr',
+  },
+  {
+    type: 'frequency', id: 'freq-107a', code: '107a', system: 'BEMA',
+    maxCount: 1, period: 'per-halfyear', scope: 'per-case',
+    description: 'BEMA 107a (PBZst Zahnsteinentfernung): max 1x pro Kalenderhalbjahr',
+  },
+
+  // --- Telemedizin ---
+  {
+    type: 'frequency', id: 'freq-vfk', code: 'VFK', system: 'BEMA',
+    maxCount: 3, period: 'per-quarter', scope: 'per-case',
+    description: 'BEMA VFK (Videofallkonferenz): max 3x pro Quartal je Versicherten',
+  },
+
+  // --- GOÄ Nr. 15 (Mundgesundheitsstatus PKV) ---
+  {
+    type: 'frequency', id: 'freq-goae-15', code: '15', system: 'GOZ',
+    maxCount: 1, period: 'per-year', scope: 'per-case',
+    description: 'GOÄ Nr. 15 (Mundgesundheitsstatus PKV): max 1x pro Kalenderjahr',
+  },
+
+  // --- Technikzuschlag ---
+  {
+    type: 'frequency', id: 'freq-tz', code: 'TZ', system: 'BEMA',
+    maxCount: 10, period: 'per-quarter', scope: 'per-case',
+    description: 'BEMA TZ (Technikzuschlag): neben den ersten 10 Positionen pro Quartal je Praxis',
+  },
 ]

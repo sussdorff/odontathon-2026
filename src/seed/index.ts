@@ -3,7 +3,7 @@
  * Order: Organizations → Practitioners → PractitionerRoles → Location → Patients → Coverages → Observations
  */
 import { practiceResources } from './practice.js'
-import { patients, coverages } from './patients.js'
+import { patients, coverages, pflegegradConditions } from './patients.js'
 import { dentalFindings } from './dental-findings.js'
 
 type FhirResource = Record<string, unknown>
@@ -35,6 +35,7 @@ export function buildPracticeBundle(): Record<string, unknown> {
     ...practiceResources,
     ...patients,
     ...coverages,
+    ...pflegegradConditions,
     ...dentalFindings,
   ]
 
@@ -47,4 +48,4 @@ export function buildPracticeBundle(): Record<string, unknown> {
   }
 }
 
-export { practiceResources, patients, coverages, dentalFindings }
+export { practiceResources, patients, coverages, pflegegradConditions, dentalFindings }

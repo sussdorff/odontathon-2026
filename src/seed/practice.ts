@@ -173,6 +173,61 @@ export const orgLaborMueller: FhirResource = {
   name: 'Zahntechnik Müller GmbH',
 }
 
+// ─── Pflegeeinrichtung (for Kooperationsvertrag §119b SGB V) ─────────────────
+
+export const orgSeniorenresidenzAmPark: FhirResource = {
+  resourceType: 'Organization',
+  id: 'org-seniorenresidenz-am-park',
+  identifier: [
+    {
+      system: IK_SYSTEM,
+      value: '460123456',
+    },
+  ],
+  type: [
+    {
+      coding: [
+        {
+          system: 'http://terminology.hl7.org/CodeSystem/organization-type',
+          code: 'prov',
+          display: 'Healthcare Provider',
+        },
+      ],
+      text: 'Stationäre Pflegeeinrichtung nach §71(2) SGB XI',
+    },
+  ],
+  name: 'Seniorenresidenz Am Park',
+  address: [
+    {
+      line: ['Parkallee 42'],
+      city: 'Berlin',
+      postalCode: '12209',
+      country: 'DE',
+    },
+  ],
+}
+
+/** Kooperationsvertrag nach §119b(1) SGB V between practice and care facility */
+export const orgAffiliationKoopvertrag: FhirResource = {
+  resourceType: 'OrganizationAffiliation',
+  id: 'orgaff-koopvertrag-weber-park',
+  active: true,
+  organization: { reference: 'Organization/org-seniorenresidenz-am-park' },
+  participatingOrganization: { reference: 'Organization/org-praxis-weber-koch' },
+  code: [
+    {
+      coding: [
+        {
+          system: SNOMED_SYSTEM,
+          code: '394745000',
+          display: 'General practice (environment)',
+        },
+      ],
+      text: 'Kooperationsvertrag nach §119b(1) SGB V',
+    },
+  ],
+}
+
 // ─── Practitioners ───────────────────────────────────────────────────────────
 
 export const pracWeber: FhirResource = {
@@ -296,6 +351,8 @@ export const practiceResources: FhirResource[] = [
   orgBarmer,
   orgSignalIduna,
   orgLaborMueller,
+  orgSeniorenresidenzAmPark,
+  orgAffiliationKoopvertrag,
   pracWeber,
   pracKoch,
   roleWeber,

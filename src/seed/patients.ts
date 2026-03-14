@@ -4,7 +4,7 @@
  *
  * Birthdates computed relative to reference date 2026-03-14.
  */
-import { EXT_DENTAL } from '../lib/fhir-extensions.js'
+import { EXT_DENTAL, EXT_PFLEGE } from '../lib/fhir-extensions.js'
 
 type FhirResource = Record<string, unknown>
 
@@ -125,6 +125,16 @@ export const patientFischerMonika: FhirResource = {
   name: [{ use: 'official', family: 'Fischer', given: ['Monika'] }],
   gender: 'female',
   birthDate: birthdate(71),
+  extension: [
+    {
+      url: EXT_PFLEGE.pflegegradStatus,
+      extension: [
+        { url: EXT_PFLEGE.pflegegradLevel, valueInteger: 3 },
+        { url: EXT_PFLEGE.eingliederungshilfe, valueBoolean: false },
+        { url: EXT_PFLEGE.bescheidDatum, valueDate: '2025-06-15' },
+      ],
+    },
+  ],
 }
 
 export const patientYilmazMehmet: FhirResource = {
@@ -165,6 +175,17 @@ export const patientHoffmannRainer: FhirResource = {
   name: [{ use: 'official', family: 'Hoffmann', given: ['Rainer'] }],
   gender: 'male',
   birthDate: birthdate(67),
+  extension: [
+    {
+      url: EXT_PFLEGE.pflegegradStatus,
+      extension: [
+        { url: EXT_PFLEGE.pflegegradLevel, valueInteger: 2 },
+        { url: EXT_PFLEGE.eingliederungshilfe, valueBoolean: false },
+        { url: EXT_PFLEGE.bescheidDatum, valueDate: '2025-09-20' },
+        { url: EXT_PFLEGE.befristungBis, valueDate: '2027-09-19' },
+      ],
+    },
+  ],
 }
 
 export const patientKleinGerda: FhirResource = {
@@ -173,6 +194,15 @@ export const patientKleinGerda: FhirResource = {
   name: [{ use: 'official', family: 'Klein', given: ['Gerda'] }],
   gender: 'female',
   birthDate: birthdate(68),
+  extension: [
+    {
+      url: EXT_PFLEGE.pflegegradStatus,
+      extension: [
+        { url: EXT_PFLEGE.eingliederungshilfe, valueBoolean: true },
+        { url: EXT_PFLEGE.bescheidDatum, valueDate: '2023-03-01' },
+      ],
+    },
+  ],
 }
 
 export const patientRichterErika: FhirResource = {
@@ -197,6 +227,16 @@ export const patientVogelHildegard: FhirResource = {
   name: [{ use: 'official', family: 'Vogel', given: ['Hildegard'] }],
   gender: 'female',
   birthDate: birthdate(72),
+  extension: [
+    {
+      url: EXT_PFLEGE.pflegegradStatus,
+      extension: [
+        { url: EXT_PFLEGE.pflegegradLevel, valueInteger: 4 },
+        { url: EXT_PFLEGE.eingliederungshilfe, valueBoolean: false },
+        { url: EXT_PFLEGE.bescheidDatum, valueDate: '2024-11-01' },
+      ],
+    },
+  ],
 }
 
 export const patientWeberStefan: FhirResource = {
@@ -325,6 +365,95 @@ export const coverageWeberStefan = makePkvCoverage(
   'org-signal-iduna',
   'PKV2026-0003',
 )
+
+// ─── Pflegegrad Conditions ───────────────────────────────────────────────────
+// Condition resources document the care needs — queryable by the billing engine
+
+const PFLEGEGRAD_SYSTEM = 'https://mira.cognovis.de/fhir/CodeSystem/pflegegrad'
+
+function makePflegegradCondition(
+  patientId: string,
+  pflegegrad: number,
+  recordedDate: string,
+): FhirResource {
+  return {
+    resourceType: 'Condition',
+    id: `cond-${patientId}-pflegegrad`,
+    clinicalStatus: {
+      coding: [{ system: 'http://terminology.hl7.org/CodeSystem/condition-clinical', code: 'active' }],
+    },
+    verificationStatus: {
+      coding: [{ system: 'http://terminology.hl7.org/CodeSystem/condition-ver-status', code: 'confirmed' }],
+    },
+    category: [
+      {
+        coding: [
+          {
+            system: 'http://terminology.hl7.org/CodeSystem/condition-category',
+            code: 'problem-list-item',
+          },
+        ],
+      },
+    ],
+    code: {
+      coding: [
+        {
+          system: PFLEGEGRAD_SYSTEM,
+          code: `${pflegegrad}`,
+          display: `Pflegegrad ${pflegegrad}`,
+        },
+      ],
+      text: `Pflegegrad ${pflegegrad} nach §15 SGB XI`,
+    },
+    subject: { reference: `Patient/${patientId}` },
+    recordedDate,
+  }
+}
+
+function makeEingliederungshilfeCondition(
+  patientId: string,
+  recordedDate: string,
+): FhirResource {
+  return {
+    resourceType: 'Condition',
+    id: `cond-${patientId}-eingliederungshilfe`,
+    clinicalStatus: {
+      coding: [{ system: 'http://terminology.hl7.org/CodeSystem/condition-clinical', code: 'active' }],
+    },
+    verificationStatus: {
+      coding: [{ system: 'http://terminology.hl7.org/CodeSystem/condition-ver-status', code: 'confirmed' }],
+    },
+    category: [
+      {
+        coding: [
+          {
+            system: 'http://terminology.hl7.org/CodeSystem/condition-category',
+            code: 'problem-list-item',
+          },
+        ],
+      },
+    ],
+    code: {
+      coding: [
+        {
+          system: 'http://fhir.de/CodeSystem/bfarm/icd-10-gm',
+          code: 'Z73.9',
+          display: 'Probleme verbunden mit Schwierigkeiten bei der Lebensbewältigung',
+        },
+      ],
+      text: 'Eingliederungshilfe nach §53 SGB XII',
+    },
+    subject: { reference: `Patient/${patientId}` },
+    recordedDate,
+  }
+}
+
+export const pflegegradConditions: FhirResource[] = [
+  makePflegegradCondition('patient-fischer-monika', 3, '2025-06-15'),
+  makePflegegradCondition('patient-vogel-hildegard', 4, '2024-11-01'),
+  makePflegegradCondition('patient-hoffmann-rainer', 2, '2025-09-20'),
+  makeEingliederungshilfeCondition('patient-klein-gerda', '2023-03-01'),
+]
 
 // ─── Export ──────────────────────────────────────────────────────────────────
 

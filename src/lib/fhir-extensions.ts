@@ -37,6 +37,42 @@ export const EXT_DENTAL = {
   zeBonusProzent: `${NS}/ze-bonus-prozent`,
 } as const
 
+/** Pflegegrad & Eingliederungshilfe extensions (§22a SGB V) */
+export const EXT_PFLEGE = {
+  /** Complex extension on Patient: Pflegegrad status */
+  pflegegradStatus: `${NS}/pflegegrad-status`,
+  /** Pflegegrad level 1-5 */
+  pflegegradLevel: `${NS}/pflegegrad-level`,
+  /** Eingliederungshilfe nach §53 SGB XII */
+  eingliederungshilfe: `${NS}/eingliederungshilfe`,
+  /** Datum des Bescheids */
+  bescheidDatum: `${NS}/bescheid-datum`,
+  /** Befristung bis (nur bei befristeten Bescheiden) */
+  befristungBis: `${NS}/befristung-bis`,
+} as const
+
+/** Besuchskontext code system for Encounter.serviceType */
+export const CODE_SYSTEMS_BESUCH = {
+  /** Setting of the dental visit */
+  besuchsSetting: 'https://mira.cognovis.de/fhir/CodeSystem/besuchs-setting',
+} as const
+
+/**
+ * Known besuchs-setting codes:
+ *
+ * praxis              — Behandlung in der Praxis (default)
+ * privatwohnung       — Hausbesuch Privatwohnung (Bs1/152a)
+ * einrichtung         — Besuch in Einrichtung ohne Kooperationsvertrag (Bs3a/153a)
+ * einrichtung-vertrag — Einrichtung regelmäßig ohne Kooperationsvertrag
+ * pflegeeinrichtung   — Pflegeeinrichtung MIT Kooperationsvertrag §119b (Bs4/154)
+ */
+export type BesuchsSettingCode =
+  | 'praxis'
+  | 'privatwohnung'
+  | 'einrichtung'
+  | 'einrichtung-vertrag'
+  | 'pflegeeinrichtung'
+
 /** Dental clinical code systems */
 export const CODE_SYSTEMS_DENTAL = {
   fdiTooth: 'https://mira.cognovis.de/fhir/CodeSystem/fdi-tooth-number',
