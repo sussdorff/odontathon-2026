@@ -1,3 +1,20 @@
+## v2026.03.2 — 2026-03-14
+
+### 🚀 Features
+
+- Dental catalog ETL pipeline (GOZ, BEMA, Festzuschüsse, Kürzel, Punktwerte)
+
+### 🐛 Bug Fixes
+
+- Catalog data quality — GOZ complete at 215, BEMA verified, Festzuschüsse confirmed
+
+### 💼 Other
+
+- Worktree-bead-572 — Dental-Katalog ETL Pipeline (GOZ 215, BEMA 256, Festzuschüsse 48, Kürzel, Punktwerte Berlin)
+
+### ⚙️ Miscellaneous Tasks
+
+- Merge package.json — add license, seed:practice, keep ETL scripts
 # Changelog — Odontathon 2026 Dental Billing Agent
 
 ## v2026.03.0 — 2026-03-14
