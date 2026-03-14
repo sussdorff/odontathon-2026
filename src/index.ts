@@ -106,11 +106,11 @@ app.get('/api/patients', async (c) => {
     const findings = obs.map((o: any) => {
       const toothCode = o.bodySite?.coding?.find((cd: any) =>
         cd.system?.includes('fdi-tooth-number'))?.code
-      const statusCode = o.code?.coding?.find((cd: any) =>
+      const statusCode = o.valueCodeableConcept?.coding?.find((cd: any) =>
         cd.system?.includes('tooth-status'))?.code
-      const surfaces = o.component?.find((comp: any) =>
-        comp.code?.coding?.some((cd: any) => cd.system?.includes('tooth-surfaces'))
-      )?.valueString?.split(',') ?? []
+      const surfaceExt = o.extension?.find((ex: any) =>
+        ex.url?.includes('tooth-surfaces'))
+      const surfaces = surfaceExt?.valueString?.split(',') ?? []
       return {
         tooth: toothCode ? parseInt(toothCode) : null,
         status: statusCode ?? 'unknown',
@@ -148,11 +148,11 @@ app.get('/api/patients/:id/suggestions', async (c) => {
     const o = e.resource
     const toothCode = o.bodySite?.coding?.find((cd: any) =>
       cd.system?.includes('fdi-tooth-number'))?.code
-    const statusCode = o.code?.coding?.find((cd: any) =>
+    const statusCode = o.valueCodeableConcept?.coding?.find((cd: any) =>
       cd.system?.includes('tooth-status'))?.code
-    const surfaces = o.component?.find((comp: any) =>
-      comp.code?.coding?.some((cd: any) => cd.system?.includes('tooth-surfaces'))
-    )?.valueString?.split(',') ?? []
+    const surfaceExt = o.extension?.find((ex: any) =>
+      ex.url?.includes('tooth-surfaces'))
+    const surfaces = surfaceExt?.valueString?.split(',') ?? []
     return {
       tooth: toothCode ? parseInt(toothCode) : 0,
       status: statusCode ?? 'unknown',

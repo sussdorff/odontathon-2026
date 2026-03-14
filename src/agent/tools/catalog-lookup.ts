@@ -1,18 +1,20 @@
 import { z } from 'zod/v4'
 import { tool } from '@anthropic-ai/claude-agent-sdk'
 import { aidboxConfig } from '../../lib/config'
-import { CODE_SYSTEMS, EXT_BILLING } from '../../lib/fhir-extensions'
+import { CODE_SYSTEMS } from '../../lib/fhir-extensions'
+
+const GOZ_MULTIPLIER_EXT = 'http://dental-agent.de/fhir/StructureDefinition/goz-multiplier-range'
 
 export const lookupCatalogCode = tool(
   'lookup_catalog_code',
-  'Look up a GOZ or BEMA billing code in the Aidbox catalog. Returns description, points, euro value, and multiplier range.',
+  'Look up a GOZ or BEMA billing code in the Aidbox catalog. Returns description, Punktzahl, EUR value, and multiplier range (GOZ only).',
   {
-    code: z.string().describe('Billing code (e.g. "2197", "04")'),
+    code: z.string().describe('Billing code (e.g. "2197", "Ä 1")'),
     system: z.enum(['GOZ', 'BEMA']).describe('Billing system'),
   },
   async ({ code, system }) => {
     const systemUrl = system === 'GOZ' ? CODE_SYSTEMS.goz : CODE_SYSTEMS.bema
-    const url = `${aidboxConfig.fhirBaseUrl}/ChargeItemDefinition?code=${systemUrl}|${code}&_count=1`
+    const url = `${aidboxConfig.fhirBaseUrl}/ChargeItemDefinition?code=${systemUrl}|${encodeURIComponent(code)}&_count=1`
 
     const res = await fetch(url, {
       headers: { Authorization: aidboxConfig.authHeader },
@@ -39,25 +41,46 @@ export const lookupCatalogCode = tool(
       }
     }
 
-    function getExt(url: string) {
-      return entry.extension?.find((e: any) => e.url === url)
+    // Extract from propertyGroup[0].priceComponent[0]
+    const priceComp = entry.propertyGroup?.[0]?.priceComponent?.[0]
+    const punktzahl = priceComp?.factor ?? null
+    const euroEinfachsatz = priceComp?.amount?.value ?? null
+    const priceType = priceComp?.code?.text ?? null
+
+    // Extract GOZ multiplier range from nested extension
+    let multiplierMin: number | null = null
+    let multiplierDefault: number | null = null
+    let multiplierMax: number | null = null
+
+    if (system === 'GOZ') {
+      const multExt = entry.extension?.find((e: any) => e.url === GOZ_MULTIPLIER_EXT)
+      if (multExt?.extension) {
+        for (const sub of multExt.extension) {
+          if (sub.url === 'min') multiplierMin = sub.valueDecimal
+          if (sub.url === 'default') multiplierDefault = sub.valueDecimal
+          if (sub.url === 'max') multiplierMax = sub.valueDecimal
+        }
+      }
     }
+
+    const description = entry.code?.coding?.[0]?.display ?? ''
 
     const result = {
       found: true,
       code,
       system,
-      title: entry.title ?? entry.description ?? '',
-      description: entry.description ?? '',
-      status: entry.status,
-      points: getExt(EXT_BILLING.points)?.valueDecimal ?? null,
-      euroValue: getExt(EXT_BILLING.euroValue)?.valueDecimal ?? null,
-      multiplierMin: getExt(EXT_BILLING.multiplierMin)?.valueDecimal ?? null,
-      multiplierDefault: getExt(EXT_BILLING.multiplierDefault)?.valueDecimal ?? null,
-      multiplierMax: getExt(EXT_BILLING.multiplierMax)?.valueDecimal ?? null,
-      category: getExt(EXT_BILLING.category)?.valueString ?? null,
-      requirements: getExt(EXT_BILLING.requirements)?.valueString ?? null,
-      exclusions: getExt(EXT_BILLING.exclusions)?.valueString ?? null,
+      description,
+      punktzahl,
+      euroEinfachsatz,
+      priceType,
+      multiplierMin,
+      multiplierDefault,
+      multiplierMax,
+      // Computed values for GOZ
+      ...(system === 'GOZ' && euroEinfachsatz && multiplierDefault ? {
+        euroRegelsatz: Math.round(euroEinfachsatz * multiplierDefault * 100) / 100,
+        euroHoechstsatz: multiplierMax ? Math.round(euroEinfachsatz * multiplierMax * 100) / 100 : null,
+      } : {}),
     }
 
     return { content: [{ type: 'text' as const, text: JSON.stringify(result, null, 2) }] }

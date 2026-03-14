@@ -43,18 +43,18 @@ export const getCaseContext = tool(
 
     const findings = (observationBundle.entry ?? [])
       .map((e: any) => e.resource)
-      .filter((o: any) => o.code?.coding?.some((c: any) =>
+      .filter((o: any) => o.valueCodeableConcept?.coding?.some((c: any) =>
         c.system?.includes('tooth-status')
       ))
       .map((o: any) => ({
-        tooth: o.component?.find((c: any) =>
-          c.code?.coding?.some((cd: any) => cd.system?.includes('fdi-tooth-number'))
-        )?.valueInteger ?? o.valueInteger,
-        status: o.code?.coding?.find((c: any) =>
+        tooth: parseInt(o.bodySite?.coding?.find((c: any) =>
+          c.system?.includes('fdi-tooth-number')
+        )?.code ?? '0'),
+        status: o.valueCodeableConcept?.coding?.find((c: any) =>
           c.system?.includes('tooth-status')
         )?.code ?? 'unknown',
-        surfaces: o.component?.find((c: any) =>
-          c.code?.coding?.some((cd: any) => cd.system?.includes('tooth-surfaces'))
+        surfaces: o.extension?.find((ex: any) =>
+          ex.url?.includes('tooth-surfaces')
         )?.valueString?.split(',') ?? [],
       }))
 
