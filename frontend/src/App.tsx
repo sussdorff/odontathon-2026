@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { InputPanel } from '@/components/panels/input-panel'
 import { ProgressPanel } from '@/components/panels/progress-panel'
 import { ReportPanel } from '@/components/panels/report-panel'
 import { RulesPanel } from '@/components/panels/rules-panel'
+import { ChatLayout } from '@/components/panels/chat-layout'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,7 +15,11 @@ const queryClient = new QueryClient({
   },
 })
 
+type Tab = 'chat' | 'abrechnung'
+
 export default function App() {
+  const [activeTab, setActiveTab] = useState<Tab>('chat')
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-[#f0f2f5]">
@@ -33,13 +39,45 @@ export default function App() {
           </div>
         </header>
 
-        <main className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 max-w-[1440px] mx-auto">
-          <InputPanel />
-          <div className="space-y-4">
-            <ProgressPanel />
-            <ReportPanel />
-            <RulesPanel />
+        {/* Tab bar */}
+        <div className="px-4 pt-3 max-w-[1440px] mx-auto">
+          <div className="flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm w-fit">
+            <button
+              onClick={() => setActiveTab('chat')}
+              className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+                activeTab === 'chat'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+              }`}
+            >
+              Billing Chat
+            </button>
+            <button
+              onClick={() => setActiveTab('abrechnung')}
+              className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-colors ${
+                activeTab === 'abrechnung'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+              }`}
+            >
+              Abrechnung
+            </button>
           </div>
+        </div>
+
+        <main className="p-4 max-w-[1440px] mx-auto">
+          {activeTab === 'chat' ? (
+            <ChatLayout />
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <InputPanel />
+              <div className="space-y-4">
+                <ProgressPanel />
+                <ReportPanel />
+                <RulesPanel />
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </QueryClientProvider>

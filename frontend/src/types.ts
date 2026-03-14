@@ -105,3 +105,35 @@ export interface PracticeRule {
 }
 
 export type Severity = 'error' | 'warning' | 'info' | 'suggestion'
+
+// Chat / Billing Coach types
+export interface ChatMessage {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  timestamp: Date
+}
+
+export interface ProposedItem {
+  code: string
+  system: 'GOZ' | 'BEMA'
+  description: string
+  factor?: number
+  teeth?: number[]
+  estimatedCost?: number
+}
+
+export interface ValidationIssue {
+  code: string
+  issue: string
+  severity: 'error' | 'warning'
+}
+
+export interface ChatResponse {
+  sessionId: string
+  message: string
+  proposedItems: ProposedItem[]
+  validationIssues: ValidationIssue[]
+  followUpQuestions: string[]
+  isComplete: boolean
+}
