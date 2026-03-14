@@ -1,28 +1,66 @@
-## [2026.03.8] - 2026-03-14
-
-### 🚀 Features
-
-- *(billing)* Kostenkalkulator GOZ/BEMA/Eigenanteil — calculateGOZPrice, calculateBEMAPrice, calculatePatientShare (15 Unit-Tests)
-- *(api)* FHIR API auth proxy
-
-## [2026.03.7] - 2026-03-14
-
-### 🚀 Features
-
-- *(seed)* Past invoice data for pattern-based billing suggestions (30 Claims: Kompositfüllung, Brücke, WKB)
-
 ## [unreleased]
 
 ### 🚀 Features
 
+- *(api)* Setup basic agentic flow
+- *(billing)* Kostenkalkulator UI + API-Endpunkt (dent-k38)
+
+### 🚜 Refactor
+
+- *(api)* In-memory Katalog-Cache + React-Frontend serving
+
+### 📚 Documentation
+
+- Frontend-Tech-Stack als TBD markiert (dent-k38)
+## [2026.03.8] - 2026-03-14
+
+### 🚀 Features
+
+- *(api)* Proxy fhir api auth
+- *(billing)* Kostenkalkulator GOZ/BEMA/Eigenanteil
+
+### 💼 Other
+
+- Worktree-bead-dent-fbu — Kostenkalkulator GOZ/BEMA/Eigenanteil
+
+### ⚙️ Miscellaneous Tasks
+
+- VERSION v2026.03.8 + changelog
+## [2026.03.7] - 2026-03-14
+
+### 🚀 Features
+
+- *(seed)* Past invoice data for pattern-based billing suggestions
+
+### ⚙️ Miscellaneous Tasks
+
+- VERSION v2026.03.7 + changelog
+## [2026.03.6] - 2026-03-14
+
+### 🚀 Features
+
 - *(billing)* Bidirektionale Template↔BillingPattern Verknüpfung
-- *(documentation)* ETL Dokumentationsvorlagen - 17 JSON-Templates + TypeScript-Typen
-- *(bema)* BEMA-Katalog um 25 fehlende Positionen erweitert (256→281)
 
 ### ⚙️ Miscellaneous Tasks
 
 - VERSION v2026.03.5 + fix billing codes in Untersuchung-Template
+- VERSION v2026.03.6 + changelog
+## [2026.03.5] - 2026-03-14
 
+### 🚀 Features
+
+- *(api)* Add GET rules endpoint
+- *(billing)* AuB-Abrechnungsregeln + FHIR-Modell für Pflegegrad/Eingliederungshilfe
+## [2026.03.4] - 2026-03-14
+
+### 🚀 Features
+
+- *(documentation)* ETL Dokumentationsvorlagen - 17 JSON-Templates + TypeScript-Typen
+- *(bema)* BEMA-Katalog um 25 fehlende Positionen erweitert (256→281)
+
+### 📚 Documentation
+
+- Changelog v2026.03.4
 ## [2026.03.3] - 2026-03-14
 
 ### 🚀 Features
