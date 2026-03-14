@@ -2,7 +2,7 @@
   "id": "allgemeine-untersuchung",
   "name": "Allgemeine Untersuchungen",
   "category": "allgemein",
-  "relatedBillingCodes": ["01", "0100", "Ä1"],
+  "relatedBillingCodes": ["0010", "0040", "01"],
   "bfsSource": false,
   "fields": [
     {
