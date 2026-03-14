@@ -162,6 +162,39 @@ app.get('/api/patients/:id/suggestions', async (c) => {
     }
   }).filter((f: any) => f.tooth > 0)
 
+  // Enrich findings with documented treatments from Procedures
+  const procRes = await fetch(
+    `${aidboxConfig.fhirBaseUrl}/Procedure?subject=Patient/${patientId}&_count=100`,
+    { headers },
+  )
+  const procBundle = await procRes.json()
+  const treatmentByTooth = new Map<number, string>()
+  for (const e of (procBundle.entry ?? [])) {
+    const proc = e.resource
+    const tooth = proc.bodySite?.[0]?.coding?.find((cd: any) =>
+      cd.system?.includes('fdi-tooth-number'))?.code
+    if (!tooth) continue
+    const toothNum = parseInt(tooth)
+    // Detect treatment type from procedure category/code
+    const catCode = proc.category?.coding?.[0]?.code ?? ''
+    const codeText = (proc.code?.text ?? '').toLowerCase()
+    let treatment: string | undefined
+    if (codeText.includes('füllung') || codeText.includes('komposit') || catCode === '274163004') {
+      treatment = 'filling'
+    } else if (codeText.includes('wurzelkanal') || codeText.includes('endodont')) {
+      treatment = 'root-canal'
+    } else if (codeText.includes('extraktion')) {
+      treatment = 'extraction'
+    } else if (codeText.includes('krone')) {
+      treatment = 'crown'
+    }
+    if (treatment) treatmentByTooth.set(toothNum, treatment)
+  }
+  for (const f of findings) {
+    const treatment = treatmentByTooth.get(f.tooth)
+    if (treatment) f.treatment = treatment
+  }
+
   const engine = new RuleEngine()
   const patterns = engine.suggestPatterns(findings)
 

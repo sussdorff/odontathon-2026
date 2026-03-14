@@ -135,10 +135,14 @@ export interface BillingItem {
   date?: string
 }
 
+export type TreatmentType = 'filling' | 'root-canal' | 'extraction' | 'crown' | 'other'
+
 export interface DentalFinding {
   tooth: number
   status: string
   surfaces?: string[]
+  /** Documented treatment from Procedure resources — narrows pattern suggestions */
+  treatment?: TreatmentType
 }
 
 export interface BillingHistoryEntry {

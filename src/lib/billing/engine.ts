@@ -45,21 +45,42 @@ export class RuleEngine {
     }
   }
 
+  /** Map treatment type → compatible KCH pattern IDs */
+  private static readonly TREATMENT_PATTERNS: Record<string, string[]> = {
+    'filling': ['goz-composite-filling', 'bema-filling'],
+    'root-canal': ['goz-root-canal'],
+    'extraction': ['goz-extraction'],
+    'crown': ['goz-single-crown', 'goz-crown-renewal'],
+  }
+
   /** Find matching billing patterns for a set of dental findings */
   suggestPatterns(findings: DentalFinding[]): BillingPattern[] {
     const statuses = new Set(findings.map(f => f.status))
+    const treatments = new Set(findings.map(f => f.treatment).filter(Boolean))
     const matched: BillingPattern[] = []
 
     for (const pattern of this.patterns) {
-      // Match by category heuristics based on findings
+      // ZE patterns: match by tooth status (absent, bridge-anchor, etc.)
       if (statuses.has('absent') || statuses.has('bridge-anchor') || statuses.has('replaced-bridge')) {
         if (pattern.category === 'ZE') matched.push(pattern)
       }
       if (statuses.has('crown-needs-renewal')) {
         if (pattern.id === 'goz-crown-renewal' || pattern.id === 'goz-single-crown') matched.push(pattern)
       }
+
+      // KCH patterns: if treatment is documented, only suggest matching patterns
       if (statuses.has('carious')) {
-        if (pattern.category === 'KCH') matched.push(pattern)
+        if (pattern.category === 'KCH') {
+          if (treatments.size > 0) {
+            // Filter: only suggest patterns compatible with documented treatment
+            const compatible = [...treatments].some(t =>
+              (RuleEngine.TREATMENT_PATTERNS[t!] ?? []).includes(pattern.id))
+            if (compatible) matched.push(pattern)
+          } else {
+            // No treatment documented → suggest all KCH patterns
+            matched.push(pattern)
+          }
+        }
       }
     }
 
