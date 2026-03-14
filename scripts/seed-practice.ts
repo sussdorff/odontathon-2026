@@ -8,6 +8,39 @@
 import { aidboxConfig } from '../src/lib/config'
 import { buildPracticeBundle } from '../src/seed/index'
 
+const PATIENT_IDS = [
+  'patient-mueller-anna', 'patient-schmidt-klaus', 'patient-wagner-petra',
+  'patient-becker-hans', 'patient-fischer-monika', 'patient-yilmaz-mehmet',
+  'patient-braun-sophie', 'patient-schulz-wolfgang', 'patient-al-hassan-fatima',
+  'patient-hoffmann-rainer', 'patient-klein-gerda', 'patient-richter-erika',
+  'patient-berg-lukas', 'patient-vogel-hildegard', 'patient-weber-stefan',
+]
+
+/**
+ * Delete all Observations per patient before re-seeding.
+ * Fetches all IDs first (Aidbox rejects bulk conditional delete with 412),
+ * then deletes individually to clear stale entries from previous runs.
+ */
+async function cleanObservations() {
+  const ids: string[] = []
+  for (const pid of PATIENT_IDS) {
+    const url = `${aidboxConfig.fhirBaseUrl}/Observation?subject=Patient/${pid}&_count=500&_elements=id`
+    const res = await fetch(url, { headers: { Authorization: aidboxConfig.authHeader } })
+    if (!res.ok) continue
+    const bundle = await res.json() as { entry?: { resource: { id: string } }[] }
+    for (const e of bundle.entry ?? []) ids.push(e.resource.id)
+  }
+  if (ids.length === 0) return
+  console.log(`  Clearing ${ids.length} stale Observations...`)
+  await Promise.all(ids.map(id =>
+    fetch(`${aidboxConfig.fhirBaseUrl}/Observation/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: aidboxConfig.authHeader },
+    })
+  ))
+  console.log(`  ✓ ${ids.length} Observations cleared`)
+}
+
 async function seedPractice() {
   console.log('Building practice bundle...')
   const bundle = buildPracticeBundle()
@@ -26,6 +59,7 @@ async function seedPractice() {
     console.log(`    ${rt}: ${count}`)
   }
 
+  await cleanObservations()
   console.log(`\nPosting to ${aidboxConfig.fhirBaseUrl}...`)
 
   const res = await fetch(aidboxConfig.fhirBaseUrl, {
