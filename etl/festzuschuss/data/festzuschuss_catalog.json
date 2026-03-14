@@ -1,0 +1,434 @@
+[
+  {
+    "befundklasse": "1.1",
+    "befund": "Erhaltungswürdiger Zahn mit weitgehender Zerstörung der klinischen Krone oder unzureichende Retentionsmöglichkeit, je Zahn",
+    "regelversorgung": "Krone",
+    "festzuschuss_60_eur": 229.25,
+    "festzuschuss_70_eur": 267.46,
+    "festzuschuss_75_eur": 286.57,
+    "festzuschuss_100_eur": 382.09
+  },
+  {
+    "befundklasse": "1.2",
+    "befund": "Erhaltungswürdiger Zahn mit großen Substanzdefekten, aber erhaltener vestibulärer und/oder oraler Zahnsubstanz, je Zahn",
+    "regelversorgung": "Teilkrone",
+    "festzuschuss_60_eur": 262.97,
+    "festzuschuss_70_eur": 306.80,
+    "festzuschuss_75_eur": 328.72,
+    "festzuschuss_100_eur": 438.29
+  },
+  {
+    "befundklasse": "1.3",
+    "befund": "Erhaltungswürdiger Zahn mit weitgehender Zerstörung der klinischen Krone oder unzureichende Retentionsmöglichkeit im Verblendbereich (15-25 und 34-44), je Verblendung für Kronen (auch implantatgestützte)",
+    "regelversorgung": "Verblendung",
+    "festzuschuss_60_eur": 78.26,
+    "festzuschuss_70_eur": 91.31,
+    "festzuschuss_75_eur": 97.83,
+    "festzuschuss_100_eur": 130.44
+  },
+  {
+    "befundklasse": "1.4",
+    "befund": "Endodontisch behandelter Zahn mit Notwendigkeit eines konfektionierten metallischen Stiftaufbaus mit herkömmlichen Zementierungsverfahren, je Zahn",
+    "regelversorgung": "Konfektionierter Stiftaufbau",
+    "festzuschuss_60_eur": 47.83,
+    "festzuschuss_70_eur": 55.80,
+    "festzuschuss_75_eur": 59.78,
+    "festzuschuss_100_eur": 79.71
+  },
+  {
+    "befundklasse": "1.5",
+    "befund": "Endodontisch behandelter Zahn mit Notwendigkeit eines gegossenen metallischen Stiftaufbaus mit herkömmlichen Zementierungsverfahren, je Zahn",
+    "regelversorgung": "Gegossener Stiftaufbau",
+    "festzuschuss_60_eur": 144.07,
+    "festzuschuss_70_eur": 168.08,
+    "festzuschuss_75_eur": 180.08,
+    "festzuschuss_100_eur": 240.11
+  },
+  {
+    "befundklasse": "2.1",
+    "befund": "Zahnbegrenzte Lücke mit einem fehlenden Zahn, je Lücke (Lückensituation I)",
+    "regelversorgung": "Brücke (1 Spanne)",
+    "festzuschuss_60_eur": 529.97,
+    "festzuschuss_70_eur": 618.30,
+    "festzuschuss_75_eur": 662.47,
+    "festzuschuss_100_eur": 883.29
+  },
+  {
+    "befundklasse": "2.2",
+    "befund": "Zahnbegrenzte Lücke mit zwei nebeneinander fehlenden Zähnen, je Lücke",
+    "regelversorgung": "Brücke (2 Spannen)",
+    "festzuschuss_60_eur": 604.56,
+    "festzuschuss_70_eur": 705.32,
+    "festzuschuss_75_eur": 755.70,
+    "festzuschuss_100_eur": 1007.60
+  },
+  {
+    "befundklasse": "2.3",
+    "befund": "Zahnbegrenzte Lücke mit drei nebeneinander fehlenden Zähnen, je Kiefer",
+    "regelversorgung": "Brücke (3 Spannen)",
+    "festzuschuss_60_eur": 675.02,
+    "festzuschuss_70_eur": 787.53,
+    "festzuschuss_75_eur": 843.78,
+    "festzuschuss_100_eur": 1125.04
+  },
+  {
+    "befundklasse": "2.4",
+    "befund": "Frontzahnlücke mit vier nebeneinander fehlenden Zähnen, je Kiefer",
+    "regelversorgung": "Brücke (4 Spannen)",
+    "festzuschuss_60_eur": 739.73,
+    "festzuschuss_70_eur": 863.02,
+    "festzuschuss_75_eur": 924.67,
+    "festzuschuss_100_eur": 1232.89
+  },
+  {
+    "befundklasse": "2.5",
+    "befund": "An eine Lücke unmittelbar angrenzende weitere zahnbegrenzte Lücke mit einem fehlenden Zahn",
+    "regelversorgung": "Erweiterungsbrücke",
+    "festzuschuss_60_eur": 293.93,
+    "festzuschuss_70_eur": 342.92,
+    "festzuschuss_75_eur": 367.42,
+    "festzuschuss_100_eur": 489.89
+  },
+  {
+    "befundklasse": "2.6",
+    "befund": "Disparallele Pfeilerzähne zur festsitzenden Zahnersatzversorgung, Zuschlag je Lücke",
+    "regelversorgung": "Zuschlag disparallele Pfeiler",
+    "festzuschuss_60_eur": 216.86,
+    "festzuschuss_70_eur": 253.01,
+    "festzuschuss_75_eur": 271.08,
+    "festzuschuss_100_eur": 361.44
+  },
+  {
+    "befundklasse": "2.7",
+    "befund": "Fehlender Zahn in einer zahnbegrenzten Lücke im Verblendbereich (15-25 und 34-44), je Verblendung für einen ersetzten Zahn, auch für einen der Lücke angrenzenden Brückenanker im Verblendbereich",
+    "regelversorgung": "Verblendung Brückenglied",
+    "festzuschuss_60_eur": 77.12,
+    "festzuschuss_70_eur": 89.98,
+    "festzuschuss_75_eur": 96.41,
+    "festzuschuss_100_eur": 128.54
+  },
+  {
+    "befundklasse": "3.1",
+    "befund": "Alle zahnbegrenzten Lücken, die nicht den Befunden nach Nrn. 2.1 bis 2.5 und 4 entsprechen, oder Freindendsituationen (Lückensituation II), je Kiefer",
+    "regelversorgung": "Herausnehmbarer Zahnersatz",
+    "festzuschuss_60_eur": 540.58,
+    "festzuschuss_70_eur": 630.67,
+    "festzuschuss_75_eur": 675.72,
+    "festzuschuss_100_eur": 900.96
+  },
+  {
+    "befundklasse": "3.2",
+    "befund": "Beidseitig bis zu den Eckzähnen oder bis zu den ersten Prämolaren verkürzte Zahnreihe (oder einseitig/beidseitig im Seitenzahngebiet unterbrochene Zahnreihe mit Notwendigkeit dentaler Verankerung), je Eckzahn oder erstem Prämolar",
+    "regelversorgung": "Kombinationsversorgung mit dentaler Verankerung",
+    "festzuschuss_60_eur": 385.97,
+    "festzuschuss_70_eur": 450.30,
+    "festzuschuss_75_eur": 482.46,
+    "festzuschuss_100_eur": 643.28
+  },
+  {
+    "befundklasse": "4.1",
+    "befund": "Restzahnbestand bis zu 3 Zähnen im Oberkiefer",
+    "regelversorgung": "Totalprothese Oberkiefer",
+    "festzuschuss_60_eur": 564.55,
+    "festzuschuss_70_eur": 658.64,
+    "festzuschuss_75_eur": 705.68,
+    "festzuschuss_100_eur": 940.91
+  },
+  {
+    "befundklasse": "4.2",
+    "befund": "Zahnloser Oberkiefer",
+    "regelversorgung": "Totalprothese Oberkiefer",
+    "festzuschuss_60_eur": 544.97,
+    "festzuschuss_70_eur": 635.80,
+    "festzuschuss_75_eur": 681.22,
+    "festzuschuss_100_eur": 908.29
+  },
+  {
+    "befundklasse": "4.3",
+    "befund": "Restzahnbestand bis zu 3 Zähnen im Unterkiefer",
+    "regelversorgung": "Totalprothese Unterkiefer",
+    "festzuschuss_60_eur": 583.54,
+    "festzuschuss_70_eur": 680.80,
+    "festzuschuss_75_eur": 729.43,
+    "festzuschuss_100_eur": 972.57
+  },
+  {
+    "befundklasse": "4.4",
+    "befund": "Zahnloser Unterkiefer",
+    "regelversorgung": "Totalprothese Unterkiefer",
+    "festzuschuss_60_eur": 584.38,
+    "festzuschuss_70_eur": 681.78,
+    "festzuschuss_75_eur": 730.48,
+    "festzuschuss_100_eur": 973.97
+  },
+  {
+    "befundklasse": "4.5",
+    "befund": "Erfordernis einer Metallbasis, Zuschlag je Kiefer",
+    "regelversorgung": "Metallbasis Totalprothese",
+    "festzuschuss_60_eur": 126.93,
+    "festzuschuss_70_eur": 148.09,
+    "festzuschuss_75_eur": 158.66,
+    "festzuschuss_100_eur": 211.55
+  },
+  {
+    "befundklasse": "4.6",
+    "befund": "Restzahnbestand bis zu 3 Zähnen je Kiefer mit der Notwendigkeit einer dentalen Verankerung, wenn die Regelversorgung eine Kombinationsversorgung vorsieht, je Ankerzahn",
+    "regelversorgung": "Kombinationsversorgung dentale Verankerung",
+    "festzuschuss_60_eur": 395.29,
+    "festzuschuss_70_eur": 461.17,
+    "festzuschuss_75_eur": 494.11,
+    "festzuschuss_100_eur": 658.81
+  },
+  {
+    "befundklasse": "4.7",
+    "befund": "Verblendung einer Teleskopkrone im Verblendbereich (15-25 und 34-44), Zuschlag je Ankerzahn",
+    "regelversorgung": "Verblendung Teleskopkrone",
+    "festzuschuss_60_eur": 62.32,
+    "festzuschuss_70_eur": 72.70,
+    "festzuschuss_75_eur": 77.90,
+    "festzuschuss_100_eur": 103.86
+  },
+  {
+    "befundklasse": "4.8",
+    "befund": "Restzahnbestand bis zu 3 Zähnen je Kiefer bei Notwendigkeit einer dentalen Verankerung durch Wurzelstiftkappen, je Ankerzahn",
+    "regelversorgung": "Wurzelstiftkappen",
+    "festzuschuss_60_eur": 354.77,
+    "festzuschuss_70_eur": 413.90,
+    "festzuschuss_75_eur": 443.47,
+    "festzuschuss_100_eur": 591.29
+  },
+  {
+    "befundklasse": "4.9",
+    "befund": "Schwierig zu bestimmende Lagebeziehung der Kiefer bei der Versorgung mit Totalprothesen und schleimhautgetragenen Deckprothesen (Notwendigkeit einer Stützstiftregistrierung), Zuschlag je Gesamtbefund",
+    "regelversorgung": "Stützstiftregistrierung",
+    "festzuschuss_60_eur": 89.88,
+    "festzuschuss_70_eur": 104.86,
+    "festzuschuss_75_eur": 112.35,
+    "festzuschuss_100_eur": 149.80
+  },
+  {
+    "befundklasse": "5.1",
+    "befund": "Lückengebiss nach Verlust von bis zu 4 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+    "regelversorgung": "Interimsversorgung (Interimsprothese)",
+    "festzuschuss_60_eur": 185.73,
+    "festzuschuss_70_eur": 216.69,
+    "festzuschuss_75_eur": 232.16,
+    "festzuschuss_100_eur": 309.55
+  },
+  {
+    "befundklasse": "5.2",
+    "befund": "Lückengebiss nach Zahnverlust von 5 bis 8 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+    "regelversorgung": "Interimsversorgung (erweitert)",
+    "festzuschuss_60_eur": 256.48,
+    "festzuschuss_70_eur": 299.23,
+    "festzuschuss_75_eur": 320.60,
+    "festzuschuss_100_eur": 427.47
+  },
+  {
+    "befundklasse": "5.3",
+    "befund": "Lückengebiss nach Verlust von über 8 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+    "regelversorgung": "Interimsversorgung (umfangreich)",
+    "festzuschuss_60_eur": 333.74,
+    "festzuschuss_70_eur": 389.36,
+    "festzuschuss_75_eur": 417.17,
+    "festzuschuss_100_eur": 556.23
+  },
+  {
+    "befundklasse": "5.4",
+    "befund": "Zahnloser Ober- oder Unterkiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+    "regelversorgung": "Interimsversorgung Totalprothese",
+    "festzuschuss_60_eur": 458.57,
+    "festzuschuss_70_eur": 535.00,
+    "festzuschuss_75_eur": 573.21,
+    "festzuschuss_100_eur": 764.28
+  },
+  {
+    "befundklasse": "6.0",
+    "befund": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung ohne Notwendigkeit der Abformung und ohne Notwendigkeit zahntechnischer Leistungen, auch Auffüllen von Sekundärteleskopen im direkten Verfahren, je Prothese",
+    "regelversorgung": "Wiederherstellung ohne Abformung/Labor",
+    "festzuschuss_60_eur": 22.36,
+    "festzuschuss_70_eur": 26.09,
+    "festzuschuss_75_eur": 27.95,
+    "festzuschuss_100_eur": 37.27
+  },
+  {
+    "befundklasse": "6.1",
+    "befund": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung ohne Notwendigkeit der Abformung, je Prothese",
+    "regelversorgung": "Wiederherstellung ohne Abformung",
+    "festzuschuss_60_eur": 53.06,
+    "festzuschuss_70_eur": 61.91,
+    "festzuschuss_75_eur": 66.33,
+    "festzuschuss_100_eur": 88.44
+  },
+  {
+    "befundklasse": "6.2",
+    "befund": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Notwendigkeit der Abformung (Maßnahmen im Kunststoffbereich), auch Wiederbefestigung von Sekundärteleskopen oder anderer Verbindungselemente, je Prothese",
+    "regelversorgung": "Wiederherstellung mit Abformung (Kunststoff)",
+    "festzuschuss_60_eur": 88.36,
+    "festzuschuss_70_eur": 103.08,
+    "festzuschuss_75_eur": 110.45,
+    "festzuschuss_100_eur": 147.26
+  },
+  {
+    "befundklasse": "6.3",
+    "befund": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im gegossenen Metallbereich, auch Wiederbefestigung von Sekundärteleskopen oder anderer Verbindungselemente, je Prothese",
+    "regelversorgung": "Wiederherstellung (gegossener Metallbereich)",
+    "festzuschuss_60_eur": 125.66,
+    "festzuschuss_70_eur": 146.61,
+    "festzuschuss_75_eur": 157.08,
+    "festzuschuss_100_eur": 209.44
+  },
+  {
+    "befundklasse": "6.4",
+    "befund": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im Kunststoffbereich, je Prothese – bei Erweiterung um einen Zahn",
+    "regelversorgung": "Erweiterung Prothese Kunststoff (1 Zahn)",
+    "festzuschuss_60_eur": 94.51,
+    "festzuschuss_70_eur": 110.26,
+    "festzuschuss_75_eur": 118.14,
+    "festzuschuss_100_eur": 157.52
+  },
+  {
+    "befundklasse": "6.4.1",
+    "befund": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im Kunststoffbereich, je Prothese – bei Erweiterung um jeden weiteren Zahn",
+    "regelversorgung": "Erweiterung Prothese Kunststoff (weitere Zähne)",
+    "festzuschuss_60_eur": 18.94,
+    "festzuschuss_70_eur": 22.10,
+    "festzuschuss_75_eur": 23.68,
+    "festzuschuss_100_eur": 31.57
+  },
+  {
+    "befundklasse": "6.5",
+    "befund": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung im gegossenen Metallbereich, je Prothese – bei Erweiterung um einen Zahn",
+    "regelversorgung": "Erweiterung Prothese Metall (1 Zahn)",
+    "festzuschuss_60_eur": 138.05,
+    "festzuschuss_70_eur": 161.06,
+    "festzuschuss_75_eur": 172.56,
+    "festzuschuss_100_eur": 230.08
+  },
+  {
+    "befundklasse": "6.5.1",
+    "befund": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung im gegossenen Metallbereich, je Prothese – bei Erweiterung um jeden weiteren Zahn",
+    "regelversorgung": "Erweiterung Prothese Metall (weitere Zähne)",
+    "festzuschuss_60_eur": 27.68,
+    "festzuschuss_70_eur": 32.29,
+    "festzuschuss_75_eur": 34.60,
+    "festzuschuss_100_eur": 46.13
+  },
+  {
+    "befundklasse": "6.6",
+    "befund": "Verändertes Prothesenlager bei erhaltungswürdigem Teil-Zahnersatz, je Prothese",
+    "regelversorgung": "Unterfütterung Teilprothese",
+    "festzuschuss_60_eur": 103.15,
+    "festzuschuss_70_eur": 120.34,
+    "festzuschuss_75_eur": 128.93,
+    "festzuschuss_100_eur": 171.91
+  },
+  {
+    "befundklasse": "6.7",
+    "befund": "Verändertes Prothesenlager bei erhaltungswürdigem totalem Zahnersatz oder schleimhautgetragener Deckprothese, je Kiefer",
+    "regelversorgung": "Unterfütterung Totalprothese",
+    "festzuschuss_60_eur": 124.21,
+    "festzuschuss_70_eur": 144.91,
+    "festzuschuss_75_eur": 155.26,
+    "festzuschuss_100_eur": 207.01
+  },
+  {
+    "befundklasse": "6.8",
+    "befund": "Wiederherstellungsbedürftiger festsitzender rezentierbarer Zahnersatz, je Zahn",
+    "regelversorgung": "Wiederherstellung festsitzender Zahnersatz",
+    "festzuschuss_60_eur": 16.19,
+    "festzuschuss_70_eur": 18.89,
+    "festzuschuss_75_eur": 20.24,
+    "festzuschuss_100_eur": 26.99
+  },
+  {
+    "befundklasse": "6.8.1",
+    "befund": "Wiederherstellungsbedürftiger festsitzender Zahnersatz, je Flügel einer Adhäsivbrücke",
+    "regelversorgung": "Wiederherstellung Adhäsivbrücke Flügel",
+    "festzuschuss_60_eur": 45.88,
+    "festzuschuss_70_eur": 53.52,
+    "festzuschuss_75_eur": 57.35,
+    "festzuschuss_100_eur": 76.46
+  },
+  {
+    "befundklasse": "6.9",
+    "befund": "Wiederherstellungsbedürftige Facette/Verblendung (auch wiedereinsetzbar oder erneuerungsbedürftig) im Verblendbereich an einer Krone, einem Sekundärteleskop, einem Brückenanker oder einem Brückenglied, je Verblendung",
+    "regelversorgung": "Wiederherstellung Facette/Verblendung",
+    "festzuschuss_60_eur": 89.02,
+    "festzuschuss_70_eur": 103.86,
+    "festzuschuss_75_eur": 111.28,
+    "festzuschuss_100_eur": 148.37
+  },
+  {
+    "befundklasse": "6.10",
+    "befund": "Erneuerungsbedürftiges Primär- oder Sekundärteleskop, je Zahn",
+    "regelversorgung": "Erneuerung Teleskop",
+    "festzuschuss_60_eur": 270.11,
+    "festzuschuss_70_eur": 315.13,
+    "festzuschuss_75_eur": 337.64,
+    "festzuschuss_100_eur": 450.19
+  },
+  {
+    "befundklasse": "7.1",
+    "befund": "Erneuerungsbedürftige Suprakonstruktion (vorhandenes Implantat bei zahnbegrenzter Einzelzahnlücke), je implantatgetragene Krone",
+    "regelversorgung": "Erneuerung Suprakonstruktion Einzelzahn",
+    "festzuschuss_60_eur": 228.75,
+    "festzuschuss_70_eur": 266.88,
+    "festzuschuss_75_eur": 285.94,
+    "festzuschuss_100_eur": 381.25
+  },
+  {
+    "befundklasse": "7.2",
+    "befund": "Erneuerungsbedürftige Suprakonstruktion, die über den Befund nach Nr. 7.1 hinausgeht, je implantatgetragene Krone, Brückenanker oder Brückenglied, höchstens viermal je Kiefer",
+    "regelversorgung": "Erneuerung Suprakonstruktion erweitert",
+    "festzuschuss_60_eur": 139.72,
+    "festzuschuss_70_eur": 163.00,
+    "festzuschuss_75_eur": 174.65,
+    "festzuschuss_100_eur": 232.86
+  },
+  {
+    "befundklasse": "7.3",
+    "befund": "Wiederherstellungsbedürftige Suprakonstruktionen (Facette), je Facette",
+    "regelversorgung": "Wiederherstellung Suprakonstruktion Facette",
+    "festzuschuss_60_eur": 83.28,
+    "festzuschuss_70_eur": 97.16,
+    "festzuschuss_75_eur": 104.10,
+    "festzuschuss_100_eur": 138.80
+  },
+  {
+    "befundklasse": "7.4",
+    "befund": "Wiederherstellungsbedürftiger festsitzender rezementierbarer oder zu verschraubender Zahnersatz, je implantatgetragene Krone oder Brückenanker",
+    "regelversorgung": "Wiederherstellung implantatgetragener festsitzender ZE",
+    "festzuschuss_60_eur": 17.47,
+    "festzuschuss_70_eur": 20.38,
+    "festzuschuss_75_eur": 21.83,
+    "festzuschuss_100_eur": 29.11
+  },
+  {
+    "befundklasse": "7.5",
+    "befund": "Erneuerungsbedürftige implantatgetragene Prothesenkonstruktion, je Prothesenkonstruktion",
+    "regelversorgung": "Erneuerung implantatgetragene Prothese",
+    "festzuschuss_60_eur": 558.31,
+    "festzuschuss_70_eur": 651.36,
+    "festzuschuss_75_eur": 697.88,
+    "festzuschuss_100_eur": 930.51
+  },
+  {
+    "befundklasse": "7.6",
+    "befund": "Erneuerungsbedürftige Prothesenkonstruktion bei atrophiertem zahnlosem Kiefer, je implantatgetragenem Konnektor als Zuschlag zum Befund nach Nr. 7.5, höchstens viermal je Kiefer",
+    "regelversorgung": "Zuschlag Erneuerung bei atrophiertem Kiefer",
+    "festzuschuss_60_eur": 16.13,
+    "festzuschuss_70_eur": 18.82,
+    "festzuschuss_75_eur": 20.17,
+    "festzuschuss_100_eur": 26.89
+  },
+  {
+    "befundklasse": "7.7",
+    "befund": "Wiederherstellungsbedürftige implantatgetragene Prothesenkonstruktion, Umgestaltung einer vorhandenen Totalprothese zur Suprakonstruktion bei Vorliegen eines zahnlosen atrophierten Kiefers, je Prothesenkonstruktion",
+    "regelversorgung": "Umgestaltung Totalprothese zur Suprakonstruktion",
+    "festzuschuss_60_eur": 79.97,
+    "festzuschuss_70_eur": 93.30,
+    "festzuschuss_75_eur": 99.97,
+    "festzuschuss_100_eur": 133.29
+  }
+]

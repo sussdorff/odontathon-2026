@@ -9,13 +9,19 @@
     "build": "bun build src/index.ts --outdir dist --target bun",
     "test": "bun test",
     "seed:catalogs": "bun run scripts/seed-catalogs.ts",
-    "etl:goz": "bun run etl/goz/parse.ts && bun run etl/goz/to_fhir.ts",
-    "etl:bema": "bun run etl/bema/parse.ts && bun run etl/bema/to_fhir.ts",
-    "typecheck": "tsc --noEmit",
-    "seed:practice": "bun run scripts/seed-practice.ts"
+    "seed:practice": "bun run scripts/seed-practice.ts",
+    "etl:goz": "bun run etl/goz/to_fhir.ts",
+    "etl:bema": "bun run etl/bema/to_fhir.ts",
+    "etl:festzuschuss": "bun run etl/festzuschuss/to_fhir.ts",
+    "etl:kuerzel": "bun run etl/kuerzel/to_fhir.ts",
+    "etl:punktwerte": "bun run etl/punktwerte/to_fhir.ts",
+    "etl:all": "bun run etl:goz && bun run etl:bema && bun run etl:festzuschuss && bun run etl:kuerzel && bun run etl:punktwerte",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "hono": "^4"
+    "@xmldom/xmldom": "^0.9",
+    "hono": "^4",
+    "jszip": "^3"
   },
   "devDependencies": {
     "@types/bun": "latest",
