@@ -2,8 +2,14 @@
 
 ### 🚀 Features
 
+- *(billing)* Bidirektionale Template↔BillingPattern Verknüpfung
 - *(documentation)* ETL Dokumentationsvorlagen - 17 JSON-Templates + TypeScript-Typen
 - *(bema)* BEMA-Katalog um 25 fehlende Positionen erweitert (256→281)
+
+### ⚙️ Miscellaneous Tasks
+
+- VERSION v2026.03.5 + fix billing codes in Untersuchung-Template
+
 ## [2026.03.3] - 2026-03-14
 
 ### 🚀 Features
