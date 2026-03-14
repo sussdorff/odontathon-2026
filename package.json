@@ -10,7 +10,8 @@
     "seed:catalogs": "bun run scripts/seed-catalogs.ts",
     "etl:goz": "bun run etl/goz/parse.ts && bun run etl/goz/to_fhir.ts",
     "etl:bema": "bun run etl/bema/parse.ts && bun run etl/bema/to_fhir.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seed:practice": "bun run scripts/seed-practice.ts"
   },
   "dependencies": {
     "hono": "^4"

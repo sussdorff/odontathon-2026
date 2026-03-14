@@ -29,3 +29,16 @@ export const CODE_SYSTEMS = {
 } as const
 
 export type DentalBillingSystem = keyof typeof CODE_SYSTEMS
+
+/** Dental clinical extensions */
+export const EXT_DENTAL = {
+  fdiToothNumber: `${NS}/fdi-tooth-number`,
+  toothSurfaces: `${NS}/tooth-surfaces`,
+  zeBonusProzent: `${NS}/ze-bonus-prozent`,
+} as const
+
+/** Dental clinical code systems */
+export const CODE_SYSTEMS_DENTAL = {
+  fdiTooth: 'https://mira.cognovis.de/fhir/CodeSystem/fdi-tooth-number',
+  toothStatus: 'https://mira.cognovis.de/fhir/CodeSystem/tooth-status',
+} as const
