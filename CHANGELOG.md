@@ -7,6 +7,26 @@ and this project uses [CalVer](https://calver.org/) versioning (YYYY.0M.MICRO).
 
 ## [Unreleased]
 
+### Added
+
+- **dent-39l**: Chat API, FHIR client, findings endpoint, HKP draft
+- **dent-tat**: Chat-UI für Billing Coach — 3-Panel-Layout mit Session-Management
+- **billing**: TreatmentType-Support + erweiterte KCH-Muster + Lukas-Berg-Demo-Szenario
+
+### Maintenance
+
+- VERSION v2026.03.12
+
+### Merge
+
+- Worktree-bead-dent-39l
+
+## [2026.03.12] - 2026-03-14
+
+### Added
+
+- **seed**: Lukas Berg → PKV + Behandlungsdoku Zahn 46 + changelog
+
 ### Maintenance
 
 - VERSION v2026.03.11 + changelog
