@@ -9,12 +9,27 @@ and this project uses [CalVer](https://calver.org/) versioning (YYYY.0M.MICRO).
 
 ### Added
 
+- **agent**: Kostenkalkulator + Claude Billing Coach Agent (dent-fbu + dent-4nv)
+
+### Maintenance
+
+- VERSION v2026.03.10
+
+### Merge
+
+- Worktree-bead-dent-4nv
+
+## [2026.03.10] - 2026-03-14
+
+### Added
+
 - **api**: Setup basic agentic flow
 - **api**: Setup basic agentic flow
 
 ### Maintenance
 
 - **frontend**: Exclude playwright screenshots from git
+- CHANGELOG + cliff.toml aktualisiert
 
 ## [2026.03.9] - 2026-03-14
 
