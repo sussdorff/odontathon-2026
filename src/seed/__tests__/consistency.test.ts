@@ -41,20 +41,20 @@ function getPatientRef(obs: FhirResource): string | undefined {
 // ─── Bundle size ─────────────────────────────────────────────────────────────
 
 describe('bundle size', () => {
-  test('has at least 130 entries', () => {
-    expect(entries.length).toBeGreaterThanOrEqual(130)
+  test('has at least 170 entries', () => {
+    expect(entries.length).toBeGreaterThanOrEqual(170)
   })
 
-  test('has exactly 10 patients', () => {
-    expect(byType('Patient').length).toBe(10)
+  test('has exactly 15 patients', () => {
+    expect(byType('Patient').length).toBe(15)
   })
 
-  test('has exactly 10 coverages', () => {
-    expect(byType('Coverage').length).toBe(10)
+  test('has exactly 15 coverages', () => {
+    expect(byType('Coverage').length).toBe(15)
   })
 
-  test('has at least 95 observations (Zahnbefunde)', () => {
-    expect(byType('Observation').length).toBeGreaterThanOrEqual(95)
+  test('has at least 130 observations (Zahnbefunde)', () => {
+    expect(byType('Observation').length).toBeGreaterThanOrEqual(130)
   })
 })
 

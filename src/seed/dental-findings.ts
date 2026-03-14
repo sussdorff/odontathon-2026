@@ -1,12 +1,25 @@
 /**
- * Zahnbefunde (tooth findings) as FHIR Observations.
+ * Zahnbefunde (tooth findings) as FHIR Observations — scenario-driven.
  * One Observation per non-healthy tooth.
  *
- * Consistency rules (enforced in buildFinding):
- * - Missing tooth (absent) → no filling or crown on same tooth (enforced structurally: absent is terminal)
- * - All Observations use LOINC 8339-4 "Tooth identification"
- * - FDI tooth number in bodySite
- * - Tooth status in valueCodeableConcept
+ * 15 HKP scenarios, one per patient. Each scenario function returns
+ * the Observations for that patient.
+ *
+ * Tooth status codes used:
+ *   absent               — fehlender Zahn (Lücke)
+ *   crown-intact         — Krone intakt (k)
+ *   crown-needs-renewal  — Krone erneuerungsbedürftig (kw)
+ *   implant-with-crown   — Implantat mit Suprakonstruktion (ix)
+ *   implant              — Implantat ohne Suprakonstruktion (i)
+ *   filled               — Füllung (mit tooth-surfaces Extension)
+ *   carious              — kariöser Zahn (c)
+ *   bridge-anchor        — Zahn dient als Brückenanker (wird präpariert)
+ *   replaced-bridge      — Zahn durch Brückenglied ersetzt (fehlend, prothetisch versorgt)
+ *
+ * Consistency rules:
+ *   - absent → no filled/crown-intact/crown-needs-renewal on same tooth+patient
+ *   - bridge-anchor → tooth is present (not absent)
+ *   - replaced-bridge → tooth is missing/absent (prothetisch versorgt = fehlend vor HKP)
  */
 import { EXT_DENTAL, CODE_SYSTEMS_DENTAL } from '../lib/fhir-extensions.js'
 
@@ -20,19 +33,19 @@ const LOINC_TOOTH_ID = {
 
 const EFFECTIVE_DATE = '2026-01-15'
 const PERFORMER_REF = { reference: 'Practitioner/prac-weber' }
-const SNOMED_MOLAR_PLACEHOLDER = '38671000'
+const SNOMED_TOOTH_STRUCTURE = '38671000'
 
 type ToothStatus =
   | 'absent'
   | 'crown-intact'
   | 'crown-needs-renewal'
   | 'replaced-bridge'
-  | 'replaced-needs-renewal'
   | 'bridge-pontic'
   | 'implant'
   | 'implant-with-crown'
   | 'carious'
   | 'filled'
+  | 'bridge-anchor'
 
 type Surface = 'M' | 'D' | 'O' | 'B' | 'L'
 
@@ -54,7 +67,7 @@ function buildFinding(
       },
       {
         system: 'http://snomed.info/sct',
-        code: SNOMED_MOLAR_PLACEHOLDER,
+        code: SNOMED_TOOTH_STRUCTURE,
         display: 'Tooth structure',
       },
     ],
@@ -93,181 +106,340 @@ function buildFinding(
   return obs
 }
 
-// ─── Patient 1: Anna Müller (28) ─────────────────────────────────────────────
-// 8 Observations
-const muellerAnna: FhirResource[] = [
-  buildFinding('mueller-anna', 'patient-mueller-anna', 18, 'absent'),
-  buildFinding('mueller-anna', 'patient-mueller-anna', 28, 'absent'),
-  buildFinding('mueller-anna', 'patient-mueller-anna', 38, 'absent'),
-  buildFinding('mueller-anna', 'patient-mueller-anna', 48, 'absent'),
-  buildFinding('mueller-anna', 'patient-mueller-anna', 16, 'filled', ['O', 'D']),
-  buildFinding('mueller-anna', 'patient-mueller-anna', 26, 'filled', ['O']),
-  buildFinding('mueller-anna', 'patient-mueller-anna', 36, 'filled', ['M', 'O', 'D']),
-  buildFinding('mueller-anna', 'patient-mueller-anna', 46, 'carious'),
-]
+// ─── Szenario 1: Anna Müller (28) — Einfache 3-gliedrige Brücke, kein Bonusheft (GKV 50%) ──
+// Zahn 46 durch Unfall verloren. 45 und 47 als Brückenanker. Weisheitszähne fehlen.
+// HKP: 3-gliedrige Brücke 45-46-47. Regelversorgung. 50% Festzuschuss (kein Bonus).
+function buildScenario1Findings(): FhirResource[] {
+  const slug = 'mueller-anna'
+  const id = 'patient-mueller-anna'
+  return [
+    buildFinding(slug, id, 46, 'absent'),           // Lücke — wird überbrückt
+    buildFinding(slug, id, 45, 'bridge-anchor'),    // Anker distal
+    buildFinding(slug, id, 47, 'bridge-anchor'),    // Anker mesial
+    buildFinding(slug, id, 18, 'absent'),           // Weisheitszahn nicht angelegt
+    buildFinding(slug, id, 28, 'absent'),
+    buildFinding(slug, id, 38, 'absent'),
+    buildFinding(slug, id, 48, 'absent'),
+  ]
+}
 
-// ─── Patient 2: Klaus Schmidt (35) ───────────────────────────────────────────
-// 7 Observations
-const schmidtKlaus: FhirResource[] = [
-  buildFinding('schmidt-klaus', 'patient-schmidt-klaus', 46, 'absent'),
-  buildFinding('schmidt-klaus', 'patient-schmidt-klaus', 36, 'crown-intact'),
-  buildFinding('schmidt-klaus', 'patient-schmidt-klaus', 16, 'filled', ['O', 'D']),
-  buildFinding('schmidt-klaus', 'patient-schmidt-klaus', 26, 'filled', ['O']),
-  buildFinding('schmidt-klaus', 'patient-schmidt-klaus', 14, 'filled', ['M', 'O']),
-  buildFinding('schmidt-klaus', 'patient-schmidt-klaus', 24, 'filled', ['D']),
-  buildFinding('schmidt-klaus', 'patient-schmidt-klaus', 34, 'filled', ['O']),
-]
+// ─── Szenario 2: Klaus Schmidt (35) — 4-gliedrige Brücke, 5 Jahre Bonus (GKV 60%) ──────────
+// 35 und 36 fehlen. 34 und 37 als Anker. Bonus auf 60% korrigiert.
+// HKP: 4-gliedrige Brücke 34-35-36-37. Regelversorgung. 60% Festzuschuss.
+function buildScenario2Findings(): FhirResource[] {
+  const slug = 'schmidt-klaus'
+  const id = 'patient-schmidt-klaus'
+  return [
+    buildFinding(slug, id, 35, 'absent'),           // Lücke 1
+    buildFinding(slug, id, 36, 'absent'),           // Lücke 2
+    buildFinding(slug, id, 34, 'bridge-anchor'),    // Anker mesial
+    buildFinding(slug, id, 37, 'bridge-anchor'),    // Anker distal
+    buildFinding(slug, id, 46, 'crown-intact'),     // vorhandene Krone UK
+    buildFinding(slug, id, 16, 'filled', ['O', 'D']),
+    buildFinding(slug, id, 26, 'filled', ['O']),
+  ]
+}
 
-// ─── Patient 3: Petra Wagner (52) ────────────────────────────────────────────
-// 15 Observations: 36+46 absent, so no fillings there
-const wagnerPetra: FhirResource[] = [
-  buildFinding('wagner-petra', 'patient-wagner-petra', 36, 'absent'),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 46, 'absent'),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 16, 'crown-needs-renewal'),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 26, 'crown-needs-renewal'),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 47, 'crown-needs-renewal'),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 15, 'filled', ['M', 'O', 'D']),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 25, 'filled', ['O', 'D']),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 17, 'filled', ['O']),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 27, 'filled', ['O']),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 14, 'filled', ['M', 'O']),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 24, 'filled', ['D']),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 35, 'filled', ['O']),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 45, 'filled', ['O']),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 13, 'carious'),
-  buildFinding('wagner-petra', 'patient-wagner-petra', 23, 'carious'),
-]
+// ─── Szenario 3: Petra Wagner (52) — Gleichartige Versorgung (Vollkeramik), 10 Jahre Bonus (70%) ─
+// 26 fehlt. Vollkeramikbrücke 25-26-27 (gleichartig). Zusätzlich 36+46 kw, 13 kariös.
+// HKP: Brücke 25-26-27 (gleichartig) + Kronenerneuerungen 36+46. 70% Festzuschuss.
+function buildScenario3Findings(): FhirResource[] {
+  const slug = 'wagner-petra'
+  const id = 'patient-wagner-petra'
+  return [
+    buildFinding(slug, id, 26, 'absent'),                   // Brückenlücke
+    buildFinding(slug, id, 25, 'bridge-anchor'),            // Anker mesial
+    buildFinding(slug, id, 27, 'bridge-anchor'),            // Anker distal
+    buildFinding(slug, id, 36, 'crown-needs-renewal'),      // kw → Kronenerneuerung
+    buildFinding(slug, id, 46, 'crown-needs-renewal'),      // kw → Kronenerneuerung
+    buildFinding(slug, id, 16, 'crown-intact'),             // vorhandene Krone
+    buildFinding(slug, id, 15, 'filled', ['M', 'O', 'D']),
+    buildFinding(slug, id, 14, 'filled', ['O', 'D']),
+    buildFinding(slug, id, 13, 'carious'),                  // Sanierung vor ZE erforderlich
+  ]
+}
 
-// ─── Patient 4: Hans-Jürgen Becker (63) ──────────────────────────────────────
-// 16 Observations: 35,36,45,47 absent; 46 ix (implant replaces missing)
-const beckerHans: FhirResource[] = [
-  buildFinding('becker-hans', 'patient-becker-hans', 35, 'absent'),
-  buildFinding('becker-hans', 'patient-becker-hans', 36, 'absent'),
-  buildFinding('becker-hans', 'patient-becker-hans', 45, 'absent'),
-  buildFinding('becker-hans', 'patient-becker-hans', 47, 'absent'),
-  buildFinding('becker-hans', 'patient-becker-hans', 46, 'implant-with-crown'),
-  buildFinding('becker-hans', 'patient-becker-hans', 16, 'crown-intact'),
-  buildFinding('becker-hans', 'patient-becker-hans', 26, 'crown-intact'),
-  buildFinding('becker-hans', 'patient-becker-hans', 37, 'crown-intact'),
-  buildFinding('becker-hans', 'patient-becker-hans', 15, 'crown-needs-renewal'),
-  buildFinding('becker-hans', 'patient-becker-hans', 14, 'filled', ['M', 'O']),
-  buildFinding('becker-hans', 'patient-becker-hans', 24, 'filled', ['O', 'D']),
-  buildFinding('becker-hans', 'patient-becker-hans', 34, 'filled', ['O']),
-  buildFinding('becker-hans', 'patient-becker-hans', 44, 'filled', ['M', 'O']),
-  buildFinding('becker-hans', 'patient-becker-hans', 25, 'filled', ['D']),
-  buildFinding('becker-hans', 'patient-becker-hans', 17, 'filled', ['O']),
-  buildFinding('becker-hans', 'patient-becker-hans', 13, 'carious'),
-]
+// ─── Szenario 4: Hans-Jürgen Becker (63) — Komplexer ZE mit PAR-Vorbehandlung (GKV 70%) ──
+// Schwere Parodontitis. 35, 36, 45, 46 fehlen. 37+47 paro-geschädigt (kw). 14+24 kariös.
+// HKP: ZE erst nach PAR-Sanierung. 4-gliedrige Brücke UK + Kronenerneuerungen.
+function buildScenario4Findings(): FhirResource[] {
+  const slug = 'becker-hans'
+  const id = 'patient-becker-hans'
+  return [
+    buildFinding(slug, id, 35, 'absent'),                   // Lücke UK links
+    buildFinding(slug, id, 36, 'absent'),                   // Lücke UK links
+    buildFinding(slug, id, 45, 'absent'),                   // Lücke UK rechts
+    buildFinding(slug, id, 46, 'absent'),                   // Lücke UK rechts
+    buildFinding(slug, id, 37, 'crown-needs-renewal'),      // PAR-geschädigt, kw
+    buildFinding(slug, id, 47, 'crown-needs-renewal'),      // PAR-geschädigt, kw
+    buildFinding(slug, id, 16, 'crown-intact'),
+    buildFinding(slug, id, 26, 'crown-intact'),
+    buildFinding(slug, id, 17, 'crown-intact'),
+    buildFinding(slug, id, 15, 'filled', ['M', 'O']),
+    buildFinding(slug, id, 25, 'filled', ['D']),
+    buildFinding(slug, id, 14, 'carious'),                  // Sanierung vor ZE
+    buildFinding(slug, id, 24, 'carious'),                  // Sanierung vor ZE
+  ]
+}
 
-// ─── Patient 5: Monika Fischer (71) ──────────────────────────────────────────
-// 17 Observations: 8 absent, 2 crown, 4 filled, 3 carious
-const fischerMonika: FhirResource[] = [
-  buildFinding('fischer-monika', 'patient-fischer-monika', 18, 'absent'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 17, 'absent'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 27, 'absent'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 28, 'absent'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 37, 'absent'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 38, 'absent'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 47, 'absent'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 48, 'absent'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 16, 'crown-intact'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 26, 'crown-intact'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 15, 'filled', ['O', 'D']),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 14, 'filled', ['M', 'O']),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 25, 'filled', ['D']),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 24, 'filled', ['O']),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 13, 'carious'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 23, 'carious'),
-  buildFinding('fischer-monika', 'patient-fischer-monika', 34, 'carious'),
-]
+// ─── Szenario 5: Monika Fischer (71) — Teilprothese UK, 10+ Jahre Bonus (GKV 70%) ──────────
+// Viele fehlende Zähne UK → Teilprothese (Kennedyklasse I). OK weitgehend intakt.
+// HKP: Schleimhautgetragene Teilprothese UK Kennedyklasse I. 70% Festzuschuss.
+function buildScenario5Findings(): FhirResource[] {
+  const slug = 'fischer-monika'
+  const id = 'patient-fischer-monika'
+  return [
+    // UK fehlend (beidseits Freiend)
+    buildFinding(slug, id, 35, 'absent'),
+    buildFinding(slug, id, 36, 'absent'),
+    buildFinding(slug, id, 37, 'absent'),
+    buildFinding(slug, id, 45, 'absent'),
+    buildFinding(slug, id, 46, 'absent'),
+    buildFinding(slug, id, 47, 'absent'),
+    // OK: vorhandene Kronen (Prothesenverankerung)
+    buildFinding(slug, id, 16, 'crown-intact'),
+    buildFinding(slug, id, 26, 'crown-intact'),
+    buildFinding(slug, id, 17, 'crown-intact'),
+    buildFinding(slug, id, 27, 'crown-intact'),
+    // OK: Füllungen
+    buildFinding(slug, id, 15, 'filled', ['O']),
+    buildFinding(slug, id, 25, 'filled', ['D']),
+    buildFinding(slug, id, 14, 'filled', ['M', 'O']),
+  ]
+}
 
-// ─── Patient 6: Mehmet Yılmaz (42) ───────────────────────────────────────────
-// 9 Observations: 1 absent (46), 2 crown, 6 filled
-const yilmazMehmet: FhirResource[] = [
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 46, 'absent'),
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 16, 'crown-intact'),
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 36, 'crown-intact'),
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 14, 'filled', ['M', 'O']),
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 24, 'filled', ['D']),
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 25, 'filled', ['O']),
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 26, 'filled', ['O', 'D']),
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 35, 'filled', ['M', 'O', 'D']),
-  buildFinding('yilmaz-mehmet', 'patient-yilmaz-mehmet', 45, 'filled', ['O']),
-]
+// ─── Szenario 6: Mehmet Yılmaz (42) — Einzelimplantat 46, 5 Jahre Bonus (GKV 60%) ──────────
+// 46 fehlt seit 2 Jahren. Patient wünscht Implantat (andersartig). Bonus auf 60% korrigiert.
+// HKP: Einzelimplantat 46 (andersartig). 60% auf Regelversorgungsbetrag. Aufpreis privat.
+function buildScenario6Findings(): FhirResource[] {
+  const slug = 'yilmaz-mehmet'
+  const id = 'patient-yilmaz-mehmet'
+  return [
+    buildFinding(slug, id, 46, 'absent'),           // Implantat geplant, noch nicht gesetzt
+    buildFinding(slug, id, 36, 'crown-intact'),
+    buildFinding(slug, id, 16, 'filled', ['O', 'D']),
+    buildFinding(slug, id, 26, 'filled', ['O']),
+    buildFinding(slug, id, 15, 'filled', ['M', 'O']),
+    buildFinding(slug, id, 25, 'filled', ['D']),
+    buildFinding(slug, id, 14, 'filled', ['O']),
+  ]
+}
 
-// ─── Patient 7: Sophie Braun (25) ────────────────────────────────────────────
-// 2 Observations (very healthy)
-const braunSophie: FhirResource[] = [
-  buildFinding('braun-sophie', 'patient-braun-sophie', 46, 'filled', ['O']),
-  buildFinding('braun-sophie', 'patient-braun-sophie', 36, 'filled', ['O', 'D']),
-]
+// ─── Szenario 7: Sophie Braun (25) — Frontzahn-Implantat 21, kein Bonusheft (GKV 50%) ──────
+// Sportunfall, Zahn 21 traumatisch verloren. Implantat geplant (ästhetisch hochrelevant).
+// HKP: Einzelimplantat 21 (Frontzahn, andersartig). 50% auf Regelversorgung.
+function buildScenario7Findings(): FhirResource[] {
+  const slug = 'braun-sophie'
+  const id = 'patient-braun-sophie'
+  return [
+    buildFinding(slug, id, 21, 'absent'),           // traumatisch verloren, Implantat geplant
+    buildFinding(slug, id, 46, 'filled', ['O']),
+    buildFinding(slug, id, 36, 'filled', ['O', 'D']),
+  ]
+}
 
-// ─── Patient 8: Wolfgang Schulz (58, PKV) ────────────────────────────────────
-// 17 Observations: 3 absent, 5 crown, 2 implant, 7 filled
-const schulzWolfgang: FhirResource[] = [
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 18, 'absent'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 28, 'absent'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 48, 'absent'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 16, 'crown-intact'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 26, 'crown-intact'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 36, 'crown-intact'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 46, 'crown-intact'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 17, 'crown-intact'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 37, 'implant-with-crown'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 47, 'implant-with-crown'),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 15, 'filled', ['O', 'D']),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 25, 'filled', ['M', 'O', 'D']),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 14, 'filled', ['M', 'O']),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 24, 'filled', ['D']),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 34, 'filled', ['O']),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 44, 'filled', ['O']),
-  buildFinding('schulz-wolfgang', 'patient-schulz-wolfgang', 35, 'filled', ['D']),
-]
+// ─── Szenario 8: Wolfgang Schulz (58, PKV) — Implantate 36+46 + vorhandene Implantate 37+47 ─
+// 36 und 46 fehlen (neu geplant). 37+47 bereits mit Implantat+Krone versorgt. Viele Kronen.
+// HKP: 2 neue Implantate 36+46 (PKV, GOZ). Kein Festzuschuss.
+function buildScenario8Findings(): FhirResource[] {
+  const slug = 'schulz-wolfgang'
+  const id = 'patient-schulz-wolfgang'
+  return [
+    buildFinding(slug, id, 36, 'absent'),                   // neu zu implantieren
+    buildFinding(slug, id, 46, 'absent'),                   // neu zu implantieren
+    buildFinding(slug, id, 37, 'implant-with-crown'),       // ix: vorhandenes Implantat
+    buildFinding(slug, id, 47, 'implant-with-crown'),       // ix: vorhandenes Implantat
+    buildFinding(slug, id, 16, 'crown-intact'),
+    buildFinding(slug, id, 26, 'crown-intact'),
+    buildFinding(slug, id, 17, 'crown-intact'),
+    buildFinding(slug, id, 15, 'filled', ['M', 'O', 'D']),
+    buildFinding(slug, id, 25, 'filled', ['O', 'D']),
+    buildFinding(slug, id, 14, 'filled', ['M', 'O']),
+    buildFinding(slug, id, 24, 'filled', ['D']),
+    buildFinding(slug, id, 18, 'absent'),                   // Weisheitszahn
+    buildFinding(slug, id, 28, 'absent'),
+    buildFinding(slug, id, 48, 'absent'),
+  ]
+}
 
-// ─── Patient 9: Fatima Al-Hassan (33) ────────────────────────────────────────
-// 6 Observations: 1 crown, 4 filled, 1 carious
-const alHassanFatima: FhirResource[] = [
-  buildFinding('al-hassan-fatima', 'patient-al-hassan-fatima', 36, 'crown-intact'),
-  buildFinding('al-hassan-fatima', 'patient-al-hassan-fatima', 16, 'filled', ['O']),
-  buildFinding('al-hassan-fatima', 'patient-al-hassan-fatima', 26, 'filled', ['O', 'D']),
-  buildFinding('al-hassan-fatima', 'patient-al-hassan-fatima', 14, 'filled', ['M', 'O']),
-  buildFinding('al-hassan-fatima', 'patient-al-hassan-fatima', 24, 'filled', ['D']),
-  buildFinding('al-hassan-fatima', 'patient-al-hassan-fatima', 46, 'carious'),
-]
+// ─── Szenario 9: Fatima Al-Hassan (33) — 3 Kronenerneuerungen (kw), 5 Jahre Bonus (GKV 60%) ─
+// 3 alte Kronen erneuerungsbedürftig. Kein Zahnersatz neu — HKP für kw→k.
+// HKP: 3 Kronenerneuerungen. Regelversorgung. 60% Festzuschuss.
+function buildScenario9Findings(): FhirResource[] {
+  const slug = 'al-hassan-fatima'
+  const id = 'patient-al-hassan-fatima'
+  return [
+    buildFinding(slug, id, 16, 'crown-needs-renewal'),      // kw → Erneuerung
+    buildFinding(slug, id, 26, 'crown-needs-renewal'),      // kw → Erneuerung
+    buildFinding(slug, id, 36, 'crown-needs-renewal'),      // kw → Erneuerung
+    buildFinding(slug, id, 46, 'filled', ['O']),
+    buildFinding(slug, id, 14, 'filled', ['M', 'O']),
+    buildFinding(slug, id, 24, 'filled', ['D']),
+    buildFinding(slug, id, 25, 'filled', ['O']),
+    buildFinding(slug, id, 15, 'filled', ['D']),
+  ]
+}
 
-// ─── Patient 10: Rainer Hoffmann (67, PKV) ───────────────────────────────────
-// 17 Observations: 6 absent, 2 crown, 1 kw, 1 implant, 5 filled, 2 carious
-const hoffmannRainer: FhirResource[] = [
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 18, 'absent'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 28, 'absent'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 38, 'absent'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 48, 'absent'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 35, 'absent'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 36, 'absent'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 16, 'crown-intact'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 26, 'crown-intact'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 46, 'crown-needs-renewal'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 37, 'implant-with-crown'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 15, 'filled', ['M', 'O', 'D']),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 14, 'filled', ['O', 'D']),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 25, 'filled', ['O']),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 24, 'filled', ['D']),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 17, 'filled', ['O']),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 13, 'carious'),
-  buildFinding('hoffmann-rainer', 'patient-hoffmann-rainer', 23, 'carious'),
-]
+// ─── Szenario 10: Rainer Hoffmann (67, PKV) — Implantatgetragene Teleskopprothese UK ────────
+// Massiver Zahnverlust UK. 35+45 als Implantate mit Krone (Teleskoppfeiler).
+// 36,37,46,47 fehlen (Sattelbereich). OK: 4 Kronen als Teleskopträger.
+// HKP: Implantatgetragene Teleskopprothese UK (PKV, GOZ 9000er Nrn).
+function buildScenario10Findings(): FhirResource[] {
+  const slug = 'hoffmann-rainer'
+  const id = 'patient-hoffmann-rainer'
+  return [
+    // Implantate als Teleskoppfeiler UK
+    buildFinding(slug, id, 35, 'implant-with-crown'),       // ix: Teleskoppfeiler
+    buildFinding(slug, id, 45, 'implant-with-crown'),       // ix: Teleskoppfeiler
+    // UK fehlend (Sattelbereich)
+    buildFinding(slug, id, 36, 'absent'),
+    buildFinding(slug, id, 37, 'absent'),
+    buildFinding(slug, id, 46, 'absent'),
+    buildFinding(slug, id, 47, 'absent'),
+    // OK: Teleskopträger (Kronen)
+    buildFinding(slug, id, 16, 'crown-intact'),
+    buildFinding(slug, id, 26, 'crown-intact'),
+    buildFinding(slug, id, 17, 'crown-intact'),
+    buildFinding(slug, id, 27, 'crown-intact'),
+    // Weisheitszähne fehlen
+    buildFinding(slug, id, 18, 'absent'),
+    buildFinding(slug, id, 28, 'absent'),
+    buildFinding(slug, id, 38, 'absent'),
+    buildFinding(slug, id, 48, 'absent'),
+  ]
+}
+
+// ─── Szenario 11: Gerda Klein (68) — Freiendlücke UK, Teilprothese, kein Bonusheft (GKV 50%) ─
+// UK beidseits Freiend (kein distaler Anker → keine Brücke möglich → Teilprothese).
+// HKP: Schleimhautgetragene Teilprothese UK Kennedyklasse I. 50% Festzuschuss.
+function buildScenario11Findings(): FhirResource[] {
+  const slug = 'klein-gerda'
+  const id = 'patient-klein-gerda'
+  return [
+    // UK beidseits Freiend
+    buildFinding(slug, id, 36, 'absent'),
+    buildFinding(slug, id, 37, 'absent'),
+    buildFinding(slug, id, 38, 'absent'),
+    buildFinding(slug, id, 46, 'absent'),
+    buildFinding(slug, id, 47, 'absent'),
+    buildFinding(slug, id, 48, 'absent'),
+    // OK: Kronen (Prothesenverankerung)
+    buildFinding(slug, id, 16, 'crown-intact'),
+    buildFinding(slug, id, 26, 'crown-intact'),
+    // UK: Brückenanker (Prämolaren als Prothesenhalter)
+    buildFinding(slug, id, 35, 'bridge-anchor'),
+    buildFinding(slug, id, 45, 'bridge-anchor'),
+    // Füllungen
+    buildFinding(slug, id, 15, 'filled', ['O', 'D']),
+    buildFinding(slug, id, 25, 'filled', ['D']),
+  ]
+}
+
+// ─── Szenario 12: Erika Richter (65) — Kombinierter ZE (Brücke + Prothese), 10 Jahre Bonus (70%) ─
+// OK: 15+16 fehlen → Brücke 14-15-16-17. UK: 35,36,45,46 fehlen + Freiend → Kombinierte Prothese.
+// HKP: Brücke OK + Kombinierte Prothese UK. 70% Festzuschuss.
+function buildScenario12Findings(): FhirResource[] {
+  const slug = 'richter-erika'
+  const id = 'patient-richter-erika'
+  return [
+    // OK: Brückenlücken
+    buildFinding(slug, id, 15, 'absent'),
+    buildFinding(slug, id, 16, 'absent'),
+    buildFinding(slug, id, 14, 'bridge-anchor'),    // Anker mesial
+    buildFinding(slug, id, 17, 'bridge-anchor'),    // Anker distal
+    // UK: fehlende Zähne (Sattel + Freiend)
+    buildFinding(slug, id, 35, 'absent'),
+    buildFinding(slug, id, 36, 'absent'),
+    buildFinding(slug, id, 45, 'absent'),
+    buildFinding(slug, id, 46, 'absent'),
+    buildFinding(slug, id, 34, 'bridge-anchor'),    // Prämolar als Prothesenhalter
+    buildFinding(slug, id, 44, 'bridge-anchor'),    // Prämolar als Prothesenhalter
+    // Verbleibende Kronen
+    buildFinding(slug, id, 26, 'crown-intact'),
+    buildFinding(slug, id, 37, 'crown-intact'),
+    buildFinding(slug, id, 47, 'crown-intact'),
+    buildFinding(slug, id, 27, 'crown-intact'),
+  ]
+}
+
+// ─── Szenario 13: Lukas Berg (22) — Einzelimplantat 35 (Agenesie), kein Bonusheft (GKV 50%) ─
+// Nach KFO-Behandlung. Zahn 35 hypoplastisch/fehlend (Zahnanlage fehlte). Implantat geplant.
+// HKP: Einzelimplantat 35 (Agenesie-Lücke, andersartig). 50% auf Regelversorgung.
+function buildScenario13Findings(): FhirResource[] {
+  const slug = 'berg-lukas'
+  const id = 'patient-berg-lukas'
+  return [
+    buildFinding(slug, id, 35, 'absent'),           // Agenesie, Implantat geplant
+    buildFinding(slug, id, 45, 'filled', ['O']),    // kontralateral versorgt
+    buildFinding(slug, id, 36, 'filled', ['O', 'D']),
+  ]
+}
+
+// ─── Szenario 14: Hildegard Vogel (72) — Extraktion + Totalprothese UK, kein Bonus (GKV 50%) ─
+// Schwere generalisierte Parodontitis UK. UK fast zahnlos (nur noch 33+43 als Restpfeilerzähne).
+// HKP: Extraktion 33+43, dann Totalprothese UK. 50% Festzuschuss (kein Bonusheft).
+function buildScenario14Findings(): FhirResource[] {
+  const slug = 'vogel-hildegard'
+  const id = 'patient-vogel-hildegard'
+  return [
+    // Restpfeilerzähne UK (paro-geschädigt, Extraktionskandidaten)
+    buildFinding(slug, id, 33, 'crown-needs-renewal'),      // paro-geschädigt, vor Extraktion
+    buildFinding(slug, id, 43, 'crown-needs-renewal'),      // paro-geschädigt, vor Extraktion
+    // UK: fehlende Zähne (bereits extrahiert)
+    buildFinding(slug, id, 31, 'absent'),
+    buildFinding(slug, id, 32, 'absent'),
+    buildFinding(slug, id, 41, 'absent'),
+    buildFinding(slug, id, 42, 'absent'),
+    buildFinding(slug, id, 34, 'absent'),
+    buildFinding(slug, id, 35, 'absent'),
+    buildFinding(slug, id, 36, 'absent'),
+    buildFinding(slug, id, 37, 'absent'),
+    buildFinding(slug, id, 44, 'absent'),
+    buildFinding(slug, id, 45, 'absent'),
+    buildFinding(slug, id, 46, 'absent'),
+    buildFinding(slug, id, 47, 'absent'),
+  ]
+}
+
+// ─── Szenario 15: Stefan Weber (48, PKV) — 3 Implantate 14+15+16, implantatgetragene Brücke ─
+// 14, 15, 16 fehlen. Implantatgetragene verblockte Brücke (PKV, GOZ).
+// HKP: 3 Implantate 14+15+16 + verblockte implantatgetragene Brücke. PKV-GOZ-Abrechnung.
+function buildScenario15Findings(): FhirResource[] {
+  const slug = 'weber-stefan'
+  const id = 'patient-weber-stefan'
+  return [
+    // OK: Brückenlücken (Implantate geplant)
+    buildFinding(slug, id, 14, 'absent'),
+    buildFinding(slug, id, 15, 'absent'),
+    buildFinding(slug, id, 16, 'absent'),
+    // Nachbarzähne
+    buildFinding(slug, id, 13, 'crown-intact'),     // Brückenabschluss mesial
+    buildFinding(slug, id, 17, 'crown-intact'),     // Brückenabschluss distal
+    // UK + weiterer Befund
+    buildFinding(slug, id, 36, 'crown-intact'),
+    buildFinding(slug, id, 46, 'crown-intact'),
+    buildFinding(slug, id, 26, 'filled', ['O', 'D']),
+    buildFinding(slug, id, 24, 'filled', ['M', 'O']),
+    buildFinding(slug, id, 25, 'filled', ['D']),
+  ]
+}
 
 // ─── Export ──────────────────────────────────────────────────────────────────
 
 export const dentalFindings: FhirResource[] = [
-  ...muellerAnna,
-  ...schmidtKlaus,
-  ...wagnerPetra,
-  ...beckerHans,
-  ...fischerMonika,
-  ...yilmazMehmet,
-  ...braunSophie,
-  ...schulzWolfgang,
-  ...alHassanFatima,
-  ...hoffmannRainer,
+  ...buildScenario1Findings(),   // Anna Müller — 3-gl. Brücke 45-46-47, 50%
+  ...buildScenario2Findings(),   // Klaus Schmidt — 4-gl. Brücke 34-37, 60%
+  ...buildScenario3Findings(),   // Petra Wagner — Vollkeramik 25-26-27 (gleichartig), 70%
+  ...buildScenario4Findings(),   // Hans-Jürgen Becker — ZE nach PAR, 70%
+  ...buildScenario5Findings(),   // Monika Fischer — Teilprothese UK KI, 70%
+  ...buildScenario6Findings(),   // Mehmet Yılmaz — Einzelimplantat 46, 60%
+  ...buildScenario7Findings(),   // Sophie Braun — Frontzahn-Implantat 21, 50%
+  ...buildScenario8Findings(),   // Wolfgang Schulz — 2 Implantate 36+46, PKV
+  ...buildScenario9Findings(),   // Fatima Al-Hassan — 3 Kronenerneuerungen, 60%
+  ...buildScenario10Findings(),  // Rainer Hoffmann — Teleskopprothese UK, PKV
+  ...buildScenario11Findings(),  // Gerda Klein — Freiend UK, Teilprothese, 50%
+  ...buildScenario12Findings(),  // Erika Richter — Brücke OK + Prothese UK, 70%
+  ...buildScenario13Findings(),  // Lukas Berg — Implantat 35 (Agenesie), 50%
+  ...buildScenario14Findings(),  // Hildegard Vogel — Totalprothese UK, 50%
+  ...buildScenario15Findings(),  // Stefan Weber — 3 Implantate + verblockte Brücke, PKV
 ]

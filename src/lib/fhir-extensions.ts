@@ -42,3 +42,27 @@ export const CODE_SYSTEMS_DENTAL = {
   fdiTooth: 'https://mira.cognovis.de/fhir/CodeSystem/fdi-tooth-number',
   toothStatus: 'https://mira.cognovis.de/fhir/CodeSystem/tooth-status',
 } as const
+
+/**
+ * Known tooth status codes for CODE_SYSTEMS_DENTAL.toothStatus
+ *
+ * absent               — fehlender Zahn (Lücke)
+ * crown-intact         — Krone intakt (k)
+ * crown-needs-renewal  — Krone erneuerungsbedürftig (kw)
+ * implant-with-crown   — Implantat mit Suprakonstruktion (ix)
+ * implant              — Implantat ohne Suprakonstruktion (i)
+ * filled               — Füllung (mit tooth-surfaces Extension)
+ * carious              — kariöser Zahn (c)
+ * bridge-anchor        — Zahn dient als Brückenanker (wird präpariert)
+ * replaced-bridge      — Zahn durch Brückenglied ersetzt (fehlend, prothetisch versorgt)
+ */
+export type ToothStatusCode =
+  | 'absent'
+  | 'crown-intact'
+  | 'crown-needs-renewal'
+  | 'implant-with-crown'
+  | 'implant'
+  | 'filled'
+  | 'carious'
+  | 'bridge-anchor'
+  | 'replaced-bridge'

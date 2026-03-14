@@ -167,6 +167,46 @@ export const patientHoffmannRainer: FhirResource = {
   birthDate: birthdate(67),
 }
 
+export const patientKleinGerda: FhirResource = {
+  resourceType: 'Patient',
+  id: 'patient-klein-gerda',
+  name: [{ use: 'official', family: 'Klein', given: ['Gerda'] }],
+  gender: 'female',
+  birthDate: birthdate(68),
+}
+
+export const patientRichterErika: FhirResource = {
+  resourceType: 'Patient',
+  id: 'patient-richter-erika',
+  name: [{ use: 'official', family: 'Richter', given: ['Erika'] }],
+  gender: 'female',
+  birthDate: birthdate(65),
+}
+
+export const patientBergLukas: FhirResource = {
+  resourceType: 'Patient',
+  id: 'patient-berg-lukas',
+  name: [{ use: 'official', family: 'Berg', given: ['Lukas'] }],
+  gender: 'male',
+  birthDate: birthdate(22),
+}
+
+export const patientVogelHildegard: FhirResource = {
+  resourceType: 'Patient',
+  id: 'patient-vogel-hildegard',
+  name: [{ use: 'official', family: 'Vogel', given: ['Hildegard'] }],
+  gender: 'female',
+  birthDate: birthdate(72),
+}
+
+export const patientWeberStefan: FhirResource = {
+  resourceType: 'Patient',
+  id: 'patient-weber-stefan',
+  name: [{ use: 'official', family: 'Weber', given: ['Stefan'] }],
+  gender: 'male',
+  birthDate: birthdate(48),
+}
+
 // ─── Coverages ───────────────────────────────────────────────────────────────
 
 export const coverageMuellerAnna = makeGkvCoverage(
@@ -182,7 +222,7 @@ export const coverageSchmidtKlaus = makeGkvCoverage(
   'patient-schmidt-klaus',
   'org-aok-nordost',
   'A100000002',
-  50,
+  60,
 )
 
 export const coverageWagnerPetra = makeGkvCoverage(
@@ -190,7 +230,7 @@ export const coverageWagnerPetra = makeGkvCoverage(
   'patient-wagner-petra',
   'org-barmer',
   'A100000003',
-  60,
+  70,
 )
 
 export const coverageBeckerHans = makeGkvCoverage(
@@ -206,7 +246,7 @@ export const coverageFischerMonika = makeGkvCoverage(
   'patient-fischer-monika',
   'org-tk',
   'A100000005',
-  60,
+  70,
 )
 
 export const coverageYilmazMehmet = makeGkvCoverage(
@@ -214,7 +254,7 @@ export const coverageYilmazMehmet = makeGkvCoverage(
   'patient-yilmaz-mehmet',
   'org-aok-nordost',
   'A100000006',
-  50,
+  60,
 )
 
 export const coverageBraunSophie = makeGkvCoverage(
@@ -237,7 +277,7 @@ export const coverageAlHassanFatima = makeGkvCoverage(
   'patient-al-hassan-fatima',
   'org-tk',
   'A100000009',
-  50,
+  60,
 )
 
 export const coverageHoffmannRainer = makePkvCoverage(
@@ -245,6 +285,45 @@ export const coverageHoffmannRainer = makePkvCoverage(
   'patient-hoffmann-rainer',
   'org-signal-iduna',
   'PKV2026-0002',
+)
+
+export const coverageKleinGerda = makeGkvCoverage(
+  'coverage-klein-gerda',
+  'patient-klein-gerda',
+  'org-aok-nordost',
+  'A100000011',
+  0,
+)
+
+export const coverageRichterErika = makeGkvCoverage(
+  'coverage-richter-erika',
+  'patient-richter-erika',
+  'org-barmer',
+  'A100000012',
+  70,
+)
+
+export const coverageBergLukas = makeGkvCoverage(
+  'coverage-berg-lukas',
+  'patient-berg-lukas',
+  'org-tk',
+  'A100000013',
+  0,
+)
+
+export const coverageVogelHildegard = makeGkvCoverage(
+  'coverage-vogel-hildegard',
+  'patient-vogel-hildegard',
+  'org-aok-nordost',
+  'A100000014',
+  0,
+)
+
+export const coverageWeberStefan = makePkvCoverage(
+  'coverage-weber-stefan',
+  'patient-weber-stefan',
+  'org-signal-iduna',
+  'PKV2026-0003',
 )
 
 // ─── Export ──────────────────────────────────────────────────────────────────
@@ -260,6 +339,11 @@ export const patients: FhirResource[] = [
   patientSchulzWolfgang,
   patientAlHassanFatima,
   patientHoffmannRainer,
+  patientKleinGerda,
+  patientRichterErika,
+  patientBergLukas,
+  patientVogelHildegard,
+  patientWeberStefan,
 ]
 
 export const coverages: FhirResource[] = [
@@ -273,4 +357,9 @@ export const coverages: FhirResource[] = [
   coverageSchulzWolfgang,
   coverageAlHassanFatima,
   coverageHoffmannRainer,
+  coverageKleinGerda,
+  coverageRichterErika,
+  coverageBergLukas,
+  coverageVogelHildegard,
+  coverageWeberStefan,
 ]
