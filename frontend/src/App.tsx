@@ -4,7 +4,7 @@ import { InputPanel } from '@/components/panels/input-panel'
 import { ProgressPanel } from '@/components/panels/progress-panel'
 import { ReportPanel } from '@/components/panels/report-panel'
 import { RulesPanel } from '@/components/panels/rules-panel'
-import { ChatLayout } from '@/components/panels/chat-layout'
+import { SessionLayout } from '@/components/session/session-layout'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,10 +15,10 @@ const queryClient = new QueryClient({
   },
 })
 
-type Tab = 'chat' | 'abrechnung'
+type Tab = 'session' | 'abrechnung'
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('chat')
+  const [activeTab, setActiveTab] = useState<Tab>('session')
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -27,14 +27,18 @@ export default function App() {
           className="px-8 py-3.5 flex items-center gap-3"
           style={{ background: 'linear-gradient(135deg, #1a365d 0%, #2a5298 100%)' }}
         >
-          <span className="text-2xl leading-none" role="img" aria-label="Zahn">🦷</span>
+          <span className="text-2xl leading-none" role="img" aria-label="Zahn">
+            🦷
+          </span>
           <div>
             <h1 className="text-white font-bold text-lg leading-tight">Billing Coach</h1>
-            <p className="text-blue-200 text-xs">Zahnaerztliche Abrechnungspruefung · Odontathon 2026</p>
+            <p className="text-blue-200 text-xs">
+              Zahnaerztliche Abrechnungspruefung - Odontathon 2026
+            </p>
           </div>
           <div className="ml-auto flex items-center gap-2">
             <span className="text-xs text-blue-300 bg-blue-900/40 px-2.5 py-1 rounded-full border border-blue-700">
-              GOZ · BEMA
+              GOZ - BEMA
             </span>
           </div>
         </header>
@@ -43,14 +47,14 @@ export default function App() {
         <div className="px-4 pt-3 max-w-[1440px] mx-auto">
           <div className="flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm w-fit">
             <button
-              onClick={() => setActiveTab('chat')}
+              onClick={() => setActiveTab('session')}
               className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-colors ${
-                activeTab === 'chat'
+                activeTab === 'session'
                   ? 'bg-blue-600 text-white shadow-sm'
                   : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
               }`}
             >
-              Billing Chat
+              Session
             </button>
             <button
               onClick={() => setActiveTab('abrechnung')}
@@ -66,8 +70,8 @@ export default function App() {
         </div>
 
         <main className="p-4 max-w-[1440px] mx-auto">
-          {activeTab === 'chat' ? (
-            <ChatLayout />
+          {activeTab === 'session' ? (
+            <SessionLayout />
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <InputPanel />
