@@ -9,6 +9,16 @@ and this project uses [CalVer](https://calver.org/) versioning (YYYY.0M.MICRO).
 
 ### Added
 
+- **agent**: Add FHIR data access tools for billing gap analysis
+
+### Fixed
+
+- **billing**: GOZ 0070+2030 aus KCH-Pattern entfernt — Agent findet via Doku-Abgleich
+
+## [2026.03.13] - 2026-03-14
+
+### Added
+
 - **dent-39l**: Chat API, FHIR client, findings endpoint, HKP draft
 - **dent-tat**: Chat-UI für Billing Coach — 3-Panel-Layout mit Session-Management
 - **billing**: TreatmentType-Support + erweiterte KCH-Muster + Lukas-Berg-Demo-Szenario
@@ -16,6 +26,8 @@ and this project uses [CalVer](https://calver.org/) versioning (YYYY.0M.MICRO).
 ### Maintenance
 
 - VERSION v2026.03.12
+- Update CHANGELOG.md
+- VERSION v2026.03.13
 
 ### Merge
 
