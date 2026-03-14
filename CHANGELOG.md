@@ -1,3 +1,10 @@
+## [2026.03.8] - 2026-03-14
+
+### 🚀 Features
+
+- *(billing)* Kostenkalkulator GOZ/BEMA/Eigenanteil — calculateGOZPrice, calculateBEMAPrice, calculatePatientShare (15 Unit-Tests)
+- *(api)* FHIR API auth proxy
+
 ## [2026.03.7] - 2026-03-14
 
 ### 🚀 Features
