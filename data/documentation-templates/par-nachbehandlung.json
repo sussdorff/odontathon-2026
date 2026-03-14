@@ -2,7 +2,7 @@
   "id": "par-nachbehandlung",
   "name": "PAR-Nachbehandlung",
   "category": "parodontologie",
-  "relatedBillingCodes": ["P220", "P221", "P222", "P223"],
+  "relatedBillingCodes": ["4060", "UPTa", "UPTb"],
   "bfsSource": false,
   "fields": [
     {

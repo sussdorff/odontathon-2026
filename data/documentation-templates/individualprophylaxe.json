@@ -2,7 +2,7 @@
   "id": "individualprophylaxe",
   "name": "Individualprophylaxe",
   "category": "prophylaxe",
-  "relatedBillingCodes": ["IP1", "IP2", "IP3", "IP4", "IP5"],
+  "relatedBillingCodes": ["1000", "1010", "1020", "1040", "IP1", "IP2", "IP3", "IP4", "IP5"],
   "bfsSource": false,
   "fields": [
     {

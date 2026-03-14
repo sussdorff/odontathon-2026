@@ -2,7 +2,7 @@
   "id": "schienentherapie",
   "name": "Schienentherapie",
   "category": "konservierend",
-  "relatedBillingCodes": ["Ä70", "Ä71", "Ä75"],
+  "relatedBillingCodes": ["7190", "7195"],
   "bfsSource": false,
   "fields": [
     {

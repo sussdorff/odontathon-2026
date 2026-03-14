@@ -18,6 +18,8 @@ export const kchPatterns: BillingPattern[] = [
       { code: '2120', system: 'GOZ', multiplicity: 'per-tooth', description: 'Füllung >3 Flächen (statt 2060)' },
       { code: '0090', system: 'GOZ', multiplicity: 'per-case', description: 'Infiltrationsanästhesie' },
     ],
+    requiredDocTemplate: 'fuellungstherapie',
+    docCompletionRequired: false,
   },
 
   // --- Endodontie ---
@@ -35,6 +37,8 @@ export const kchPatterns: BillingPattern[] = [
       { code: '0090', system: 'GOZ', multiplicity: 'per-case', description: 'Infiltrationsanästhesie' },
       { code: '0100', system: 'GOZ', multiplicity: 'per-case', description: 'Leitungsanästhesie' },
     ],
+    requiredDocTemplate: 'endodontische-behandlung',
+    docCompletionRequired: true,
   },
 
   // --- Extraktion ---
@@ -51,6 +55,8 @@ export const kchPatterns: BillingPattern[] = [
       { code: '3020', system: 'GOZ', multiplicity: 'per-tooth', description: 'Osteotomie (statt 3000)' },
       { code: '0100', system: 'GOZ', multiplicity: 'per-case', description: 'Leitungsanästhesie (statt 0090)' },
     ],
+    requiredDocTemplate: 'extraktion',
+    docCompletionRequired: true,
   },
 
   // --- BEMA Füllungstherapie ---
@@ -66,5 +72,24 @@ export const kchPatterns: BillingPattern[] = [
       { code: '13c', system: 'BEMA', multiplicity: 'per-tooth', description: 'Füllung dreiflächig (statt 13a)' },
       { code: '13d', system: 'BEMA', multiplicity: 'per-tooth', description: 'Füllung >3 Flächen (statt 13a)' },
     ],
+    requiredDocTemplate: 'fuellungstherapie',
+    docCompletionRequired: false,
+  },
+
+  // --- Wurzelspitzenresektion ---
+  {
+    id: 'goz-wsr',
+    name: 'Wurzelspitzenresektion (GOZ)',
+    category: 'KCH', system: 'GOZ',
+    required: [
+      { code: '3110', system: 'GOZ', multiplicity: 'per-tooth', description: 'Wurzelspitzenresektion einwurzelig' },
+    ],
+    optional: [
+      { code: '3120', system: 'GOZ', multiplicity: 'per-tooth', description: 'Wurzelspitzenresektion mehrwurzelig (statt 3110)' },
+      { code: '0090', system: 'GOZ', multiplicity: 'per-case', description: 'Infiltrationsanästhesie' },
+      { code: '0100', system: 'GOZ', multiplicity: 'per-case', description: 'Leitungsanästhesie (statt 0090)' },
+    ],
+    requiredDocTemplate: 'wurzelspitzenresektion',
+    docCompletionRequired: true,
   },
 ]

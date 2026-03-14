@@ -2,7 +2,7 @@
   "id": "osteotomie",
   "name": "Osteotomie",
   "category": "chirurgie",
-  "relatedBillingCodes": ["Ä53", "Ä54"],
+  "relatedBillingCodes": ["3030", "3040", "45", "46", "47"],
   "bfsSource": true,
   "fields": [
     {

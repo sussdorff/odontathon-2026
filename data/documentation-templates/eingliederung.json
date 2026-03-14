@@ -2,7 +2,7 @@
   "id": "eingliederung",
   "name": "Eingliederung",
   "category": "prothetik",
-  "relatedBillingCodes": ["E1", "E2", "E3"],
+  "relatedBillingCodes": ["5120", "5170", "5030", "91c"],
   "bfsSource": false,
   "fields": [
     {

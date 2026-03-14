@@ -2,7 +2,7 @@
   "id": "kronen-bruecken-teleskop",
   "name": "Kronen-/Brücken-/Teleskopversorgung",
   "category": "prothetik",
-  "relatedBillingCodes": ["K1", "K2", "K3", "K4", "K5", "K6", "B1", "B2", "B3"],
+  "relatedBillingCodes": ["2200", "2210", "2220", "5000", "5030", "5070", "5080", "5120", "19", "91b", "91c"],
   "bfsSource": false,
   "fields": [
     {

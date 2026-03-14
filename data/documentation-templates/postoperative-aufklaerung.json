@@ -2,7 +2,7 @@
   "id": "postoperative-aufklaerung",
   "name": "Postoperative Aufklärung (Patienteninfo)",
   "category": "chirurgie",
-  "relatedBillingCodes": [],
+  "relatedBillingCodes": ["0080", "50"],
   "bfsSource": false,
   "fields": [
     {

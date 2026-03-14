@@ -2,7 +2,7 @@
   "id": "par-therapie",
   "name": "PAR-Therapie",
   "category": "parodontologie",
-  "relatedBillingCodes": ["P200", "P201", "P202", "P203", "P204", "P205", "P206", "P207", "P208", "P209", "P210", "P211", "P212"],
+  "relatedBillingCodes": ["4000", "4050", "4070", "4075", "4080", "BEVa", "ATa", "ATb", "CPTa"],
   "bfsSource": false,
   "fields": [
     {

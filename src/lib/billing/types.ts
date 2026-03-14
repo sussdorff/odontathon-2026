@@ -116,6 +116,10 @@ export interface BillingPattern {
   optional: PatternPosition[]
   conditions?: PatternCondition[]
   festzuschussBefunde?: string[]
+  /** ID of the DocumentationTemplate required for this billing pattern */
+  requiredDocTemplate?: string
+  /** If true, documentation must be complete before billing is allowed */
+  docCompletionRequired?: boolean
 }
 
 // --- Engine Input/Output Types ---

@@ -2,7 +2,7 @@
   "id": "endodontische-behandlung",
   "name": "Endodontische Behandlung",
   "category": "endodontie",
-  "relatedBillingCodes": ["Ä40", "Ä41", "Ä42", "Ä43", "Ä44", "Ä45", "Ä46"],
+  "relatedBillingCodes": ["2360", "2380", "2390", "2400", "2410", "32", "33", "34", "35"],
   "bfsSource": true,
   "fields": [
     {

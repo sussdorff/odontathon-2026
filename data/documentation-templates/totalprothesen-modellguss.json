@@ -2,7 +2,7 @@
   "id": "totalprothesen-modellguss",
   "name": "Totalprothesen/Modellguss-/Interimsversorgung",
   "category": "prothetik",
-  "relatedBillingCodes": ["T1", "T2", "T3", "T4"],
+  "relatedBillingCodes": ["5080", "5170", "91a", "91b"],
   "bfsSource": false,
   "fields": [
     {

@@ -2,7 +2,7 @@
   "id": "fuellungstherapie",
   "name": "Füllungstherapie",
   "category": "konservierend",
-  "relatedBillingCodes": ["F1", "F2", "F3", "F4", "13a", "13c", "13d", "14a", "14b"],
+  "relatedBillingCodes": ["2050", "2060", "2080", "2100", "2120", "2140", "2160", "2180", "13a", "13b", "13c", "13d"],
   "bfsSource": false,
   "fields": [
     {

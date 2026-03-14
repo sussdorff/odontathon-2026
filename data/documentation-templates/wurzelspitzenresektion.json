@@ -2,7 +2,7 @@
   "id": "wurzelspitzenresektion",
   "name": "Wurzelspitzenresektion (WSR)",
   "category": "chirurgie",
-  "relatedBillingCodes": ["Ä55", "Ä56", "Ä57"],
+  "relatedBillingCodes": ["3110", "3120", "64", "65", "66"],
   "bfsSource": true,
   "fields": [
     {

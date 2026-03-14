@@ -2,7 +2,7 @@
   "id": "chirurgische-nachbehandlung",
   "name": "Chirurgische Nachbehandlung",
   "category": "chirurgie",
-  "relatedBillingCodes": ["Ä60", "Ä61"],
+  "relatedBillingCodes": ["3060", "3070", "50", "51", "52", "53"],
   "bfsSource": false,
   "fields": [
     {

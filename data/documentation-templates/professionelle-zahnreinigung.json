@@ -2,7 +2,7 @@
   "id": "professionelle-zahnreinigung",
   "name": "Professionelle Zahnreinigung (PZR)",
   "category": "prophylaxe",
-  "relatedBillingCodes": ["PZR", "Ä1"],
+  "relatedBillingCodes": ["1040", "4050", "4060", "107"],
   "bfsSource": false,
   "fields": [
     {

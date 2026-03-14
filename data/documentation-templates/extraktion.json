@@ -2,7 +2,7 @@
   "id": "extraktion",
   "name": "Extraktionen",
   "category": "chirurgie",
-  "relatedBillingCodes": ["Ä50", "Ä51", "Ä52"],
+  "relatedBillingCodes": ["3000", "3010", "41", "42", "43", "44"],
   "bfsSource": true,
   "fields": [
     {
