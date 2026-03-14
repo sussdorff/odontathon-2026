@@ -19,6 +19,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "@xmldom/xmldom": "^0.9",
     "hono": "^4",
     "jszip": "^3"

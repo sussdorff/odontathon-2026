@@ -7,6 +7,8 @@ import {
   frequencyRules,
   multiplierRules,
 } from './lib/billing/rules'
+import { BillingAgent } from './agent/billing-agent'
+import type { ConversationState } from './agent/billing-agent'
 
 export const VALID_RULE_TYPES = ['exclusion', 'inclusion', 'requirement', 'frequency', 'multiplier'] as const
 type RuleType = (typeof VALID_RULE_TYPES)[number]
@@ -51,6 +53,50 @@ app.get('/api/rules', (c) => {
   )
   const total = Object.values(ruleGroups).reduce((sum, arr) => sum + arr.length, 0)
   return c.json({ total, rules })
+})
+
+// --- Agent Endpoint ---
+
+/** In-memory session store for the hackathon */
+const sessionStore = new Map<string, ConversationState>()
+
+const agentInstance = new BillingAgent()
+
+app.post('/api/agent/chat', async (c) => {
+  try {
+    const body = await c.req.json() as {
+      sessionId: string
+      message: string
+      kassenart?: string
+      state?: ConversationState
+    }
+
+    if (!body.sessionId || !body.message) {
+      return c.json({ error: 'sessionId and message are required' }, 400)
+    }
+
+    // Get or create session state
+    let state: ConversationState
+    if (body.state) {
+      // Client provided state directly (stateless mode)
+      state = body.state
+    } else if (sessionStore.has(body.sessionId)) {
+      state = sessionStore.get(body.sessionId)!
+    } else {
+      // New session
+      state = agentInstance.createSession(body.sessionId, body.kassenart ?? 'AOK')
+    }
+
+    const { state: newState, response } = await agentInstance.chat(state, body.message)
+
+    // Persist state in memory store
+    sessionStore.set(body.sessionId, newState)
+
+    return c.json({ state: newState, response })
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    return c.json({ error: message }, 500)
+  }
 })
 
 const port = parseInt(process.env.PORT ?? '3001')
