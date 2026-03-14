@@ -5,6 +5,7 @@
 import { practiceResources } from './practice.js'
 import { patients, coverages, pflegegradConditions } from './patients.js'
 import { dentalFindings } from './dental-findings.js'
+import { pastInvoices, pastInvoicesByType } from './past-invoices.js'
 
 type FhirResource = Record<string, unknown>
 
@@ -37,6 +38,7 @@ export function buildPracticeBundle(): Record<string, unknown> {
     ...coverages,
     ...pflegegradConditions,
     ...dentalFindings,
+    ...pastInvoices,
   ]
 
   const entries = allResources.map(toEntry)
@@ -48,4 +50,4 @@ export function buildPracticeBundle(): Record<string, unknown> {
   }
 }
 
-export { practiceResources, patients, coverages, pflegegradConditions, dentalFindings }
+export { practiceResources, patients, coverages, pflegegradConditions, dentalFindings, pastInvoices, pastInvoicesByType }
