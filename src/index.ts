@@ -53,6 +53,26 @@ app.get('/api/rules', (c) => {
   return c.json({ total, rules })
 })
 
+app.all('/fhir/*', async (c) => {
+  const subPath = c.req.path.replace(/^\/fhir/, '')
+  const qs = new URL(c.req.url).search
+  const target = `${aidboxConfig.fhirBaseUrl}${subPath}${qs}`
+
+  const headers = new Headers(c.req.raw.headers)
+  headers.set('Authorization', aidboxConfig.authHeader)
+
+  const res = await fetch(target, {
+    method: c.req.method,
+    headers,
+    body: ['GET', 'HEAD'].includes(c.req.method) ? undefined : c.req.raw.body,
+  })
+
+  return new Response(res.body, {
+    status: res.status,
+    headers: res.headers,
+  })
+})
+
 const port = parseInt(process.env.PORT ?? '3001')
 if (import.meta.main) {
   console.log(`Dental Agent API running on port ${port}`)
