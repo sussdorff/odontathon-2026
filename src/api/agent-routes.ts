@@ -2,11 +2,57 @@ import { Hono } from 'hono'
 import { randomUUID } from 'node:crypto'
 import { createBillingCoach } from '../agent'
 import { ProgressEmitter } from '../agent/hooks/progress'
+import { BillingAgent } from '../agent/billing-agent'
+import type { ConversationState } from '../agent/billing-agent'
 
 const agentRoutes = new Hono()
 
 // Active sessions: sessionId → ProgressEmitter
 const sessions = new Map<string, ProgressEmitter>()
+
+// Chat sessions: sessionId → ConversationState (in-memory)
+const chatSessions = new Map<string, ConversationState>()
+const billingAgent = new BillingAgent()
+
+// POST /api/agent/chat — synchronous conversational endpoint
+agentRoutes.post('/chat', async (c) => {
+  const body = await c.req.json()
+  const { message, sessionId: incomingSessionId, patientId } = body
+
+  if (!message || typeof message !== 'string' || message.trim() === '') {
+    return c.json({ error: 'message ist erforderlich' }, 400)
+  }
+
+  // Resolve or create session
+  let sessionId = incomingSessionId
+  let state: ConversationState
+  if (sessionId && chatSessions.has(sessionId)) {
+    state = chatSessions.get(sessionId)!
+  } else {
+    sessionId = sessionId ?? randomUUID()
+    state = billingAgent.createSession(sessionId)
+  }
+
+  // Optionally prepend patient context
+  const userMessage = patientId
+    ? `[Patient-ID: ${patientId}] ${message}`
+    : message
+
+  const { state: updatedState, response } = await billingAgent.chat(state, userMessage)
+
+  // Persist updated state (TTL: 30 min)
+  chatSessions.set(sessionId, updatedState)
+  setTimeout(() => chatSessions.delete(sessionId), 30 * 60 * 1000)
+
+  return c.json({
+    sessionId,
+    message: response.message,
+    proposedItems: response.proposedItems,
+    validationIssues: response.validationIssues,
+    followUpQuestions: response.followUpQuestions,
+    isComplete: response.isComplete,
+  })
+})
 
 agentRoutes.post('/analyze', async (c) => {
   const body = await c.req.json()

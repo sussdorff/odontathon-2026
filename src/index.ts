@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { serveStatic } from 'hono/bun'
+import { randomUUID } from 'node:crypto'
 import { aidboxConfig } from './lib/config'
 import {
   exclusionRules,
@@ -12,6 +13,7 @@ import { RuleEngine } from './lib/billing/engine'
 import { calculateGOZPrice, calculateBEMAPrice, calculatePatientShare } from './lib/billing/calculator'
 import { agentRoutes } from './api/agent-routes'
 import { practiceRulesRoutes } from './api/practice-rules-routes'
+import { AidboxClient } from './fhir/client'
 
 export const VALID_RULE_TYPES = ['exclusion', 'inclusion', 'requirement', 'frequency', 'multiplier'] as const
 type RuleType = (typeof VALID_RULE_TYPES)[number]
@@ -58,7 +60,6 @@ app.get('/api/rules', (c) => {
   return c.json({ total, rules })
 })
 
-<<<<<<< HEAD
 // Patients API — list seeded patients with coverage & findings summary
 app.get('/api/patients', async (c) => {
   const headers = { Authorization: aidboxConfig.authHeader }
@@ -339,6 +340,102 @@ app.post('/api/billing/calculate', async (c) => {
   }
 
   return c.json({ totalCost, festzuschuss, patientShare, breakdown })
+})
+
+// FHIR client instance (encapsulates Aidbox access)
+const fhirClient = new AidboxClient()
+
+// GET /api/patients/:id/findings — returns FHIR Observations for a patient
+app.get('/api/patients/:id/findings', async (c) => {
+  const patientId = c.req.param('id')
+
+  const observations = await fhirClient.getObservations(patientId, 'http://loinc.org|8339-4')
+
+  const findings = observations.map((obs) => {
+    const toothCode = obs.bodySite?.coding?.find((cd) =>
+      cd.system?.includes('fdi-tooth-number'))?.code
+    const statusCode = obs.valueCodeableConcept?.coding?.find((cd) =>
+      cd.system?.includes('tooth-status'))?.code
+    const surfaceExt = obs.extension?.find((ex) =>
+      ex.url?.includes('tooth-surfaces'))
+    const surfaces = surfaceExt?.valueString?.split(',').map(s => s.trim()).filter(Boolean) ?? []
+
+    return {
+      tooth: toothCode ? parseInt(toothCode, 10) : null,
+      status: statusCode ?? 'unknown',
+      surfaces,
+      observationId: obs.id ?? '',
+    }
+  }).filter((f) => f.tooth !== null)
+
+  return c.json({
+    patientId,
+    total: findings.length,
+    findings,
+  })
+})
+
+// POST /api/hkp/draft — generates an HKP draft from billing items
+app.post('/api/hkp/draft', async (c) => {
+  const body = await c.req.json()
+  const { patientId, billingItems = [], kassenart } = body
+
+  if (!patientId) {
+    return c.json({ error: 'patientId ist erforderlich' }, 400)
+  }
+
+  // Look up ChargeItemDefinition descriptions from Aidbox for each code
+  const codeDescriptions = new Map<string, string>()
+  const allCodes = (billingItems as Array<{ code: string; system: string }>).map(i => i.code)
+  if (allCodes.length > 0) {
+    try {
+      const bundle = await fhirClient.searchResources('ChargeItemDefinition', {
+        _count: String(allCodes.length + 10),
+      })
+      for (const entry of bundle.entry ?? []) {
+        const res = entry.resource as any
+        const coding = res.code?.coding?.[0]
+        if (coding?.code && coding?.display) {
+          codeDescriptions.set(coding.code, coding.display)
+        }
+      }
+    } catch {
+      // If lookup fails, fall back to code as description
+    }
+  }
+
+  // Build items with description and price
+  let totalEstimate = 0
+  const items = (billingItems as Array<{
+    code: string
+    system: 'GOZ' | 'BEMA'
+    teeth?: number[]
+    factor?: number
+  }>).map((item) => {
+    const description = codeDescriptions.get(item.code) ?? item.code
+    let price = 0
+    try {
+      if (item.system === 'GOZ') {
+        price = calculateGOZPrice(item.code, item.factor ?? 2.3)
+      } else if (item.system === 'BEMA' && kassenart) {
+        price = calculateBEMAPrice(item.code, kassenart)
+      }
+    } catch {
+      // Unknown code — price stays 0
+    }
+    totalEstimate += price
+    return { ...item, description, price }
+  })
+
+  return c.json({
+    draftId: randomUUID(),
+    patientId,
+    createdAt: new Date().toISOString(),
+    kassenart: kassenart ?? 'PKV',
+    items,
+    totalEstimate: Math.round(totalEstimate * 100) / 100,
+    status: 'draft',
+  })
 })
 
 // Agent & practice rules API
