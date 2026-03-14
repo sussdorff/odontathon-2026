@@ -1,0 +1,33 @@
+{
+  "region": "Berlin",
+  "kzv": "KZV Berlin",
+  "gueltig_ab": "2026-01-01",
+  "_quelle": "KZV Berlin — Vergütungsvereinbarungen. Werte in EUR je Punkt.",
+  "_hinweis": "BEMA-Punktwerte werden je Kassenart und Leistungsbereich zwischen KZV und Kassen vereinbart. KFO wird gesondert budgetiert.",
+  "kassenarten": {
+    "AOK": {
+      "KCH": 1.0423,
+      "ZE": 1.1304,
+      "PAR": 1.0423,
+      "KFO": 1.0423
+    },
+    "BKK": {
+      "KCH": 1.0389,
+      "ZE": 1.1304,
+      "PAR": 1.0389,
+      "KFO": 1.0389
+    },
+    "IKK": {
+      "KCH": 1.0401,
+      "ZE": 1.1304,
+      "PAR": 1.0401,
+      "KFO": 1.0401
+    },
+    "vdek": {
+      "KCH": 1.0412,
+      "ZE": 1.1304,
+      "PAR": 1.0412,
+      "KFO": 1.0412
+    }
+  }
+}

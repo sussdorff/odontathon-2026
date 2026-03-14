@@ -1,0 +1,308 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "http://dental-agent.de/Parameters/punktwerte-berlin-2026-q1",
+      "resource": {
+        "resourceType": "Parameters",
+        "id": "punktwerte-berlin-2026-q1",
+        "meta": {
+          "profile": [
+            "http://dental-agent.de/Parameters/punktwerte-berlin-2026-q1"
+          ]
+        },
+        "parameter": [
+          {
+            "name": "region",
+            "valueString": "Berlin"
+          },
+          {
+            "name": "kzv",
+            "valueString": "KZV Berlin"
+          },
+          {
+            "name": "gueltig_ab",
+            "valueDate": "2026-01-01"
+          },
+          {
+            "name": "punktwert-AOK-KCH",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "AOK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0423
+              }
+            ]
+          },
+          {
+            "name": "punktwert-AOK-ZE",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "AOK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "ZE"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.1304
+              }
+            ]
+          },
+          {
+            "name": "punktwert-AOK-PAR",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "AOK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "PAR"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0423
+              }
+            ]
+          },
+          {
+            "name": "punktwert-AOK-KFO",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "AOK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "KFO"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0423
+              }
+            ]
+          },
+          {
+            "name": "punktwert-BKK-KCH",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "BKK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0389
+              }
+            ]
+          },
+          {
+            "name": "punktwert-BKK-ZE",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "BKK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "ZE"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.1304
+              }
+            ]
+          },
+          {
+            "name": "punktwert-BKK-PAR",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "BKK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "PAR"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0389
+              }
+            ]
+          },
+          {
+            "name": "punktwert-BKK-KFO",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "BKK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "KFO"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0389
+              }
+            ]
+          },
+          {
+            "name": "punktwert-IKK-KCH",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "IKK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0401
+              }
+            ]
+          },
+          {
+            "name": "punktwert-IKK-ZE",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "IKK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "ZE"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.1304
+              }
+            ]
+          },
+          {
+            "name": "punktwert-IKK-PAR",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "IKK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "PAR"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0401
+              }
+            ]
+          },
+          {
+            "name": "punktwert-IKK-KFO",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "IKK"
+              },
+              {
+                "name": "bereich",
+                "valueString": "KFO"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0401
+              }
+            ]
+          },
+          {
+            "name": "punktwert-vdek-KCH",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "vdek"
+              },
+              {
+                "name": "bereich",
+                "valueString": "KCH"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0412
+              }
+            ]
+          },
+          {
+            "name": "punktwert-vdek-ZE",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "vdek"
+              },
+              {
+                "name": "bereich",
+                "valueString": "ZE"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.1304
+              }
+            ]
+          },
+          {
+            "name": "punktwert-vdek-PAR",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "vdek"
+              },
+              {
+                "name": "bereich",
+                "valueString": "PAR"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0412
+              }
+            ]
+          },
+          {
+            "name": "punktwert-vdek-KFO",
+            "part": [
+              {
+                "name": "kassenart",
+                "valueString": "vdek"
+              },
+              {
+                "name": "bereich",
+                "valueString": "KFO"
+              },
+              {
+                "name": "punktwert_eur",
+                "valueDecimal": 1.0412
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Parameters/punktwerte-berlin-2026-q1"
+      }
+    }
+  ]
+}

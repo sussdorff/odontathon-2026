@@ -1,0 +1,5605 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+      "resource": {
+        "resourceType": "CodeSystem",
+        "url": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+        "version": "2025-01-01",
+        "name": "KZBVFestzuschussBefundklassen",
+        "title": "KZBV Festzuschuss Befundklassen für Zahnersatz",
+        "status": "active",
+        "content": "complete",
+        "count": 48,
+        "property": [
+          {
+            "code": "regelversorgung",
+            "description": "Art der Regelversorgung",
+            "type": "string"
+          },
+          {
+            "code": "befundklasse-gruppe",
+            "description": "Übergeordnete Befundklasse (1-8)",
+            "type": "string"
+          }
+        ],
+        "concept": [
+          {
+            "code": "1.1",
+            "display": "Krone",
+            "definition": "Erhaltungswürdiger Zahn mit weitgehender Zerstörung der klinischen Krone oder unzureichende Retentionsmöglichkeit, je Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Krone"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "1"
+              }
+            ]
+          },
+          {
+            "code": "1.2",
+            "display": "Teilkrone",
+            "definition": "Erhaltungswürdiger Zahn mit großen Substanzdefekten, aber erhaltener vestibulärer und/oder oraler Zahnsubstanz, je Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Teilkrone"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "1"
+              }
+            ]
+          },
+          {
+            "code": "1.3",
+            "display": "Verblendung",
+            "definition": "Erhaltungswürdiger Zahn mit weitgehender Zerstörung der klinischen Krone oder unzureichende Retentionsmöglichkeit im Verblendbereich (15-25 und 34-44), je Verblendung für Kronen (auch implantatgestützte)",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Verblendung"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "1"
+              }
+            ]
+          },
+          {
+            "code": "1.4",
+            "display": "Konfektionierter Stiftaufbau",
+            "definition": "Endodontisch behandelter Zahn mit Notwendigkeit eines konfektionierten metallischen Stiftaufbaus mit herkömmlichen Zementierungsverfahren, je Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Konfektionierter Stiftaufbau"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "1"
+              }
+            ]
+          },
+          {
+            "code": "1.5",
+            "display": "Gegossener Stiftaufbau",
+            "definition": "Endodontisch behandelter Zahn mit Notwendigkeit eines gegossenen metallischen Stiftaufbaus mit herkömmlichen Zementierungsverfahren, je Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Gegossener Stiftaufbau"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "1"
+              }
+            ]
+          },
+          {
+            "code": "2.1",
+            "display": "Brücke (1 Spanne)",
+            "definition": "Zahnbegrenzte Lücke mit einem fehlenden Zahn, je Lücke (Lückensituation I)",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Brücke (1 Spanne)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "2"
+              }
+            ]
+          },
+          {
+            "code": "2.2",
+            "display": "Brücke (2 Spannen)",
+            "definition": "Zahnbegrenzte Lücke mit zwei nebeneinander fehlenden Zähnen, je Lücke",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Brücke (2 Spannen)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "2"
+              }
+            ]
+          },
+          {
+            "code": "2.3",
+            "display": "Brücke (3 Spannen)",
+            "definition": "Zahnbegrenzte Lücke mit drei nebeneinander fehlenden Zähnen, je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Brücke (3 Spannen)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "2"
+              }
+            ]
+          },
+          {
+            "code": "2.4",
+            "display": "Brücke (4 Spannen)",
+            "definition": "Frontzahnlücke mit vier nebeneinander fehlenden Zähnen, je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Brücke (4 Spannen)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "2"
+              }
+            ]
+          },
+          {
+            "code": "2.5",
+            "display": "Erweiterungsbrücke",
+            "definition": "An eine Lücke unmittelbar angrenzende weitere zahnbegrenzte Lücke mit einem fehlenden Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erweiterungsbrücke"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "2"
+              }
+            ]
+          },
+          {
+            "code": "2.6",
+            "display": "Zuschlag disparallele Pfeiler",
+            "definition": "Disparallele Pfeilerzähne zur festsitzenden Zahnersatzversorgung, Zuschlag je Lücke",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Zuschlag disparallele Pfeiler"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "2"
+              }
+            ]
+          },
+          {
+            "code": "2.7",
+            "display": "Verblendung Brückenglied",
+            "definition": "Fehlender Zahn in einer zahnbegrenzten Lücke im Verblendbereich (15-25 und 34-44), je Verblendung für einen ersetzten Zahn, auch für einen der Lücke angrenzenden Brückenanker im Verblendbereich",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Verblendung Brückenglied"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "2"
+              }
+            ]
+          },
+          {
+            "code": "3.1",
+            "display": "Herausnehmbarer Zahnersatz",
+            "definition": "Alle zahnbegrenzten Lücken, die nicht den Befunden nach Nrn. 2.1 bis 2.5 und 4 entsprechen, oder Freindendsituationen (Lückensituation II), je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Herausnehmbarer Zahnersatz"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "3"
+              }
+            ]
+          },
+          {
+            "code": "3.2",
+            "display": "Kombinationsversorgung mit dentaler Verankerung",
+            "definition": "Beidseitig bis zu den Eckzähnen oder bis zu den ersten Prämolaren verkürzte Zahnreihe (oder einseitig/beidseitig im Seitenzahngebiet unterbrochene Zahnreihe mit Notwendigkeit dentaler Verankerung), je Eckzahn oder erstem Prämolar",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Kombinationsversorgung mit dentaler Verankerung"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "3"
+              }
+            ]
+          },
+          {
+            "code": "4.1",
+            "display": "Totalprothese Oberkiefer",
+            "definition": "Restzahnbestand bis zu 3 Zähnen im Oberkiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Totalprothese Oberkiefer"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "4.2",
+            "display": "Totalprothese Oberkiefer",
+            "definition": "Zahnloser Oberkiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Totalprothese Oberkiefer"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "4.3",
+            "display": "Totalprothese Unterkiefer",
+            "definition": "Restzahnbestand bis zu 3 Zähnen im Unterkiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Totalprothese Unterkiefer"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "4.4",
+            "display": "Totalprothese Unterkiefer",
+            "definition": "Zahnloser Unterkiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Totalprothese Unterkiefer"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "4.5",
+            "display": "Metallbasis Totalprothese",
+            "definition": "Erfordernis einer Metallbasis, Zuschlag je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Metallbasis Totalprothese"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "4.6",
+            "display": "Kombinationsversorgung dentale Verankerung",
+            "definition": "Restzahnbestand bis zu 3 Zähnen je Kiefer mit der Notwendigkeit einer dentalen Verankerung, wenn die Regelversorgung eine Kombinationsversorgung vorsieht, je Ankerzahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Kombinationsversorgung dentale Verankerung"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "4.7",
+            "display": "Verblendung Teleskopkrone",
+            "definition": "Verblendung einer Teleskopkrone im Verblendbereich (15-25 und 34-44), Zuschlag je Ankerzahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Verblendung Teleskopkrone"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "4.8",
+            "display": "Wurzelstiftkappen",
+            "definition": "Restzahnbestand bis zu 3 Zähnen je Kiefer bei Notwendigkeit einer dentalen Verankerung durch Wurzelstiftkappen, je Ankerzahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wurzelstiftkappen"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "4.9",
+            "display": "Stützstiftregistrierung",
+            "definition": "Schwierig zu bestimmende Lagebeziehung der Kiefer bei der Versorgung mit Totalprothesen und schleimhautgetragenen Deckprothesen (Notwendigkeit einer Stützstiftregistrierung), Zuschlag je Gesamtbefund",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Stützstiftregistrierung"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "4"
+              }
+            ]
+          },
+          {
+            "code": "5.1",
+            "display": "Interimsversorgung (Interimsprothese)",
+            "definition": "Lückengebiss nach Verlust von bis zu 4 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Interimsversorgung (Interimsprothese)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "5"
+              }
+            ]
+          },
+          {
+            "code": "5.2",
+            "display": "Interimsversorgung (erweitert)",
+            "definition": "Lückengebiss nach Zahnverlust von 5 bis 8 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Interimsversorgung (erweitert)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "5"
+              }
+            ]
+          },
+          {
+            "code": "5.3",
+            "display": "Interimsversorgung (umfangreich)",
+            "definition": "Lückengebiss nach Verlust von über 8 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Interimsversorgung (umfangreich)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "5"
+              }
+            ]
+          },
+          {
+            "code": "5.4",
+            "display": "Interimsversorgung Totalprothese",
+            "definition": "Zahnloser Ober- oder Unterkiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Interimsversorgung Totalprothese"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "5"
+              }
+            ]
+          },
+          {
+            "code": "6.0",
+            "display": "Wiederherstellung ohne Abformung/Labor",
+            "definition": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung ohne Notwendigkeit der Abformung und ohne Notwendigkeit zahntechnischer Leistungen, auch Auffüllen von Sekundärteleskopen im direkten Verfahren, je Prothese",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung ohne Abformung/Labor"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.1",
+            "display": "Wiederherstellung ohne Abformung",
+            "definition": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung ohne Notwendigkeit der Abformung, je Prothese",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung ohne Abformung"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.2",
+            "display": "Wiederherstellung mit Abformung (Kunststoff)",
+            "definition": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Notwendigkeit der Abformung (Maßnahmen im Kunststoffbereich), auch Wiederbefestigung von Sekundärteleskopen oder anderer Verbindungselemente, je Prothese",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung mit Abformung (Kunststoff)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.3",
+            "display": "Wiederherstellung (gegossener Metallbereich)",
+            "definition": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im gegossenen Metallbereich, auch Wiederbefestigung von Sekundärteleskopen oder anderer Verbindungselemente, je Prothese",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung (gegossener Metallbereich)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.4",
+            "display": "Erweiterung Prothese Kunststoff (1 Zahn)",
+            "definition": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im Kunststoffbereich, je Prothese – bei Erweiterung um einen Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erweiterung Prothese Kunststoff (1 Zahn)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.4.1",
+            "display": "Erweiterung Prothese Kunststoff (weitere Zähne)",
+            "definition": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im Kunststoffbereich, je Prothese – bei Erweiterung um jeden weiteren Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erweiterung Prothese Kunststoff (weitere Zähne)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.5",
+            "display": "Erweiterung Prothese Metall (1 Zahn)",
+            "definition": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung im gegossenen Metallbereich, je Prothese – bei Erweiterung um einen Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erweiterung Prothese Metall (1 Zahn)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.5.1",
+            "display": "Erweiterung Prothese Metall (weitere Zähne)",
+            "definition": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung im gegossenen Metallbereich, je Prothese – bei Erweiterung um jeden weiteren Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erweiterung Prothese Metall (weitere Zähne)"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.6",
+            "display": "Unterfütterung Teilprothese",
+            "definition": "Verändertes Prothesenlager bei erhaltungswürdigem Teil-Zahnersatz, je Prothese",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Unterfütterung Teilprothese"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.7",
+            "display": "Unterfütterung Totalprothese",
+            "definition": "Verändertes Prothesenlager bei erhaltungswürdigem totalem Zahnersatz oder schleimhautgetragener Deckprothese, je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Unterfütterung Totalprothese"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.8",
+            "display": "Wiederherstellung festsitzender Zahnersatz",
+            "definition": "Wiederherstellungsbedürftiger festsitzender rezentierbarer Zahnersatz, je Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung festsitzender Zahnersatz"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.8.1",
+            "display": "Wiederherstellung Adhäsivbrücke Flügel",
+            "definition": "Wiederherstellungsbedürftiger festsitzender Zahnersatz, je Flügel einer Adhäsivbrücke",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung Adhäsivbrücke Flügel"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.9",
+            "display": "Wiederherstellung Facette/Verblendung",
+            "definition": "Wiederherstellungsbedürftige Facette/Verblendung (auch wiedereinsetzbar oder erneuerungsbedürftig) im Verblendbereich an einer Krone, einem Sekundärteleskop, einem Brückenanker oder einem Brückenglied, je Verblendung",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung Facette/Verblendung"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "6.10",
+            "display": "Erneuerung Teleskop",
+            "definition": "Erneuerungsbedürftiges Primär- oder Sekundärteleskop, je Zahn",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erneuerung Teleskop"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "6"
+              }
+            ]
+          },
+          {
+            "code": "7.1",
+            "display": "Erneuerung Suprakonstruktion Einzelzahn",
+            "definition": "Erneuerungsbedürftige Suprakonstruktion (vorhandenes Implantat bei zahnbegrenzter Einzelzahnlücke), je implantatgetragene Krone",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erneuerung Suprakonstruktion Einzelzahn"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "7"
+              }
+            ]
+          },
+          {
+            "code": "7.2",
+            "display": "Erneuerung Suprakonstruktion erweitert",
+            "definition": "Erneuerungsbedürftige Suprakonstruktion, die über den Befund nach Nr. 7.1 hinausgeht, je implantatgetragene Krone, Brückenanker oder Brückenglied, höchstens viermal je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erneuerung Suprakonstruktion erweitert"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "7"
+              }
+            ]
+          },
+          {
+            "code": "7.3",
+            "display": "Wiederherstellung Suprakonstruktion Facette",
+            "definition": "Wiederherstellungsbedürftige Suprakonstruktionen (Facette), je Facette",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung Suprakonstruktion Facette"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "7"
+              }
+            ]
+          },
+          {
+            "code": "7.4",
+            "display": "Wiederherstellung implantatgetragener festsitzender ZE",
+            "definition": "Wiederherstellungsbedürftiger festsitzender rezementierbarer oder zu verschraubender Zahnersatz, je implantatgetragene Krone oder Brückenanker",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Wiederherstellung implantatgetragener festsitzender ZE"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "7"
+              }
+            ]
+          },
+          {
+            "code": "7.5",
+            "display": "Erneuerung implantatgetragene Prothese",
+            "definition": "Erneuerungsbedürftige implantatgetragene Prothesenkonstruktion, je Prothesenkonstruktion",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Erneuerung implantatgetragene Prothese"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "7"
+              }
+            ]
+          },
+          {
+            "code": "7.6",
+            "display": "Zuschlag Erneuerung bei atrophiertem Kiefer",
+            "definition": "Erneuerungsbedürftige Prothesenkonstruktion bei atrophiertem zahnlosem Kiefer, je implantatgetragenem Konnektor als Zuschlag zum Befund nach Nr. 7.5, höchstens viermal je Kiefer",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Zuschlag Erneuerung bei atrophiertem Kiefer"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "7"
+              }
+            ]
+          },
+          {
+            "code": "7.7",
+            "display": "Umgestaltung Totalprothese zur Suprakonstruktion",
+            "definition": "Wiederherstellungsbedürftige implantatgetragene Prothesenkonstruktion, Umgestaltung einer vorhandenen Totalprothese zur Suprakonstruktion bei Vorliegen eines zahnlosen atrophierten Kiefers, je Prothesenkonstruktion",
+            "property": [
+              {
+                "code": "regelversorgung",
+                "valueString": "Umgestaltung Totalprothese zur Suprakonstruktion"
+              },
+              {
+                "code": "befundklasse-gruppe",
+                "valueString": "7"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "CodeSystem?url=http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 1.1: Krone",
+        "description": "Erhaltungswürdiger Zahn mit weitgehender Zerstörung der klinischen Krone oder unzureichende Retentionsmöglichkeit, je Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "1.1",
+              "display": "Krone"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 229.25,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 267.46,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 286.57,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 382.09,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F1-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-2",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-2",
+        "status": "active",
+        "title": "Festzuschuss Befund 1.2: Teilkrone",
+        "description": "Erhaltungswürdiger Zahn mit großen Substanzdefekten, aber erhaltener vestibulärer und/oder oraler Zahnsubstanz, je Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "1.2",
+              "display": "Teilkrone"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 262.97,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 306.8,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 328.72,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 438.29,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F1-2"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-3",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-3",
+        "status": "active",
+        "title": "Festzuschuss Befund 1.3: Verblendung",
+        "description": "Erhaltungswürdiger Zahn mit weitgehender Zerstörung der klinischen Krone oder unzureichende Retentionsmöglichkeit im Verblendbereich (15-25 und 34-44), je Verblendung für Kronen (auch implantatgestützte)",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "1.3",
+              "display": "Verblendung"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 78.26,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 91.31,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 97.83,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 130.44,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F1-3"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-4",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-4",
+        "status": "active",
+        "title": "Festzuschuss Befund 1.4: Konfektionierter Stiftaufbau",
+        "description": "Endodontisch behandelter Zahn mit Notwendigkeit eines konfektionierten metallischen Stiftaufbaus mit herkömmlichen Zementierungsverfahren, je Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "1.4",
+              "display": "Konfektionierter Stiftaufbau"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 47.83,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 55.8,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 59.78,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 79.71,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F1-4"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-5",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/1-5",
+        "status": "active",
+        "title": "Festzuschuss Befund 1.5: Gegossener Stiftaufbau",
+        "description": "Endodontisch behandelter Zahn mit Notwendigkeit eines gegossenen metallischen Stiftaufbaus mit herkömmlichen Zementierungsverfahren, je Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "1.5",
+              "display": "Gegossener Stiftaufbau"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 144.07,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 168.08,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 180.08,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 240.11,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F1-5"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 2.1: Brücke (1 Spanne)",
+        "description": "Zahnbegrenzte Lücke mit einem fehlenden Zahn, je Lücke (Lückensituation I)",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "2.1",
+              "display": "Brücke (1 Spanne)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 529.97,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 618.3,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 662.47,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 883.29,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F2-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-2",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-2",
+        "status": "active",
+        "title": "Festzuschuss Befund 2.2: Brücke (2 Spannen)",
+        "description": "Zahnbegrenzte Lücke mit zwei nebeneinander fehlenden Zähnen, je Lücke",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "2.2",
+              "display": "Brücke (2 Spannen)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 604.56,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 705.32,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 755.7,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 1007.6,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F2-2"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-3",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-3",
+        "status": "active",
+        "title": "Festzuschuss Befund 2.3: Brücke (3 Spannen)",
+        "description": "Zahnbegrenzte Lücke mit drei nebeneinander fehlenden Zähnen, je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "2.3",
+              "display": "Brücke (3 Spannen)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 675.02,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 787.53,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 843.78,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 1125.04,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F2-3"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-4",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-4",
+        "status": "active",
+        "title": "Festzuschuss Befund 2.4: Brücke (4 Spannen)",
+        "description": "Frontzahnlücke mit vier nebeneinander fehlenden Zähnen, je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "2.4",
+              "display": "Brücke (4 Spannen)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 739.73,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 863.02,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 924.67,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 1232.89,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F2-4"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-5",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-5",
+        "status": "active",
+        "title": "Festzuschuss Befund 2.5: Erweiterungsbrücke",
+        "description": "An eine Lücke unmittelbar angrenzende weitere zahnbegrenzte Lücke mit einem fehlenden Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "2.5",
+              "display": "Erweiterungsbrücke"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 293.93,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 342.92,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 367.42,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 489.89,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F2-5"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-6",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-6",
+        "status": "active",
+        "title": "Festzuschuss Befund 2.6: Zuschlag disparallele Pfeiler",
+        "description": "Disparallele Pfeilerzähne zur festsitzenden Zahnersatzversorgung, Zuschlag je Lücke",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "2.6",
+              "display": "Zuschlag disparallele Pfeiler"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 216.86,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 253.01,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 271.08,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 361.44,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F2-6"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-7",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/2-7",
+        "status": "active",
+        "title": "Festzuschuss Befund 2.7: Verblendung Brückenglied",
+        "description": "Fehlender Zahn in einer zahnbegrenzten Lücke im Verblendbereich (15-25 und 34-44), je Verblendung für einen ersetzten Zahn, auch für einen der Lücke angrenzenden Brückenanker im Verblendbereich",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "2.7",
+              "display": "Verblendung Brückenglied"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 77.12,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 89.98,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 96.41,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 128.54,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F2-7"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/3-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/3-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 3.1: Herausnehmbarer Zahnersatz",
+        "description": "Alle zahnbegrenzten Lücken, die nicht den Befunden nach Nrn. 2.1 bis 2.5 und 4 entsprechen, oder Freindendsituationen (Lückensituation II), je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "3.1",
+              "display": "Herausnehmbarer Zahnersatz"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 540.58,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 630.67,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 675.72,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 900.96,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F3-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/3-2",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/3-2",
+        "status": "active",
+        "title": "Festzuschuss Befund 3.2: Kombinationsversorgung mit dentaler Verankerung",
+        "description": "Beidseitig bis zu den Eckzähnen oder bis zu den ersten Prämolaren verkürzte Zahnreihe (oder einseitig/beidseitig im Seitenzahngebiet unterbrochene Zahnreihe mit Notwendigkeit dentaler Verankerung), je Eckzahn oder erstem Prämolar",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "3.2",
+              "display": "Kombinationsversorgung mit dentaler Verankerung"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 385.97,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 450.3,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 482.46,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 643.28,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F3-2"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.1: Totalprothese Oberkiefer",
+        "description": "Restzahnbestand bis zu 3 Zähnen im Oberkiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.1",
+              "display": "Totalprothese Oberkiefer"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 564.55,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 658.64,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 705.68,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 940.91,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-2",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-2",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.2: Totalprothese Oberkiefer",
+        "description": "Zahnloser Oberkiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.2",
+              "display": "Totalprothese Oberkiefer"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 544.97,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 635.8,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 681.22,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 908.29,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-2"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-3",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-3",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.3: Totalprothese Unterkiefer",
+        "description": "Restzahnbestand bis zu 3 Zähnen im Unterkiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.3",
+              "display": "Totalprothese Unterkiefer"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 583.54,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 680.8,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 729.43,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 972.57,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-3"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-4",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-4",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.4: Totalprothese Unterkiefer",
+        "description": "Zahnloser Unterkiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.4",
+              "display": "Totalprothese Unterkiefer"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 584.38,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 681.78,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 730.48,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 973.97,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-4"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-5",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-5",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.5: Metallbasis Totalprothese",
+        "description": "Erfordernis einer Metallbasis, Zuschlag je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.5",
+              "display": "Metallbasis Totalprothese"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 126.93,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 148.09,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 158.66,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 211.55,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-5"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-6",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-6",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.6: Kombinationsversorgung dentale Verankerung",
+        "description": "Restzahnbestand bis zu 3 Zähnen je Kiefer mit der Notwendigkeit einer dentalen Verankerung, wenn die Regelversorgung eine Kombinationsversorgung vorsieht, je Ankerzahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.6",
+              "display": "Kombinationsversorgung dentale Verankerung"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 395.29,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 461.17,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 494.11,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 658.81,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-6"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-7",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-7",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.7: Verblendung Teleskopkrone",
+        "description": "Verblendung einer Teleskopkrone im Verblendbereich (15-25 und 34-44), Zuschlag je Ankerzahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.7",
+              "display": "Verblendung Teleskopkrone"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 62.32,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 72.7,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 77.9,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 103.86,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-7"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-8",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-8",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.8: Wurzelstiftkappen",
+        "description": "Restzahnbestand bis zu 3 Zähnen je Kiefer bei Notwendigkeit einer dentalen Verankerung durch Wurzelstiftkappen, je Ankerzahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.8",
+              "display": "Wurzelstiftkappen"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 354.77,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 413.9,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 443.47,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 591.29,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-8"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-9",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/4-9",
+        "status": "active",
+        "title": "Festzuschuss Befund 4.9: Stützstiftregistrierung",
+        "description": "Schwierig zu bestimmende Lagebeziehung der Kiefer bei der Versorgung mit Totalprothesen und schleimhautgetragenen Deckprothesen (Notwendigkeit einer Stützstiftregistrierung), Zuschlag je Gesamtbefund",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "4.9",
+              "display": "Stützstiftregistrierung"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 89.88,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 104.86,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 112.35,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 149.8,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F4-9"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/5-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/5-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 5.1: Interimsversorgung (Interimsprothese)",
+        "description": "Lückengebiss nach Verlust von bis zu 4 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "5.1",
+              "display": "Interimsversorgung (Interimsprothese)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 185.73,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 216.69,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 232.16,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 309.55,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F5-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/5-2",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/5-2",
+        "status": "active",
+        "title": "Festzuschuss Befund 5.2: Interimsversorgung (erweitert)",
+        "description": "Lückengebiss nach Zahnverlust von 5 bis 8 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "5.2",
+              "display": "Interimsversorgung (erweitert)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 256.48,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 299.23,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 320.6,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 427.47,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F5-2"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/5-3",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/5-3",
+        "status": "active",
+        "title": "Festzuschuss Befund 5.3: Interimsversorgung (umfangreich)",
+        "description": "Lückengebiss nach Verlust von über 8 Zähnen je Kiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "5.3",
+              "display": "Interimsversorgung (umfangreich)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 333.74,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 389.36,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 417.17,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 556.23,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F5-3"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/5-4",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/5-4",
+        "status": "active",
+        "title": "Festzuschuss Befund 5.4: Interimsversorgung Totalprothese",
+        "description": "Zahnloser Ober- oder Unterkiefer in Fällen, in denen eine endgültige Versorgung nicht sofort möglich ist, je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "5.4",
+              "display": "Interimsversorgung Totalprothese"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 458.57,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 535,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 573.21,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 764.28,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F5-4"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-0",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-0",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.0: Wiederherstellung ohne Abformung/Labor",
+        "description": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung ohne Notwendigkeit der Abformung und ohne Notwendigkeit zahntechnischer Leistungen, auch Auffüllen von Sekundärteleskopen im direkten Verfahren, je Prothese",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.0",
+              "display": "Wiederherstellung ohne Abformung/Labor"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 22.36,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 26.09,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 27.95,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 37.27,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-0"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.1: Wiederherstellung ohne Abformung",
+        "description": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung ohne Notwendigkeit der Abformung, je Prothese",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.1",
+              "display": "Wiederherstellung ohne Abformung"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 53.06,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 61.91,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 66.33,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 88.44,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-2",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-2",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.2: Wiederherstellung mit Abformung (Kunststoff)",
+        "description": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Notwendigkeit der Abformung (Maßnahmen im Kunststoffbereich), auch Wiederbefestigung von Sekundärteleskopen oder anderer Verbindungselemente, je Prothese",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.2",
+              "display": "Wiederherstellung mit Abformung (Kunststoff)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 88.36,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 103.08,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 110.45,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 147.26,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-2"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-3",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-3",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.3: Wiederherstellung (gegossener Metallbereich)",
+        "description": "Prothetisch versorgtes Gebiss ohne Befundveränderung mit wiederherstellungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im gegossenen Metallbereich, auch Wiederbefestigung von Sekundärteleskopen oder anderer Verbindungselemente, je Prothese",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.3",
+              "display": "Wiederherstellung (gegossener Metallbereich)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 125.66,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 146.61,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 157.08,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 209.44,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-3"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-4",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-4",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.4: Erweiterung Prothese Kunststoff (1 Zahn)",
+        "description": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im Kunststoffbereich, je Prothese – bei Erweiterung um einen Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.4",
+              "display": "Erweiterung Prothese Kunststoff (1 Zahn)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 94.51,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 110.26,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 118.14,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 157.52,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-4"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-4-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-4-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.4.1: Erweiterung Prothese Kunststoff (weitere Zähne)",
+        "description": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung mit Maßnahmen im Kunststoffbereich, je Prothese – bei Erweiterung um jeden weiteren Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.4.1",
+              "display": "Erweiterung Prothese Kunststoff (weitere Zähne)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 18.94,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 22.1,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 23.68,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 31.57,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-4-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-5",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-5",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.5: Erweiterung Prothese Metall (1 Zahn)",
+        "description": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung im gegossenen Metallbereich, je Prothese – bei Erweiterung um einen Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.5",
+              "display": "Erweiterung Prothese Metall (1 Zahn)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 138.05,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 161.06,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 172.56,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 230.08,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-5"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-5-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-5-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.5.1: Erweiterung Prothese Metall (weitere Zähne)",
+        "description": "Prothetisch versorgtes Gebiss mit Befundveränderung mit erweiterungsbedürftiger herausnehmbarer-/Kombinationsversorgung im gegossenen Metallbereich, je Prothese – bei Erweiterung um jeden weiteren Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.5.1",
+              "display": "Erweiterung Prothese Metall (weitere Zähne)"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 27.68,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 32.29,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 34.6,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 46.13,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-5-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-6",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-6",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.6: Unterfütterung Teilprothese",
+        "description": "Verändertes Prothesenlager bei erhaltungswürdigem Teil-Zahnersatz, je Prothese",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.6",
+              "display": "Unterfütterung Teilprothese"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 103.15,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 120.34,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 128.93,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 171.91,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-6"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-7",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-7",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.7: Unterfütterung Totalprothese",
+        "description": "Verändertes Prothesenlager bei erhaltungswürdigem totalem Zahnersatz oder schleimhautgetragener Deckprothese, je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.7",
+              "display": "Unterfütterung Totalprothese"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 124.21,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 144.91,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 155.26,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 207.01,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-7"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-8",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-8",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.8: Wiederherstellung festsitzender Zahnersatz",
+        "description": "Wiederherstellungsbedürftiger festsitzender rezentierbarer Zahnersatz, je Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.8",
+              "display": "Wiederherstellung festsitzender Zahnersatz"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 16.19,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 18.89,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 20.24,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 26.99,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-8"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-8-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-8-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.8.1: Wiederherstellung Adhäsivbrücke Flügel",
+        "description": "Wiederherstellungsbedürftiger festsitzender Zahnersatz, je Flügel einer Adhäsivbrücke",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.8.1",
+              "display": "Wiederherstellung Adhäsivbrücke Flügel"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 45.88,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 53.52,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 57.35,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 76.46,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-8-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-9",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-9",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.9: Wiederherstellung Facette/Verblendung",
+        "description": "Wiederherstellungsbedürftige Facette/Verblendung (auch wiedereinsetzbar oder erneuerungsbedürftig) im Verblendbereich an einer Krone, einem Sekundärteleskop, einem Brückenanker oder einem Brückenglied, je Verblendung",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.9",
+              "display": "Wiederherstellung Facette/Verblendung"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 89.02,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 103.86,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 111.28,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 148.37,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-9"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-10",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/6-10",
+        "status": "active",
+        "title": "Festzuschuss Befund 6.10: Erneuerung Teleskop",
+        "description": "Erneuerungsbedürftiges Primär- oder Sekundärteleskop, je Zahn",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "6.10",
+              "display": "Erneuerung Teleskop"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 270.11,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 315.13,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 337.64,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 450.19,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F6-10"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-1",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-1",
+        "status": "active",
+        "title": "Festzuschuss Befund 7.1: Erneuerung Suprakonstruktion Einzelzahn",
+        "description": "Erneuerungsbedürftige Suprakonstruktion (vorhandenes Implantat bei zahnbegrenzter Einzelzahnlücke), je implantatgetragene Krone",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "7.1",
+              "display": "Erneuerung Suprakonstruktion Einzelzahn"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 228.75,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 266.88,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 285.94,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 381.25,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F7-1"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-2",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-2",
+        "status": "active",
+        "title": "Festzuschuss Befund 7.2: Erneuerung Suprakonstruktion erweitert",
+        "description": "Erneuerungsbedürftige Suprakonstruktion, die über den Befund nach Nr. 7.1 hinausgeht, je implantatgetragene Krone, Brückenanker oder Brückenglied, höchstens viermal je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "7.2",
+              "display": "Erneuerung Suprakonstruktion erweitert"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 139.72,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 163,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 174.65,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 232.86,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F7-2"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-3",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-3",
+        "status": "active",
+        "title": "Festzuschuss Befund 7.3: Wiederherstellung Suprakonstruktion Facette",
+        "description": "Wiederherstellungsbedürftige Suprakonstruktionen (Facette), je Facette",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "7.3",
+              "display": "Wiederherstellung Suprakonstruktion Facette"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 83.28,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 97.16,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 104.1,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 138.8,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F7-3"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-4",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-4",
+        "status": "active",
+        "title": "Festzuschuss Befund 7.4: Wiederherstellung implantatgetragener festsitzender ZE",
+        "description": "Wiederherstellungsbedürftiger festsitzender rezementierbarer oder zu verschraubender Zahnersatz, je implantatgetragene Krone oder Brückenanker",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "7.4",
+              "display": "Wiederherstellung implantatgetragener festsitzender ZE"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 17.47,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 20.38,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 21.83,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 29.11,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F7-4"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-5",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-5",
+        "status": "active",
+        "title": "Festzuschuss Befund 7.5: Erneuerung implantatgetragene Prothese",
+        "description": "Erneuerungsbedürftige implantatgetragene Prothesenkonstruktion, je Prothesenkonstruktion",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "7.5",
+              "display": "Erneuerung implantatgetragene Prothese"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 558.31,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 651.36,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 697.88,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 930.51,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F7-5"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-6",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-6",
+        "status": "active",
+        "title": "Festzuschuss Befund 7.6: Zuschlag Erneuerung bei atrophiertem Kiefer",
+        "description": "Erneuerungsbedürftige Prothesenkonstruktion bei atrophiertem zahnlosem Kiefer, je implantatgetragenem Konnektor als Zuschlag zum Befund nach Nr. 7.5, höchstens viermal je Kiefer",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "7.6",
+              "display": "Zuschlag Erneuerung bei atrophiertem Kiefer"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 16.13,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 18.82,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 20.17,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 26.89,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F7-6"
+      }
+    },
+    {
+      "fullUrl": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-7",
+      "resource": {
+        "resourceType": "ChargeItemDefinition",
+        "url": "http://fhir.de/ChargeItemDefinition/kzbv-festzuschuss/7-7",
+        "status": "active",
+        "title": "Festzuschuss Befund 7.7: Umgestaltung Totalprothese zur Suprakonstruktion",
+        "description": "Wiederherstellungsbedürftige implantatgetragene Prothesenkonstruktion, Umgestaltung einer vorhandenen Totalprothese zur Suprakonstruktion bei Vorliegen eines zahnlosen atrophierten Kiefers, je Prothesenkonstruktion",
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/kzbv-festzuschuss-befundklassen",
+              "code": "7.7",
+              "display": "Umgestaltung Totalprothese zur Suprakonstruktion"
+            }
+          ]
+        },
+        "propertyGroup": [
+          {
+            "priceComponent": [
+              {
+                "type": "base",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "60pct",
+                      "display": "Festzuschuss 60% (ohne Bonus)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 79.97,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "70pct",
+                      "display": "Festzuschuss 70% (Bonus 1)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 93.3,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "75pct",
+                      "display": "Festzuschuss 75% (Bonus 2)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 99.97,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "priceComponent": [
+              {
+                "type": "surcharge",
+                "code": {
+                  "coding": [
+                    {
+                      "code": "100pct",
+                      "display": "Festzuschuss 100% (Härtefall)"
+                    }
+                  ]
+                },
+                "amount": {
+                  "value": 133.29,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ChargeItemDefinition?url=http%3A%2F%2Ffhir.de%2FChargeItemDefinition%2Fkzbv-festzuschuss%2F7-7"
+      }
+    }
+  ]
+}

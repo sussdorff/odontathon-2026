@@ -1,0 +1,2184 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "http://fhir.de/CodeSystem/kzbv-hkp-kuerzel",
+      "resource": {
+        "resourceType": "CodeSystem",
+        "url": "http://fhir.de/CodeSystem/kzbv-hkp-kuerzel",
+        "version": "2022-05-25",
+        "name": "KZBVHKPKuerzel",
+        "title": "KZBV HKP ZE Befund- und Therapiekürzel",
+        "status": "active",
+        "content": "complete",
+        "count": 119,
+        "property": [
+          {
+            "code": "kuerzel",
+            "description": "Originalkürzel",
+            "type": "string"
+          },
+          {
+            "code": "zeile",
+            "description": "HKP-Zeile: B=Befund, R=Regelversorgung, TP=Therapieplanung",
+            "type": "string"
+          },
+          {
+            "code": "kontext",
+            "description": "Kontext: Befund, Regelversorgung, Therapieplanung",
+            "type": "string"
+          }
+        ],
+        "concept": [
+          {
+            "code": "a|B",
+            "display": "Adhäsivbrücke (Anker)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "a"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "ab|B",
+            "display": "Adhäsivbrücke (Brückenglied)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ab"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "abw|B",
+            "display": "erneuerungsbedürftige Adhäsivbrücke (Brückenglied)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "abw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "aw|B",
+            "display": "erneuerungsbedürftige Adhäsivbrücke (Anker)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "aw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "b|B",
+            "display": "Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "b"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "bw|B",
+            "display": "erneuerungsbedürftiges Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "bw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "e|B",
+            "display": "ersetzter Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "e"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "ew|B",
+            "display": "ersetzter, aber erneuerungsbedürftiger Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ew"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "f|B",
+            "display": "fehlender Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "f"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "ix|B",
+            "display": "zu entfernendes Implantat",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ix"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "k|B",
+            "display": "klinisch intakte Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "k"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "kw|B",
+            "display": "erneuerungsbedürftige Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "kw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "pkw|B",
+            "display": "erneuerungsbedürftige Teilkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "pkw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "pw|B",
+            "display": "erhaltungswürdiger Zahn mit partiellen Substanzdefekten",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "pw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "r|B",
+            "display": "Wurzelstiftkkappe mit ersetztem Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "r"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "rw|B",
+            "display": "erneuerungsbedürftige Wurzelstiftkkappe mit erneuerungsbedürftigem ersetztem Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "rw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "sb|B",
+            "display": "implantatgetragenes Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "sb"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "sbw|B",
+            "display": "erneuerungsbedürftiges implantatgetragenes Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "sbw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "se|B",
+            "display": "ersetzter Zahn einer implantatgetragenen (Teil-)Prothese",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "se"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "sew|B",
+            "display": "ersetzter, aber erneuerungsbedürftiger Zahn einer implantatgetragenen (Teil-)Prothese",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "sew"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "sk|B",
+            "display": "implantatgetragene intakte Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "sk"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "skw|B",
+            "display": "erneuerungsbedürftige implantatgetragene Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "skw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "so|B",
+            "display": "implantatgetragenes Verbindungselement (Kugelknopfanker, Steg u. Ä.) mit ersetztem Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "so"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "sow|B",
+            "display": "erneuerungsbedürftiges implantatgetragenes Verbindungselement (Kugelknopfanker, Steg u. Ä.) mit erneuerungsbedürftigem ersetztem Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "sow"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "st|B",
+            "display": "implantatgetragene Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "st"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "stw|B",
+            "display": "erneuerungsbedürftige implantatgetragene Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "stw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "t|B",
+            "display": "Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "t"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "t2w|B",
+            "display": "erneuerungsbedürftiges Sekundärteil einer Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "t2w"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "tw|B",
+            "display": "erneuerungsbedürftige Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "tw"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "ur|B",
+            "display": "unzureichende Retention",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ur"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "ww|B",
+            "display": "erhaltungswürdiger Zahn mit weitgehender Zerstörung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ww"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "x|B",
+            "display": "nicht erhaltungswürdiger Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "x"
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": ")(|B",
+            "display": "Lückenschluss",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": ")("
+              },
+              {
+                "code": "zeile",
+                "valueString": "B"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Befund"
+              }
+            ]
+          },
+          {
+            "code": "A|R",
+            "display": "Adhäsivbrücke (Anker)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "A"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "ABV|R",
+            "display": "Adhäsivbrücke (Brückenglied mit vestibulärer Verblendung)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ABV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "ABM|R",
+            "display": "Adhäsivbrücke (Brückenglied vollkeramisch oder keramisch vollverblendet)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ABM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "B|R",
+            "display": "Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "B"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "BM|R",
+            "display": "Brückenglied vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "BM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "BV|R",
+            "display": "Brückenglied mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "BV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "E|R",
+            "display": "zu ersetzender Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "E"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "EO|R",
+            "display": "zu ersetzender Zahn mit Stegverbindung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "EO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "H|R",
+            "display": "gegossene Halte- und Stützvorrichtung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "H"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "K|R",
+            "display": "Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "K"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "KH|R",
+            "display": "Krone mit Halteelement",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KH"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "KM|R",
+            "display": "Krone vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "KMH|R",
+            "display": "Krone vollkeramisch oder keramisch vollverblendet mit Halteelement",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KMH"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "KMO|R",
+            "display": "Krone vollkeramisch oder keramisch vollverblendet mit Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KMO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "KO|R",
+            "display": "Krone mit Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "KV|R",
+            "display": "Krone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "KVH|R",
+            "display": "Krone mit vestibulärer Verblendung und Halteelement",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KVH"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "KVO|R",
+            "display": "Krone mit vestibulärer Verblendung und Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KVO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "PK|R",
+            "display": "Teilkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "PK"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "PKM|R",
+            "display": "Teilkrone vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "PKM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "PKV|R",
+            "display": "Teilkrone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "PKV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "R|R",
+            "display": "Wurzelstiftkkappe mit zu ersetzendem Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "R"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SB|R",
+            "display": "implantatgetragenes Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SB"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SBV|R",
+            "display": "implantatgetragenes Brückenglied mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SBV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SBM|R",
+            "display": "implantatgetragenes vollkeramisches oder keramisch vollverblendetes Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SBM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SE|R",
+            "display": "zu ersetzender Zahn einer implantatgetragenen (Teil-)Prothese",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SE"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SEO|R",
+            "display": "zu ersetzender Zahn einer implantatgetragenen (Teil-)Prothese mit Stegverbindung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SEO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SK|R",
+            "display": "implantatgetragene Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SK"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SKM|R",
+            "display": "implantatgetragene vollkeramische oder keramisch vollverblendete Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SKMO|R",
+            "display": "implantatgetragene vollkeramische oder keramisch vollverblendete Krone mit Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKMO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SKO|R",
+            "display": "Implantatgetragene Krone mit Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SKV|R",
+            "display": "implantatgetragene Krone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SKVO|R",
+            "display": "implantatgetragene Krone mit vestibulärer Verblendung und Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKVO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "SO|R",
+            "display": "implantatgetragenes Verbindungselement (Kugelknopfanker, Steg u. Ä.) mit zu ersetzendem Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "ST|R",
+            "display": "implantatgetragene Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ST"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "STM|R",
+            "display": "implantatgetragene vollkeramische oder keramisch vollverblendete Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "STM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "STV|R",
+            "display": "implantatgetragene Teleskopkrone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "STV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "T|R",
+            "display": "Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "T"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "TM|R",
+            "display": "Teleskopkrone vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "TM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "TV|R",
+            "display": "Teleskopkrone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "TV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "T2|R",
+            "display": "Sekundärteil einer Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "T2"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "T2M|R",
+            "display": "Sekundärteil einer Teleskopkrone, vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "T2M"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "T2V|R",
+            "display": "Sekundärteil einer Teleskopkrone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "T2V"
+              },
+              {
+                "code": "zeile",
+                "valueString": "R"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Regelversorgung"
+              }
+            ]
+          },
+          {
+            "code": "A|TP",
+            "display": "Adhäsivbrücke (Anker)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "A"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "ABV|TP",
+            "display": "Adhäsivbrücke (Brückenglied mit vestibulärer Verblendung)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ABV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "ABM|TP",
+            "display": "Adhäsivbrücke (Brückenglied vollkeramisch oder keramisch vollverblendet)",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ABM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "B|TP",
+            "display": "Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "B"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "BM|TP",
+            "display": "Brückenglied vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "BM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "BV|TP",
+            "display": "Brückenglied mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "BV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "E|TP",
+            "display": "zu ersetzender Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "E"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "EO|TP",
+            "display": "zu ersetzender Zahn mit Stegverbindung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "EO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "H|TP",
+            "display": "gegossene Halte- und Stützvorrichtung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "H"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "K|TP",
+            "display": "Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "K"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "KH|TP",
+            "display": "Krone mit Halteelement",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KH"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "KM|TP",
+            "display": "Krone vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "KMH|TP",
+            "display": "Krone vollkeramisch oder keramisch vollverblendet mit Halteelement",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KMH"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "KMO|TP",
+            "display": "Krone vollkeramisch oder keramisch vollverblendet mit Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KMO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "KO|TP",
+            "display": "Krone mit Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "KV|TP",
+            "display": "Krone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "KVH|TP",
+            "display": "Krone mit vestibulärer Verblendung und Halteelement",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KVH"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "KVO|TP",
+            "display": "Krone mit vestibulärer Verblendung und Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "KVO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "PK|TP",
+            "display": "Teilkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "PK"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "PKM|TP",
+            "display": "Teilkrone vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "PKM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "PKV|TP",
+            "display": "Teilkrone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "PKV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "R|TP",
+            "display": "Wurzelstiftkkappe mit zu ersetzendem Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "R"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SB|TP",
+            "display": "implantatgetragenes Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SB"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SBV|TP",
+            "display": "implantatgetragenes Brückenglied mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SBV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SBM|TP",
+            "display": "implantatgetragenes vollkeramisches oder keramisch vollverblendetes Brückenglied",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SBM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SE|TP",
+            "display": "zu ersetzender Zahn einer implantatgetragenen (Teil-)Prothese",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SE"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SEO|TP",
+            "display": "zu ersetzender Zahn einer implantatgetragenen (Teil-)Prothese mit Stegverbindung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SEO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SK|TP",
+            "display": "implantatgetragene Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SK"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SKM|TP",
+            "display": "implantatgetragene vollkeramische oder keramisch vollverblendete Krone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SKMO|TP",
+            "display": "implantatgetragene vollkeramische oder keramisch vollverblendete Krone mit Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKMO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SKO|TP",
+            "display": "Implantatgetragene Krone mit Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SKV|TP",
+            "display": "implantatgetragene Krone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SKVO|TP",
+            "display": "implantatgetragene Krone mit vestibulärer Verblendung und Geschiebe",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SKVO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "SO|TP",
+            "display": "implantatgetragenes Verbindungselement (Kugelknopfanker, Steg u. Ä.) mit zu ersetzendem Zahn",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "SO"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "ST|TP",
+            "display": "implantatgetragene Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "ST"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "STM|TP",
+            "display": "implantatgetragene vollkeramische oder keramisch vollverblendete Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "STM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "STV|TP",
+            "display": "implantatgetragene Teleskopkrone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "STV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "T|TP",
+            "display": "Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "T"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "TM|TP",
+            "display": "Teleskopkrone vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "TM"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "TV|TP",
+            "display": "Teleskopkrone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "TV"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "T2|TP",
+            "display": "Sekundärteil einer Teleskopkrone",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "T2"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "T2M|TP",
+            "display": "Sekundärteil einer Teleskopkrone, vollkeramisch oder keramisch vollverblendet",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "T2M"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          },
+          {
+            "code": "T2V|TP",
+            "display": "Sekundärteil einer Teleskopkrone mit vestibulärer Verblendung",
+            "property": [
+              {
+                "code": "kuerzel",
+                "valueString": "T2V"
+              },
+              {
+                "code": "zeile",
+                "valueString": "TP"
+              },
+              {
+                "code": "kontext",
+                "valueString": "Therapieplanung"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "CodeSystem?url=http://fhir.de/CodeSystem/kzbv-hkp-kuerzel"
+      }
+    }
+  ]
+}
