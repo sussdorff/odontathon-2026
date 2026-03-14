@@ -17,14 +17,19 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.claude/
 *.swp
 *.swo
+
+# Aidbox data
+data/
 
 # Beads
 .beads/dolt-data/
 
 # Logs
 *.log
+logs/
 
 # Dolt database files (added by bd init)
 .dolt/
