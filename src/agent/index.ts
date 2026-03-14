@@ -11,10 +11,17 @@ export interface AnalysisRequest {
   patientId: string
   billingItems: Array<{
     code: string
-    system: 'GOZ' | 'BEMA'
+    system: 'GOZ' | 'BEMA' | 'GOÄ'
     multiplier?: number
     teeth?: number[]
   }>
+  history?: Array<{
+    code: string
+    system: string
+    date: string
+    tooth?: number | null
+  }>
+  analysisDate?: string
 }
 
 export interface AnalysisResult {
@@ -42,23 +49,57 @@ function formatBillingItemsJson(items: AnalysisRequest['billingItems']): string 
   })))
 }
 
+/** Extract tool_use blocks from an assistant message's content */
+function extractToolCalls(message: any): Array<{ name: string; input: unknown }> {
+  const content = message?.message?.content
+  if (!Array.isArray(content)) return []
+  return content
+    .filter((b: any) => b.type === 'tool_use')
+    .map((b: any) => ({ name: b.name, input: b.input }))
+}
+
+/** Extract text blocks from an assistant message's content */
+function extractText(message: any): string {
+  const content = message?.message?.content
+  if (!Array.isArray(content)) return ''
+  return content
+    .filter((b: any) => b.type === 'text')
+    .map((b: any) => b.text)
+    .join('\n')
+}
+
+/** Truncate large objects for display */
+function truncate(obj: unknown, maxLen = 500): string {
+  const s = typeof obj === 'string' ? obj : JSON.stringify(obj)
+  if (s.length <= maxLen) return s
+  return s.slice(0, maxLen) + '…'
+}
+
 export function createBillingCoach(emitter?: ProgressEmitter) {
   const toolServer = createToolServer()
 
   return {
     async analyze(request: AnalysisRequest): Promise<AnalysisResult> {
-      const prompt = `Analysiere die Abrechnung für Patient ${request.patientId}.
+      const dateInfo = request.analysisDate ? `Abrechnungsdatum: ${request.analysisDate}` : 'Kein spezifisches Datum'
+      const historySection = request.history?.length
+        ? `\n## Bisherige Abrechnungshistorie (${request.history.length} Positionen vor ${request.analysisDate || 'heute'})\nDiese Daten sind für Frequenzprüfungen relevant:\n${JSON.stringify(request.history)}`
+        : '\n## Abrechnungshistorie\nKeine bisherigen Abrechnungen bekannt.'
 
-## Abrechnungspositionen
+      const prompt = `Analysiere die Abrechnung für Patient ${request.patientId}.
+${dateInfo}
+
+## Abrechnungspositionen (zu prüfen)
 ${formatBillingItems(request.billingItems)}
 
 ## Positionen als JSON (für Tool-Aufrufe)
 ${formatBillingItemsJson(request.billingItems)}
+${historySection}
 
 ## Auftrag
 1. Rufe zuerst get_case_context auf mit patientId "${request.patientId}" um den vollständigen Patientenkontext zu laden.
 2. Delegiere dann an alle 4 Sub-Agenten (compliance, documentation, optimization, practice_rules).
    Gib jedem Agent die Abrechnungspositionen UND relevante Patientendaten (Versicherungstyp, Befunde, Historie) als Text mit.
+   WICHTIG: Übergib auch die Abrechnungshistorie an den Compliance-Agenten für Frequenzprüfungen.
 3. Sammle die Ergebnisse und erstelle den finalen ComplianceReport.`
 
       const options: Options = {
@@ -86,21 +127,111 @@ ${formatBillingItemsJson(request.billingItems)}
         persistSession: false,
       }
 
-      emitter?.emit('analysis_start', { patientId: request.patientId })
+      emitter?.emit('analysis_start', {
+        patientId: request.patientId,
+        itemCount: request.billingItems.length,
+      })
 
       let report: ComplianceReport | null = null
       let costUsd = 0
+
+      // Track active sub-agents by task_id
+      const agentTasks = new Map<string, string>()
 
       try {
         const q = query({ prompt, options })
 
         for await (const message of q) {
+          // --- Assistant messages (manager or sub-agent thinking + tool calls) ---
           if (message.type === 'assistant') {
-            emitter?.emit('agent_progress', {
-              message: 'Manager verarbeitet...',
+            const isSubAgent = message.parent_tool_use_id !== null
+            const text = extractText(message)
+            const toolCalls = extractToolCalls(message)
+
+            if (text && !isSubAgent) {
+              emitter?.emit('manager_thinking', { text: truncate(text, 1000) })
+            }
+
+            for (const tc of toolCalls) {
+              if (tc.name === 'Agent') {
+                // Manager is delegating to a sub-agent
+                const agentInput = tc.input as any
+                emitter?.emit('agent_start', {
+                  agent: agentInput?.description || agentInput?.subagent_type || 'unknown',
+                  prompt: truncate(agentInput?.prompt || '', 500),
+                })
+              } else if (isSubAgent) {
+                // Sub-agent calling a tool
+                emitter?.emit('agent_tool_call', {
+                  tool: tc.name,
+                  input: truncate(tc.input),
+                })
+              } else {
+                // Manager calling a tool directly
+                emitter?.emit('manager_tool_call', {
+                  tool: tc.name,
+                  input: truncate(tc.input),
+                })
+              }
+            }
+          }
+
+          // --- User messages (tool results coming back) ---
+          if (message.type === 'user' && message.tool_use_result !== undefined) {
+            const isSubAgent = message.parent_tool_use_id !== null
+            if (!isSubAgent) {
+              emitter?.emit('manager_tool_result', {
+                result: truncate(message.tool_use_result),
+              })
+            }
+          }
+
+          // --- Sub-agent lifecycle (task events) ---
+          if (message.type === 'system') {
+            const sys = message as any
+            if (sys.subtype === 'task_started') {
+              agentTasks.set(sys.task_id, sys.description || 'Sub-Agent')
+              emitter?.emit('agent_start', {
+                taskId: sys.task_id,
+                agent: sys.description || sys.task_type || 'unknown',
+                prompt: truncate(sys.prompt || '', 500),
+              })
+            }
+
+            if (sys.subtype === 'task_progress') {
+              emitter?.emit('agent_progress', {
+                taskId: sys.task_id,
+                agent: agentTasks.get(sys.task_id) || 'Sub-Agent',
+                lastTool: sys.last_tool_name || null,
+                summary: sys.summary || null,
+                toolUses: sys.usage?.tool_uses ?? 0,
+              })
+            }
+
+            if (sys.subtype === 'task_notification') {
+              emitter?.emit('agent_complete', {
+                taskId: sys.task_id,
+                agent: agentTasks.get(sys.task_id) || 'Sub-Agent',
+                status: sys.status,
+                summary: sys.summary || '',
+                toolUses: sys.usage?.tool_uses ?? 0,
+                tokens: sys.usage?.total_tokens ?? 0,
+              })
+              agentTasks.delete(sys.task_id)
+            }
+          }
+
+          // --- Tool progress (long-running tool calls) ---
+          if (message.type === 'tool_progress') {
+            const tp = message as any
+            emitter?.emit('agent_tool_call', {
+              tool: tp.tool_name,
+              elapsed: tp.elapsed_time_seconds,
+              taskId: tp.task_id || null,
             })
           }
 
+          // --- Final result ---
           if (message.type === 'result') {
             costUsd = message.total_cost_usd
             if (message.subtype === 'success' && message.structured_output) {
@@ -114,7 +245,7 @@ ${formatBillingItemsJson(request.billingItems)}
         return { report: null, error: errorMsg, costUsd }
       }
 
-      emitter?.emit('analysis_complete', { report })
+      emitter?.emit('analysis_complete', { report, costUsd })
       return { report, costUsd }
     },
   }

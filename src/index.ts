@@ -64,14 +64,16 @@ app.get('/api/rules', (c) => {
 app.get('/api/patients', async (c) => {
   const headers = { Authorization: aidboxConfig.authHeader }
 
-  const [patRes, covRes, obsRes] = await Promise.all([
+  const [patRes, covRes, obsRes, condRes, claimRes] = await Promise.all([
     fetch(`${aidboxConfig.fhirBaseUrl}/Patient?_count=100&_sort=family`, { headers }),
     fetch(`${aidboxConfig.fhirBaseUrl}/Coverage?_count=100`, { headers }),
     fetch(`${aidboxConfig.fhirBaseUrl}/Observation?_count=500&code=http://loinc.org|8339-4`, { headers }),
+    fetch(`${aidboxConfig.fhirBaseUrl}/Condition?_count=200`, { headers }),
+    fetch(`${aidboxConfig.fhirBaseUrl}/Claim?_count=200&_sort=-created`, { headers }),
   ])
 
-  const [patBundle, covBundle, obsBundle] = await Promise.all([
-    patRes.json(), covRes.json(), obsRes.json(),
+  const [patBundle, covBundle, obsBundle, condBundle, claimBundle] = await Promise.all([
+    patRes.json(), covRes.json(), obsRes.json(), condRes.json(), claimRes.json(),
   ])
 
   // Index coverages by patient ref
@@ -88,6 +90,24 @@ app.get('/api/patients', async (c) => {
     if (!ref) continue
     if (!obsByPatient.has(ref)) obsByPatient.set(ref, [])
     obsByPatient.get(ref)!.push(e.resource)
+  }
+
+  // Index conditions by patient ref
+  const condByPatient = new Map<string, any[]>()
+  for (const e of (condBundle.entry ?? [])) {
+    const ref = e.resource.subject?.reference
+    if (!ref) continue
+    if (!condByPatient.has(ref)) condByPatient.set(ref, [])
+    condByPatient.get(ref)!.push(e.resource)
+  }
+
+  // Index claims by patient ref
+  const claimsByPatient = new Map<string, any[]>()
+  for (const e of (claimBundle.entry ?? [])) {
+    const ref = e.resource.patient?.reference
+    if (!ref) continue
+    if (!claimsByPatient.has(ref)) claimsByPatient.set(ref, [])
+    claimsByPatient.get(ref)!.push(e.resource)
   }
 
   const patients = (patBundle.entry ?? []).map((e: any) => {
@@ -120,6 +140,58 @@ app.get('/api/patients', async (c) => {
       }
     }).filter((f: any) => f.tooth !== null)
 
+    // Pflegegrad from patient extensions
+    const pflegegradExt = p.extension?.find((ex: any) => ex.url?.includes('pflegegrad-status'))
+    const pflegegrad = pflegegradExt?.extension?.find((ex: any) => ex.url?.includes('pflegegrad-level'))?.valueInteger ?? null
+    const eingliederungshilfe = pflegegradExt?.extension?.some((ex: any) =>
+      ex.url?.includes('eingliederungshilfe') && ex.valueBoolean === true
+    ) ?? false
+
+    // Coverage details
+    const coveragePayor = cov?.payor?.[0]?.reference ?? null
+    const coverageId = cov?.identifier?.[0]?.value ?? null
+
+    // Conditions
+    const conditions = (condByPatient.get(ref) ?? []).map((c: any) => ({
+      code: c.code?.coding?.[0]?.code ?? null,
+      display: c.code?.coding?.[0]?.display ?? c.code?.text ?? null,
+      clinicalStatus: c.clinicalStatus?.coding?.[0]?.code ?? null,
+    }))
+
+    // Billing history from Claims — preserve claim structure
+    const claims = (claimsByPatient.get(ref) ?? []).map((claim: any) => {
+      const items = (claim.item ?? []).map((item: any) => {
+        const coding = item.productOrService?.coding?.[0]
+        const sys = coding?.system ?? ''
+        const noteExt = item.extension?.find((ex: any) => ex.url?.includes('billing-note'))
+        const sessionExt = item.extension?.find((ex: any) => ex.url?.includes('treatment-session'))
+        return {
+          code: coding?.code ?? null,
+          display: coding?.display ?? null,
+          system: sys.includes('goz') ? 'GOZ' : sys.includes('goae') ? 'GOÄ' : 'BEMA',
+          tooth: item.bodySite?.coding?.[0]?.code ? parseInt(item.bodySite.coding[0].code) : null,
+          surfaces: (item.subSite ?? []).map((s: any) => s.coding?.[0]?.code).filter(Boolean),
+          quantity: item.quantity?.value ?? 1,
+          session: sessionExt?.valueInteger ?? null,
+          note: noteExt?.valueString ?? null,
+        }
+      })
+      const teeth = [...new Set(items.map((i: any) => i.tooth).filter(Boolean))].sort((a: number, b: number) => a - b)
+      return {
+        id: claim.id,
+        date: claim.created ?? null,
+        provider: claim.provider?.reference?.replace('Practitioner/', '') ?? null,
+        itemCount: items.length,
+        teeth,
+        items,
+      }
+    }).sort((a: any, b: any) => (b.date ?? '').localeCompare(a.date ?? ''))
+
+    // Also keep flat history for agent compatibility
+    const billingHistory = claims.flatMap((c: any) =>
+      c.items.map((i: any) => ({ code: i.code, system: i.system, date: c.date, tooth: i.tooth }))
+    )
+
     return {
       id,
       name: [p.name?.[0]?.given?.join(' '), p.name?.[0]?.family].filter(Boolean).join(' '),
@@ -127,8 +199,15 @@ app.get('/api/patients', async (c) => {
       gender: p.gender,
       coverageType,
       bonusPercent: bonusExt?.valueInteger ?? 0,
+      pflegegrad,
+      eingliederungshilfe,
+      coveragePayor,
+      coverageId,
       findingsCount: findings.length,
       findings,
+      conditions,
+      claims,
+      billingHistory,
     }
   })
 

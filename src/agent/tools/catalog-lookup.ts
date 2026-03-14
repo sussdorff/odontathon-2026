@@ -1,7 +1,6 @@
 import { z } from 'zod/v4'
 import { tool } from '@anthropic-ai/claude-agent-sdk'
 import { aidboxConfig } from '../../lib/config'
-import { CODE_SYSTEMS } from '../../lib/fhir-extensions'
 
 const GOZ_MULTIPLIER_EXT = 'http://dental-agent.de/fhir/StructureDefinition/goz-multiplier-range'
 
@@ -13,8 +12,14 @@ export const lookupCatalogCode = tool(
     system: z.enum(['GOZ', 'BEMA']).describe('Billing system'),
   },
   async ({ code, system }) => {
-    const systemUrl = system === 'GOZ' ? CODE_SYSTEMS.goz : CODE_SYSTEMS.bema
-    const url = `${aidboxConfig.fhirBaseUrl}/ChargeItemDefinition?code=${systemUrl}|${encodeURIComponent(code)}&_count=1`
+    // BEMA codes have sanitized URLs (spaces→-, special chars→_)
+    const urlCode = system === 'BEMA'
+      ? code.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\-_.]/g, '_')
+      : code
+    const cidUrlPrefix = system === 'GOZ'
+      ? 'http://fhir.de/ChargeItemDefinition/goz'
+      : 'http://fhir.de/ChargeItemDefinition/bema'
+    const url = `${aidboxConfig.fhirBaseUrl}/ChargeItemDefinition?url=${encodeURIComponent(`${cidUrlPrefix}/${urlCode}`)}&_count=1`
 
     const res = await fetch(url, {
       headers: { Authorization: aidboxConfig.authHeader },

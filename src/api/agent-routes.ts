@@ -56,7 +56,7 @@ agentRoutes.post('/chat', async (c) => {
 
 agentRoutes.post('/analyze', async (c) => {
   const body = await c.req.json()
-  const { patientId, billingItems } = body
+  const { patientId, billingItems, history, analysisDate } = body
 
   if (!patientId) {
     return c.json({ error: 'patientId ist erforderlich' }, 400)
@@ -71,7 +71,7 @@ agentRoutes.post('/analyze', async (c) => {
 
   // Run analysis in background
   const coach = createBillingCoach(emitter)
-  coach.analyze({ patientId, billingItems: billingItems ?? [] }).then(result => {
+  coach.analyze({ patientId, billingItems: billingItems ?? [], history: history ?? [], analysisDate: analysisDate ?? undefined }).then(result => {
     if (result.report) {
       emitter.emit('analysis_complete', { report: result.report, costUsd: result.costUsd })
     } else if (result.error) {
