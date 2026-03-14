@@ -1,0 +1,56 @@
+services:
+  # PostgreSQL for Aidbox
+  aidbox-db:
+    image: postgres:16
+    command:
+      - postgres
+      - -c
+      - shared_buffers=256MB
+      - -c
+      - work_mem=32MB
+    environment:
+      POSTGRES_USER: ${AIDBOX_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${AIDBOX_DB_PASSWORD}
+      POSTGRES_DB: aidbox
+    volumes:
+      - ./data/aidbox-pg:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${AIDBOX_DB_USER:-postgres} -d aidbox"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Aidbox FHIR Server
+  aidbox:
+    image: healthsamurai/aidboxone:latest
+    depends_on:
+      aidbox-db:
+        condition: service_healthy
+    environment:
+      AIDBOX_LICENSE: ${AIDBOX_LICENSE_KEY}
+      AIDBOX_ADMIN_ID: ${AIDBOX_ADMIN_ID}
+      AIDBOX_ADMIN_PASSWORD: ${AIDBOX_ADMIN_PASSWORD}
+      AIDBOX_CLIENT_ID: ${AIDBOX_ADMIN_ID}
+      AIDBOX_CLIENT_SECRET: ${AIDBOX_ADMIN_PASSWORD}
+      AIDBOX_BASE_URL: ${AIDBOX_BASE_URL:-http://localhost:8080}
+      AIDBOX_PORT: 8080
+      AIDBOX_FHIR_VERSION: 4.0.1
+      AIDBOX_FHIR_SCHEMA_VALIDATION: "false"
+      BOX_FEATURES_VALIDATION_SKIP__EXTRA: "true"
+      PGHOST: aidbox-db
+      PGPORT: 5432
+      PGDATABASE: aidbox
+      PGUSER: ${AIDBOX_DB_USER:-postgres}
+      PGPASSWORD: ${AIDBOX_DB_PASSWORD}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./aidbox/seed:/var/aidbox/seed:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
