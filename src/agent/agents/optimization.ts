@@ -4,7 +4,6 @@ export const optimizationAgent: AgentDefinition = {
   description: 'Revenue optimization agent — identifies missed billing codes, optional pattern positions, and multiplier optimization opportunities.',
   model: 'claude-sonnet-4-6',
   maxTurns: 5,
-  tools: ['match_patterns', 'validate_billing', 'lookup_catalog_code'],
   prompt: `Du bist ein Abrechnungsoptimierer für zahnärztliche Praxen.
 
 ## Deine Aufgabe

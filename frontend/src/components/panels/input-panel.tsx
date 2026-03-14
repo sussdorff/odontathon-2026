@@ -5,7 +5,9 @@ import { Select } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { PatientInfo } from '@/components/patient-info'
-import { FindingsGrid } from '@/components/findings-grid'
+// FindingsGrid moved into CaseContext
+import { CaseContext } from '@/components/case-context'
+import { ClaimSelector } from '@/components/claim-selector'
 import { BillingRow } from '@/components/billing-row'
 import { CostSummary } from '@/components/cost-summary'
 import { usePatients } from '@/lib/queries/use-patients'
@@ -35,6 +37,7 @@ export function InputPanel() {
   const {
     selectedPatientId,
     setSelectedPatientId,
+    selectedClaimDate,
     billingItems,
     setBillingItems,
     addBillingItem,
@@ -155,49 +158,51 @@ export function InputPanel() {
         {/* Patient info card */}
         {selectedPatient && <PatientInfo patient={selectedPatient} />}
 
-        {/* Findings */}
-        {selectedPatient && selectedPatient.findings.length > 0 && (
-          <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wide">
-              Zahnbefunde
-            </label>
-            <div className="bg-gray-50 rounded-xl p-3 border border-gray-100">
-              <FindingsGrid findings={selectedPatient.findings} />
-            </div>
-          </div>
+        {/* Claim date selector — shown right after patient selection */}
+        {selectedPatient && selectedPatient.claims.length > 0 && (
+          <ClaimSelector patient={selectedPatient} />
         )}
 
-        {/* Kassenart & Bonus */}
-        <div className="grid grid-cols-2 gap-3">
-          <Select
-            label="Kassenart (BEMA)"
-            value={kassenart}
-            onChange={(e) => setKassenart(e.target.value)}
-          >
-            <option value="">— Nur für GKV —</option>
-            <option value="AOK">AOK</option>
-            <option value="BKK">BKK</option>
-            <option value="IKK">IKK</option>
-            <option value="vdek">vdek</option>
-          </Select>
-          <Select
-            label="Bonusstufe (ZE)"
-            value={bonusTier}
-            onChange={(e) => setBonusTier(e.target.value)}
-          >
-            <option value="60pct">Kein Bonus (60%)</option>
-            <option value="70pct">5 Jahre (70%)</option>
-            <option value="75pct">10 Jahre (75%)</option>
-            <option value="100pct">Härtefall (100%)</option>
-          </Select>
-        </div>
+        {/* Case context — only shown AFTER a claim is selected, filtered by date */}
+        {selectedPatient && selectedClaimDate && (
+          <CaseContext patient={selectedPatient} beforeDate={selectedClaimDate} />
+        )}
 
-        <Input
-          label="Festzuschuss-Befundklasse"
-          value={festzuschussBefund}
-          onChange={(e) => setFestzuschussBefund(e.target.value)}
-          placeholder="z.B. 1.1 · leer für Privatpatienten"
-        />
+        {/* Kassenart & Bonus — only for GKV patients */}
+        {selectedPatient?.coverageType === 'GKV' && (
+          <>
+            <div className="grid grid-cols-2 gap-3">
+              <Select
+                label="Kassenart (BEMA)"
+                value={kassenart}
+                onChange={(e) => setKassenart(e.target.value)}
+              >
+                <option value="">— Kassenart wählen —</option>
+                <option value="AOK">AOK</option>
+                <option value="BKK">BKK</option>
+                <option value="IKK">IKK</option>
+                <option value="vdek">vdek</option>
+              </Select>
+              <Select
+                label="Bonusstufe (ZE)"
+                value={bonusTier}
+                onChange={(e) => setBonusTier(e.target.value)}
+              >
+                <option value="60pct">Kein Bonus (60%)</option>
+                <option value="70pct">5 Jahre (70%)</option>
+                <option value="75pct">10 Jahre (75%)</option>
+                <option value="100pct">Härtefall (100%)</option>
+              </Select>
+            </div>
+
+            <Input
+              label="Festzuschuss-Befundklasse"
+              value={festzuschussBefund}
+              onChange={(e) => setFestzuschussBefund(e.target.value)}
+              placeholder="z.B. 1.1"
+            />
+          </>
+        )}
 
         {/* Billing items section */}
         <div className="space-y-2">
@@ -286,7 +291,7 @@ export function InputPanel() {
 }
 
 function AnalyzeButton() {
-  const { selectedPatientId, billingItems, isAnalyzing } = useBillingStore()
+  const { selectedPatientId, selectedClaimDate, priorHistory, billingItems, isAnalyzing } = useBillingStore()
   const { setIsAnalyzing, addLogEntry, clearLog, setAnalysisStatus, setReport, resetAnalysis } =
     useBillingStore()
 
@@ -317,6 +322,8 @@ function AnalyzeButton() {
             multiplier: it.multiplier,
             teeth: it.teeth,
           })),
+          history: priorHistory,
+          analysisDate: selectedClaimDate ?? undefined,
         }),
       })
 
@@ -370,6 +377,8 @@ function AnalyzeButton() {
     }
   }, [
     selectedPatientId,
+    selectedClaimDate,
+    priorHistory,
     billingItems,
     isAnalyzing,
     selectedPatient,

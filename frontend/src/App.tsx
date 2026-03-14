@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { InputPanel } from '@/components/panels/input-panel'
 import { ProgressPanel } from '@/components/panels/progress-panel'
-import { ReportPanel } from '@/components/panels/report-panel'
+import { ReviewPanel } from '@/components/panels/review-panel'
 import { RulesPanel } from '@/components/panels/rules-panel'
 import { SessionLayout } from '@/components/session/session-layout'
 
@@ -77,7 +77,7 @@ export default function App() {
               <InputPanel />
               <div className="space-y-4">
                 <ProgressPanel />
-                <ReportPanel />
+                <ReviewPanel />
                 <RulesPanel />
               </div>
             </div>

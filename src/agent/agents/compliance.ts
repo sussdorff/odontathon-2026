@@ -4,7 +4,6 @@ export const complianceAgent: AgentDefinition = {
   description: 'Billing rule compliance agent — checks exclusions, inclusions, requirements, frequency limits, and multiplier rules for dental billing codes.',
   model: 'claude-sonnet-4-6',
   maxTurns: 5,
-  tools: ['validate_billing', 'match_patterns', 'lookup_catalog_code'],
   prompt: `Du bist ein Experte für zahnärztliche Abrechnungsregeln (GOZ und BEMA).
 
 ## Deine Aufgabe

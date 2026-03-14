@@ -13,6 +13,7 @@ import { RuleEngine } from './lib/billing/engine'
 import { calculateGOZPrice, calculateBEMAPrice, calculatePatientShare } from './lib/billing/calculator'
 import { agentRoutes } from './api/agent-routes'
 import { practiceRulesRoutes } from './api/practice-rules-routes'
+import { applyRoutes } from './api/apply-routes'
 import { AidboxClient } from './fhir/client'
 
 export const VALID_RULE_TYPES = ['exclusion', 'inclusion', 'requirement', 'frequency', 'multiplier'] as const
@@ -64,16 +65,18 @@ app.get('/api/rules', (c) => {
 app.get('/api/patients', async (c) => {
   const headers = { Authorization: aidboxConfig.authHeader }
 
-  const [patRes, covRes, obsRes, condRes, claimRes] = await Promise.all([
+  const [patRes, covRes, obsRes, condRes, claimRes, encRes, procRes] = await Promise.all([
     fetch(`${aidboxConfig.fhirBaseUrl}/Patient?_count=100&_sort=family`, { headers }),
     fetch(`${aidboxConfig.fhirBaseUrl}/Coverage?_count=100`, { headers }),
     fetch(`${aidboxConfig.fhirBaseUrl}/Observation?_count=500&code=http://loinc.org|8339-4`, { headers }),
     fetch(`${aidboxConfig.fhirBaseUrl}/Condition?_count=200`, { headers }),
     fetch(`${aidboxConfig.fhirBaseUrl}/Claim?_count=200&_sort=-created`, { headers }),
+    fetch(`${aidboxConfig.fhirBaseUrl}/Encounter?_count=200&_sort=-date`, { headers }),
+    fetch(`${aidboxConfig.fhirBaseUrl}/Procedure?_count=200&_sort=-date`, { headers }),
   ])
 
-  const [patBundle, covBundle, obsBundle, condBundle, claimBundle] = await Promise.all([
-    patRes.json(), covRes.json(), obsRes.json(), condRes.json(), claimRes.json(),
+  const [patBundle, covBundle, obsBundle, condBundle, claimBundle, encBundle, procBundle] = await Promise.all([
+    patRes.json(), covRes.json(), obsRes.json(), condRes.json(), claimRes.json(), encRes.json(), procRes.json(),
   ])
 
   // Index coverages by patient ref
@@ -108,6 +111,24 @@ app.get('/api/patients', async (c) => {
     if (!ref) continue
     if (!claimsByPatient.has(ref)) claimsByPatient.set(ref, [])
     claimsByPatient.get(ref)!.push(e.resource)
+  }
+
+  // Index encounters by patient ref
+  const encByPatient = new Map<string, any[]>()
+  for (const e of (encBundle.entry ?? [])) {
+    const ref = e.resource.subject?.reference
+    if (!ref) continue
+    if (!encByPatient.has(ref)) encByPatient.set(ref, [])
+    encByPatient.get(ref)!.push(e.resource)
+  }
+
+  // Index procedures by patient ref
+  const procByPatient = new Map<string, any[]>()
+  for (const e of (procBundle.entry ?? [])) {
+    const ref = e.resource.subject?.reference
+    if (!ref) continue
+    if (!procByPatient.has(ref)) procByPatient.set(ref, [])
+    procByPatient.get(ref)!.push(e.resource)
   }
 
   const patients = (patBundle.entry ?? []).map((e: any) => {
@@ -208,6 +229,24 @@ app.get('/api/patients', async (c) => {
       conditions,
       claims,
       billingHistory,
+      encounters: (encByPatient.get(ref) ?? []).map((enc: any) => ({
+        id: enc.id,
+        date: enc.period?.start ?? null,
+        status: enc.status,
+        reason: enc.reasonCode?.[0]?.text ?? enc.reasonCode?.[0]?.coding?.[0]?.display ?? null,
+        tooth: enc.extension?.find((ex: any) => ex.url?.includes('fdi-tooth-number'))?.valueInteger ?? null,
+      })),
+      procedures: (procByPatient.get(ref) ?? []).map((proc: any) => ({
+        id: proc.id,
+        date: proc.performedDateTime ?? proc.performedPeriod?.start ?? null,
+        status: proc.status,
+        code: proc.code?.coding?.[0]?.code ?? null,
+        display: proc.code?.coding?.[0]?.display ?? proc.code?.text ?? null,
+        tooth: proc.bodySite?.find((bs: any) =>
+          bs.coding?.some((c: any) => c.system?.includes('fdi-tooth-number'))
+        )?.coding?.[0]?.code ?? null,
+        notes: proc.note?.map((n: any) => n.text).filter(Boolean) ?? [],
+      })),
     }
   })
 
@@ -552,6 +591,7 @@ app.post('/api/hkp/draft', async (c) => {
 
 // Agent & practice rules API
 app.route('/api/agent', agentRoutes)
+app.route('/api/claims', applyRoutes)
 app.route('/api/practice-rules', practiceRulesRoutes)
 
 app.all('/fhir/*', async (c) => {
@@ -585,4 +625,5 @@ if (import.meta.main) {
 export default {
   port,
   fetch: app.fetch,
+  idleTimeout: 255, // seconds — SSE streams + agent calls need long timeouts
 }

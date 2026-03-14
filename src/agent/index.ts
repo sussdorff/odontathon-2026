@@ -96,7 +96,7 @@ ${formatBillingItemsJson(request.billingItems)}
 ${historySection}
 
 ## Auftrag
-1. Rufe zuerst get_case_context auf mit patientId "${request.patientId}" um den vollständigen Patientenkontext zu laden.
+1. Rufe zuerst get_case_context auf mit patientId "${request.patientId}"${request.analysisDate ? ` und beforeDate "${request.analysisDate}"` : ''} um den Patientenkontext zu laden.
 2. Delegiere dann an alle 4 Sub-Agenten (compliance, documentation, optimization, practice_rules).
    Gib jedem Agent die Abrechnungspositionen UND relevante Patientendaten (Versicherungstyp, Befunde, Historie) als Text mit.
    WICHTIG: Übergib auch die Abrechnungshistorie an den Compliance-Agenten für Frequenzprüfungen.
@@ -123,8 +123,11 @@ ${historySection}
         ],
         permissionMode: 'bypassPermissions',
         allowDangerouslySkipPermissions: true,
-        tools: [],
+        tools: ['Agent'],
         persistSession: false,
+        stderr: (data: string) => {
+          console.error('[agent-stderr]', data)
+        },
       }
 
       emitter?.emit('analysis_start', {
@@ -139,9 +142,12 @@ ${historySection}
       const agentTasks = new Map<string, string>()
 
       try {
+        console.log('[agent] Starting query...')
         const q = query({ prompt, options })
 
         for await (const message of q) {
+          console.log(`[agent] Message: type=${message.type}${(message as any).subtype ? ' subtype='+(message as any).subtype : ''}`)
+
           // --- Assistant messages (manager or sub-agent thinking + tool calls) ---
           if (message.type === 'assistant') {
             const isSubAgent = message.parent_tool_use_id !== null

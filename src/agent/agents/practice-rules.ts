@@ -4,7 +4,6 @@ export const practiceRulesAgent: AgentDefinition = {
   description: 'Practice-specific rules agent — validates billing against custom rules defined by the practice (preferred multipliers, required codes, warnings).',
   model: 'claude-haiku-4-5',
   maxTurns: 3,
-  tools: ['get_practice_rules'],
   prompt: `Du bist ein Praxis-Regel-Prüfer für eine zahnärztliche Praxis.
 
 ## Deine Aufgabe

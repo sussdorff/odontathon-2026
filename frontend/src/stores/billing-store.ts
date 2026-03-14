@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { BillingItem, CostResult, AnalysisReport, Severity } from '@/types'
+import type { BillingItem, CostResult, AnalysisReport, Severity, HistoryEntry } from '@/types'
 
 interface LogEntry {
   id: string
@@ -10,6 +10,8 @@ interface LogEntry {
 
 interface BillingState {
   selectedPatientId: string | null
+  selectedClaimDate: string | null
+  priorHistory: HistoryEntry[]
   billingItems: BillingItem[]
   costResult: CostResult | null
   kassenart: string
@@ -24,6 +26,8 @@ interface BillingState {
 
   // Actions
   setSelectedPatientId: (id: string | null) => void
+  setSelectedClaimDate: (date: string | null) => void
+  setPriorHistory: (history: HistoryEntry[]) => void
   setBillingItems: (items: BillingItem[]) => void
   addBillingItem: (item: BillingItem) => void
   removeBillingItem: (id: string) => void
@@ -47,6 +51,8 @@ let logCounter = 0
 
 export const useBillingStore = create<BillingState>((set) => ({
   selectedPatientId: null,
+  selectedClaimDate: null,
+  priorHistory: [],
   billingItems: [],
   costResult: null,
   kassenart: '',
@@ -58,7 +64,9 @@ export const useBillingStore = create<BillingState>((set) => ({
   analysisStatus: '',
   report: null,
 
-  setSelectedPatientId: (id) => set({ selectedPatientId: id, costResult: null }),
+  setSelectedPatientId: (id) => set({ selectedPatientId: id, selectedClaimDate: null, priorHistory: [], costResult: null }),
+  setSelectedClaimDate: (date) => set({ selectedClaimDate: date, costResult: null }),
+  setPriorHistory: (history) => set({ priorHistory: history }),
   setBillingItems: (items) => set({ billingItems: items, costResult: null }),
   addBillingItem: (item) => set((s) => ({ billingItems: [...s.billingItems, item], costResult: null })),
   removeBillingItem: (id) => set((s) => ({ billingItems: s.billingItems.filter((i) => i.id !== id), costResult: null })),

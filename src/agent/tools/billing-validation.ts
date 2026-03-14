@@ -15,9 +15,9 @@ const billingItemSchema = z.object({
 
 const historyEntrySchema = z.object({
   code: z.string(),
-  system: z.enum(['GOZ', 'BEMA']),
+  system: z.string().describe('GOZ, BEMA, or GOÄ'),
   date: z.string(),
-  tooth: z.number().optional(),
+  tooth: z.number().nullable().optional(),
 })
 
 export const validateBilling = tool(
