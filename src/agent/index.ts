@@ -23,21 +23,43 @@ export interface AnalysisResult {
   costUsd: number
 }
 
+function formatBillingItems(items: AnalysisRequest['billingItems']): string {
+  if (items.length === 0) return '(keine Positionen übergeben)'
+  return items.map(i => {
+    const parts = [`${i.system} ${i.code}`]
+    if (i.multiplier) parts.push(`Faktor ${i.multiplier}x`)
+    if (i.teeth?.length) parts.push(`Zahn ${i.teeth.join(', ')}`)
+    return `- ${parts.join(' | ')}`
+  }).join('\n')
+}
+
+function formatBillingItemsJson(items: AnalysisRequest['billingItems']): string {
+  return JSON.stringify(items.map(i => ({
+    code: i.code,
+    system: i.system,
+    ...(i.multiplier ? { multiplier: i.multiplier } : {}),
+    ...(i.teeth?.length ? { teeth: i.teeth } : {}),
+  })))
+}
+
 export function createBillingCoach(emitter?: ProgressEmitter) {
   const toolServer = createToolServer()
 
   return {
     async analyze(request: AnalysisRequest): Promise<AnalysisResult> {
-      const billingContext = request.billingItems
-        .map(i => `${i.system} ${i.code}${i.multiplier ? ` (${i.multiplier}x)` : ''}${i.teeth?.length ? ` Zahn ${i.teeth.join(',')}` : ''}`)
-        .join('\n')
-
       const prompt = `Analysiere die Abrechnung für Patient ${request.patientId}.
 
-Abrechnungspositionen:
-${billingContext}
+## Abrechnungspositionen
+${formatBillingItems(request.billingItems)}
 
-Führe eine vollständige Analyse durch: Regelkonformität, Dokumentation, Optimierung und Praxisregeln.`
+## Positionen als JSON (für Tool-Aufrufe)
+${formatBillingItemsJson(request.billingItems)}
+
+## Auftrag
+1. Rufe zuerst get_case_context auf mit patientId "${request.patientId}" um den vollständigen Patientenkontext zu laden.
+2. Delegiere dann an alle 4 Sub-Agenten (compliance, documentation, optimization, practice_rules).
+   Gib jedem Agent die Abrechnungspositionen UND relevante Patientendaten (Versicherungstyp, Befunde, Historie) als Text mit.
+3. Sammle die Ergebnisse und erstelle den finalen ComplianceReport.`
 
       const options: Options = {
         model: managerAgent.model,
