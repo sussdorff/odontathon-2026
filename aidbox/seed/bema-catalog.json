@@ -12136,9 +12136,12 @@
               {
                 "type": "base",
                 "code": {
-                  "text": "Punktzahl"
+                  "text": "Festbetrag"
                 },
-                "factor": 0
+                "amount": {
+                  "value": 3.58,
+                  "currency": "EUR"
+                }
               }
             ]
           }
@@ -12170,9 +12173,12 @@
               {
                 "type": "base",
                 "code": {
-                  "text": "Punktzahl"
+                  "text": "Festbetrag"
                 },
-                "factor": 0
+                "amount": {
+                  "value": 6.65,
+                  "currency": "EUR"
+                }
               }
             ]
           }
@@ -12204,9 +12210,12 @@
               {
                 "type": "base",
                 "code": {
-                  "text": "Punktzahl"
+                  "text": "Festbetrag"
                 },
-                "factor": 0
+                "amount": {
+                  "value": 0.31,
+                  "currency": "EUR"
+                }
               }
             ]
           }
@@ -12238,9 +12247,12 @@
               {
                 "type": "base",
                 "code": {
-                  "text": "Punktzahl"
+                  "text": "Festbetrag"
                 },
-                "factor": 0
+                "amount": {
+                  "value": 56.41,
+                  "currency": "EUR"
+                }
               }
             ]
           }
@@ -12272,9 +12284,12 @@
               {
                 "type": "base",
                 "code": {
-                  "text": "Punktzahl"
+                  "text": "Festbetrag"
                 },
-                "factor": 0
+                "amount": {
+                  "value": 112.82,
+                  "currency": "EUR"
+                }
               }
             ]
           }

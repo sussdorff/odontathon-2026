@@ -28,6 +28,7 @@ interface BemaEntry {
   beschreibung: string
   punktzahl: number
   bereich: string
+  festbetrag_eur?: number
 }
 
 function sanitizeCode(code: string): string {
@@ -76,12 +77,18 @@ function buildChargeItemDefinition(entry: BemaEntry) {
       coding: [{ system: CODESYSTEM_URL, code: entry.code, display: entry.beschreibung }],
     },
     propertyGroup: [{
-      priceComponent: [{
-        type: 'base',
-        code: { text: 'Punktzahl' },
-        factor: entry.punktzahl,
-        // No fixed EUR amount — depends on regional Punktwert
-      }],
+      priceComponent: entry.festbetrag_eur != null
+        ? [{
+            type: 'base',
+            code: { text: 'Festbetrag' },
+            amount: { value: entry.festbetrag_eur, currency: 'EUR' },
+          }]
+        : [{
+            type: 'base',
+            code: { text: 'Punktzahl' },
+            factor: entry.punktzahl,
+            // No fixed EUR amount — depends on regional Punktwert
+          }],
     }],
   }
 }

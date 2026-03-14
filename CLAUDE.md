@@ -49,3 +49,7 @@ Focus for hackathon: Challenge 1 (Billing Coach).
 
 - **No `Co-Authored-By` line** in commit messages
 - Branch naming: typ/kurze-beschreibung
+
+## Beads
+
+- **Kein Dolt Remote** — `bd dolt push` und `bd dolt pull` überspringen. Beads-Daten leben nur lokal.

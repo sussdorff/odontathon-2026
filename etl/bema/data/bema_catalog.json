@@ -261,11 +261,11 @@
   { "code": "41c", "kuerzel": "L3", "beschreibung": "Leitungsanästhesie des 2. oder 3. Trigeminusastes an der Schädelbasis", "punktzahl": 20, "bereich": "KCH" },
   { "code": "42", "kuerzel": "Nark", "beschreibung": "Oberflächenanästhesie der Mund- oder Nasenschleimhaut, je Sitzung", "punktzahl": 4, "bereich": "KCH" },
 
-  { "code": "183", "kuerzel": "Wg1", "beschreibung": "Wegegeld bei einem Besuch innerhalb eines Radius von 2 Kilometern", "punktzahl": 0, "bereich": "KCH" },
-  { "code": "184", "kuerzel": "Wg2", "beschreibung": "Wegegeld bei einem Besuch innerhalb eines Radius von mehr als 2 Kilometern bis zu 5 Kilometern", "punktzahl": 0, "bereich": "KCH" },
-  { "code": "185", "kuerzel": "Wg3", "beschreibung": "Wegegeld bei einem Besuch bei mehr als 5 Kilometern, für jeden angefangenen Kilometer", "punktzahl": 0, "bereich": "KCH" },
-  { "code": "186", "kuerzel": "Re1", "beschreibung": "Reiseentschädigung bei Abwesenheit bis zu 8 Stunden", "punktzahl": 0, "bereich": "KCH" },
-  { "code": "187", "kuerzel": "Re2", "beschreibung": "Reiseentschädigung bei Abwesenheit von mehr als 8 Stunden", "punktzahl": 0, "bereich": "KCH" },
+  { "code": "183", "kuerzel": "Wg1", "beschreibung": "Wegegeld bei einem Besuch innerhalb eines Radius von 2 Kilometern", "punktzahl": 0, "bereich": "KCH", "festbetrag_eur": 3.58 },
+  { "code": "184", "kuerzel": "Wg2", "beschreibung": "Wegegeld bei einem Besuch innerhalb eines Radius von mehr als 2 Kilometern bis zu 5 Kilometern", "punktzahl": 0, "bereich": "KCH", "festbetrag_eur": 6.65 },
+  { "code": "185", "kuerzel": "Wg3", "beschreibung": "Wegegeld bei einem Besuch bei mehr als 5 Kilometern, für jeden angefangenen Kilometer", "punktzahl": 0, "bereich": "KCH", "festbetrag_eur": 0.31 },
+  { "code": "186", "kuerzel": "Re1", "beschreibung": "Reiseentschädigung bei Abwesenheit bis zu 8 Stunden", "punktzahl": 0, "bereich": "KCH", "festbetrag_eur": 56.41 },
+  { "code": "187", "kuerzel": "Re2", "beschreibung": "Reiseentschädigung bei Abwesenheit von mehr als 8 Stunden", "punktzahl": 0, "bereich": "KCH", "festbetrag_eur": 112.82 },
 
   { "code": "IP 3", "kuerzel": "", "beschreibung": "Lokale Fluoridierung zur Zahnschmelzhärtung, je Sitzung", "punktzahl": 7, "bereich": "KCH" },
   { "code": "FU3", "kuerzel": "", "beschreibung": "Früherkennungsuntersuchung eines Kindes vom 6. bis zum vollendeten 9. Lebensjahr", "punktzahl": 18, "bereich": "KCH" },
