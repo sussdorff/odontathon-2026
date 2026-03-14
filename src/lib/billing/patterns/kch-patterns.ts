@@ -18,8 +18,8 @@ export const kchPatterns: BillingPattern[] = [
       { code: '2080', system: 'GOZ', multiplicity: 'per-tooth', description: 'Füllung zweiflächig (statt 2060)' },
       { code: '2100', system: 'GOZ', multiplicity: 'per-tooth', description: 'Füllung dreiflächig (statt 2060)' },
       { code: '2120', system: 'GOZ', multiplicity: 'per-tooth', description: 'Füllung >3 Flächen (statt 2060)' },
-      { code: '0070', system: 'GOZ', multiplicity: 'per-tooth', description: 'Vitalitätsprüfung' },
-      { code: '2030', system: 'GOZ', multiplicity: 'per-tooth', description: 'Besondere Maßnahmen beim Präparieren' },
+      // NOTE: 0070 (Vitalitätsprüfung) und 2030 (Bes. Maßnahmen) bewusst NICHT im Pattern —
+      // der Agent soll sie über Doku-Abgleich (0070) bzw. pastInvoices-Muster (2030) finden.
       { code: '2330', system: 'GOZ', multiplicity: 'per-tooth', description: 'Indirekte Überkappung (cp)' },
       { code: '0090', system: 'GOZ', multiplicity: 'per-case', description: 'Infiltrationsanästhesie' },
       { code: '0100', system: 'GOZ', multiplicity: 'per-case', description: 'Leitungsanästhesie' },
