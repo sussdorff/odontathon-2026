@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing Coach — Odontathon 2026</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>🦷 Billing Coach</h1>
+    <span class="subtitle">Zahnärztliche Abrechnungsprüfung</span>
+  </header>
+
+  <main>
+    <section class="panel" id="input-panel">
+      <h2>Patient & Abrechnung</h2>
+
+      <div class="form-group">
+        <label for="patient-select">Patient</label>
+        <select id="patient-select">
+          <option value="">— Patient wählen —</option>
+        </select>
+      </div>
+
+      <div id="patient-info" class="patient-info hidden"></div>
+
+      <div id="findings-section" class="hidden">
+        <div class="form-group">
+          <label>Zahnbefunde</label>
+          <div id="findings-list" class="findings-grid"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Abrechnungspositionen</label>
+        <div id="suggestions-hint" class="suggestions-hint hidden"></div>
+        <div id="billing-items"></div>
+        <div class="billing-actions">
+          <button class="btn-secondary" onclick="addBillingRow()">+ Manuelle Position</button>
+          <button class="btn-secondary" id="suggest-btn" onclick="loadSuggestions()" disabled>Vorschläge laden</button>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="analyze-btn" onclick="startAnalysis()">Analyse starten</button>
+    </section>
+
+    <section class="panel" id="progress-panel">
+      <h2>Analyse</h2>
+      <div id="progress-log"></div>
+      <div id="status-bar" class="hidden">
+        <div class="spinner"></div>
+        <span id="status-text">Wird analysiert...</span>
+      </div>
+    </section>
+
+    <section class="panel" id="report-panel">
+      <h2>Ergebnis</h2>
+      <div id="report-content"></div>
+    </section>
+
+    <section class="panel" id="rules-panel">
+      <h2>Praxisregeln</h2>
+      <div id="rules-list"></div>
+      <button class="btn-secondary" onclick="loadRules()">Regeln laden</button>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
