@@ -8,16 +8,17 @@ export const lookupCatalogCode = tool(
   'lookup_catalog_code',
   'Look up a GOZ or BEMA billing code in the Aidbox catalog. Returns description, Punktzahl, EUR value, and multiplier range (GOZ only).',
   {
-    code: z.string().describe('Billing code (e.g. "2197", "Ä 1")'),
-    system: z.enum(['GOZ', 'BEMA']).describe('Billing system'),
+    code: z.string().describe('Billing code (e.g. "2197", "Ä 1", "5")'),
+    system: z.enum(['GOZ', 'BEMA', 'GOÄ']).describe('Billing system'),
   },
   async ({ code, system }) => {
-    // BEMA codes have sanitized URLs (spaces→-, special chars→_)
-    const urlCode = system === 'BEMA'
-      ? code.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\-_.]/g, '_')
-      : code
+    // BEMA/GOÄ codes have sanitized URLs (spaces→-, special chars→_)
+    const urlCode = system === 'GOZ' ? code
+      : code.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\-_.]/g, '_')
     const cidUrlPrefix = system === 'GOZ'
       ? 'http://fhir.de/ChargeItemDefinition/goz'
+      : system === 'GOÄ'
+      ? 'http://fhir.de/ChargeItemDefinition/goae'
       : 'http://fhir.de/ChargeItemDefinition/bema'
     const url = `${aidboxConfig.fhirBaseUrl}/ChargeItemDefinition?url=${encodeURIComponent(`${cidUrlPrefix}/${urlCode}`)}&_count=1`
 

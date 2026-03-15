@@ -15,6 +15,8 @@ export const billingChangeSchema = z.object({
   // For update_multiplier
   currentMultiplier: z.number().optional(),
   newMultiplier: z.number().optional(),
+  // Session context for dedup
+  session: z.number().nullable().optional(),
   // Common
   reason: z.string(),
   estimatedRevenueDelta: z.number().optional(),
@@ -30,6 +32,8 @@ export const documentationChangeSchema = z.object({
   fieldId: z.string().optional(),
   fieldLabel: z.string().optional(),
   suggestedValue: z.string().optional(),
+  // Target FHIR resource to update
+  procedureId: z.string().optional(),
   // Common
   reason: z.string(),
 })

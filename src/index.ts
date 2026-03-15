@@ -15,6 +15,7 @@ import { agentRoutes } from './api/agent-routes'
 import { practiceRulesRoutes } from './api/practice-rules-routes'
 import { applyRoutes } from './api/apply-routes'
 import { AidboxClient } from './fhir/client'
+import { resolveCoverageType } from './lib/fhir/coverage-type'
 
 export const VALID_RULE_TYPES = ['exclusion', 'inclusion', 'requirement', 'frequency', 'multiplier'] as const
 type RuleType = (typeof VALID_RULE_TYPES)[number]
@@ -79,11 +80,13 @@ app.get('/api/patients', async (c) => {
     patRes.json(), covRes.json(), obsRes.json(), condRes.json(), claimRes.json(), encRes.json(), procRes.json(),
   ])
 
-  // Index coverages by patient ref
-  const coverageByPatient = new Map<string, any>()
+  // Index coverages by patient ref (collect all, not just last)
+  const coveragesByPatient = new Map<string, any[]>()
   for (const e of (covBundle.entry ?? [])) {
     const ref = e.resource.beneficiary?.reference
-    if (ref) coverageByPatient.set(ref, e.resource)
+    if (!ref) continue
+    if (!coveragesByPatient.has(ref)) coveragesByPatient.set(ref, [])
+    coveragesByPatient.get(ref)!.push(e.resource)
   }
 
   // Index observations by patient ref
@@ -135,12 +138,11 @@ app.get('/api/patients', async (c) => {
     const p = e.resource
     const id = p.id
     const ref = `Patient/${id}`
-    const cov = coverageByPatient.get(ref)
+    const coverages = coveragesByPatient.get(ref) ?? []
+    const cov = coverages[0] // primary coverage for bonus/identifier extraction
     const obs = obsByPatient.get(ref) ?? []
 
-    const coverageType = cov?.type?.coding?.some((cd: any) =>
-      cd.code === 'PKV'
-    ) ? 'PKV' : 'GKV'
+    const coverageType = resolveCoverageType(coverages)
 
     const bonusExt = cov?.extension?.find((ex: any) =>
       ex.url?.includes('ze-bonus-prozent')
@@ -186,18 +188,33 @@ app.get('/api/patients', async (c) => {
         const sys = coding?.system ?? ''
         const noteExt = item.extension?.find((ex: any) => ex.url?.includes('billing-note'))
         const sessionExt = item.extension?.find((ex: any) => ex.url?.includes('treatment-session'))
+        const system = sys.includes('goz') ? 'GOZ' : sys.includes('goae') ? 'GOÄ' : 'BEMA'
+        const code = coding?.code ?? null
+        // Calculate price (best-effort, 0 if unknown)
+        let price = 0
+        if (code) {
+          try {
+            if (system === 'GOZ' || system === 'GOÄ') {
+              price = calculateGOZPrice(code, 2.3)
+            } else if (system === 'BEMA' && coverageType === 'GKV') {
+              price = calculateBEMAPrice(code, 'AOK') // default Kassenart
+            }
+          } catch { /* unknown code, keep 0 */ }
+        }
         return {
-          code: coding?.code ?? null,
+          code,
           display: coding?.display ?? null,
-          system: sys.includes('goz') ? 'GOZ' : sys.includes('goae') ? 'GOÄ' : 'BEMA',
+          system,
           tooth: item.bodySite?.coding?.[0]?.code ? parseInt(item.bodySite.coding[0].code) : null,
           surfaces: (item.subSite ?? []).map((s: any) => s.coding?.[0]?.code).filter(Boolean),
           quantity: item.quantity?.value ?? 1,
           session: sessionExt?.valueInteger ?? null,
           note: noteExt?.valueString ?? null,
+          price,
         }
       })
       const teeth = [...new Set(items.map((i: any) => i.tooth).filter(Boolean))].sort((a: number, b: number) => a - b)
+      const total = Math.round(items.reduce((s: number, i: any) => s + i.price, 0) * 100) / 100
       return {
         id: claim.id,
         date: claim.created ?? null,
@@ -205,6 +222,7 @@ app.get('/api/patients', async (c) => {
         itemCount: items.length,
         teeth,
         items,
+        total,
       }
     }).sort((a: any, b: any) => (b.date ?? '').localeCompare(a.date ?? ''))
 

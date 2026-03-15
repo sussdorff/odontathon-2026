@@ -4,17 +4,7 @@ export type ProgressEventType =
   | 'analysis_start'
   | 'analysis_complete'
   | 'analysis_error'
-  // Manager-level
-  | 'manager_thinking'
-  | 'manager_tool_call'
-  | 'manager_tool_result'
-  // Sub-agent lifecycle
-  | 'agent_start'
-  | 'agent_progress'
-  | 'agent_tool_call'
-  | 'agent_complete'
-  // Findings
-  | 'finding'
+  | 'analysis_status'
 
 export interface ProgressEvent {
   type: ProgressEventType

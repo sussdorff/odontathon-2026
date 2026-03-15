@@ -8,8 +8,8 @@ export const checkDocumentation = tool(
   'check_documentation',
   'Check documentation completeness for a billing code. Returns the template with required/optional fields and which ones are missing.',
   {
-    code: z.string().describe('Billing code (GOZ or BEMA)'),
-    system: z.enum(['GOZ', 'BEMA']).describe('Billing system'),
+    code: z.string().describe('Billing code (GOZ, BEMA, or GOÄ)'),
+    system: z.enum(['GOZ', 'BEMA', 'GOÄ']).describe('Billing system'),
     filledFields: z.record(z.string(), z.unknown()).optional()
       .describe('Already filled documentation fields (fieldId → value). If omitted, treats all fields as empty.'),
   },

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "build": "bun build src/index.ts --outdir dist --target bun",
-    "test": "bun test",
+    "test": "bun test src/lib/ src/seed/ src/agent/ src/tests/ tests/",
     "seed:catalogs": "bun run scripts/seed-catalogs.ts",
     "seed:practice": "bun run scripts/seed-practice.ts",
     "seed:past-invoices": "bun run src/seed/past-invoices.ts",
@@ -18,6 +18,8 @@
     "etl:punktwerte": "bun run etl/punktwerte/to_fhir.ts",
     "etl:all": "bun run etl:goz && bun run etl:bema && bun run etl:festzuschuss && bun run etl:kuerzel && bun run etl:punktwerte",
     "typecheck": "tsc --noEmit",
+    "dev:fixture": "AGENT_FIXTURE_MODE=true bun run --watch src/index.ts",
+    "reset:demo-data": "bun run seed:practice",
     "dev:frontend": "cd frontend && bun run dev",
     "build:frontend": "cd frontend && bun run build",
     "dev:all": "bun run dev & bun run dev:frontend"

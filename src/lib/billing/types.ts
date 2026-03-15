@@ -4,7 +4,7 @@
  * Rules are TypeScript modules (not FHIR) — they're agent logic, not clinical data.
  */
 
-export type BillingSystem = 'GOZ' | 'BEMA'
+export type BillingSystem = 'GOZ' | 'BEMA' | 'GOÄ'
 export type BillingCategory = 'ZE' | 'KCH' | 'PAR' | 'KFO' | 'KB'
 
 // --- Rule Types (Discriminated Union) ---

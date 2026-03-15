@@ -1,6 +1,7 @@
 import { z } from 'zod/v4'
 import { tool } from '@anthropic-ai/claude-agent-sdk'
 import { aidboxConfig } from '../../lib/config'
+import { resolveCoverageType } from '../../lib/fhir/coverage-type'
 
 async function fhirGet(path: string) {
   const res = await fetch(`${aidboxConfig.fhirBaseUrl}/${path}`, {
@@ -28,9 +29,7 @@ export const getCaseContext = tool(
       ])
 
     const coverages = (coverageBundle.entry ?? []).map((e: any) => e.resource)
-    const coverageType = coverages.some((c: any) =>
-      c.type?.coding?.some((cd: any) => cd.code === 'SEL' || cd.code === 'PPO')
-    ) ? 'PKV' : 'GKV'
+    const coverageType = resolveCoverageType(coverages)
 
     const bonusExt = patient.extension?.find((e: any) =>
       e.url?.includes('ze-bonus-prozent')
@@ -69,7 +68,7 @@ export const getCaseContext = tool(
     const allHistory = (claimBundle.entry ?? [])
       .flatMap((e: any) => (e.resource.item ?? []).map((item: any) => ({
         code: item.productOrService?.coding?.[0]?.code,
-        system: item.productOrService?.coding?.[0]?.system?.includes('goz') ? 'GOZ' : 'BEMA',
+        system: (() => { const s = item.productOrService?.coding?.[0]?.system ?? ''; return s.includes('goz') ? 'GOZ' : s.includes('goae') ? 'GOÄ' : 'BEMA' })(),
         date: e.resource.created ?? e.resource.billablePeriod?.start,
         tooth: item.bodySite?.coding?.[0]?.code ? parseInt(item.bodySite.coding[0].code) : undefined,
       })))

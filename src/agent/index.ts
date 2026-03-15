@@ -6,6 +6,7 @@ import { managerAgent } from './manager'
 import { reportToJsonSchema } from './report-schema'
 import type { ComplianceReport } from './report-schema'
 import type { ProgressEmitter } from './hooks/progress'
+import { normalizeProposals } from './proposal-normalizer'
 
 export interface AnalysisRequest {
   patientId: string
@@ -14,6 +15,10 @@ export interface AnalysisRequest {
     system: 'GOZ' | 'BEMA' | 'GOÄ'
     multiplier?: number
     teeth?: number[]
+    index?: number
+    session?: number | null
+    note?: string | null
+    quantity?: number
   }>
   history?: Array<{
     code: string
@@ -32,20 +37,26 @@ export interface AnalysisResult {
 
 function formatBillingItems(items: AnalysisRequest['billingItems']): string {
   if (items.length === 0) return '(keine Positionen übergeben)'
-  return items.map(i => {
-    const parts = [`${i.system} ${i.code}`]
+  return items.map((i, idx) => {
+    const parts = [`[${i.index ?? idx}] ${i.system} ${i.code}`]
     if (i.multiplier) parts.push(`Faktor ${i.multiplier}x`)
     if (i.teeth?.length) parts.push(`Zahn ${i.teeth.join(', ')}`)
+    if (i.session != null) parts.push(`Sitzung ${i.session}`)
+    if (i.note) parts.push(`(${i.note})`)
     return `- ${parts.join(' | ')}`
   }).join('\n')
 }
 
 function formatBillingItemsJson(items: AnalysisRequest['billingItems']): string {
-  return JSON.stringify(items.map(i => ({
+  return JSON.stringify(items.map((i, idx) => ({
+    index: i.index ?? idx,
     code: i.code,
     system: i.system,
     ...(i.multiplier ? { multiplier: i.multiplier } : {}),
     ...(i.teeth?.length ? { teeth: i.teeth } : {}),
+    ...(i.session != null ? { session: i.session } : {}),
+    ...(i.note ? { note: i.note } : {}),
+    ...(i.quantity && i.quantity > 1 ? { quantity: i.quantity } : {}),
   })))
 }
 
@@ -58,21 +69,9 @@ function extractToolCalls(message: any): Array<{ name: string; input: unknown }>
     .map((b: any) => ({ name: b.name, input: b.input }))
 }
 
-/** Extract text blocks from an assistant message's content */
-function extractText(message: any): string {
-  const content = message?.message?.content
-  if (!Array.isArray(content)) return ''
-  return content
-    .filter((b: any) => b.type === 'text')
-    .map((b: any) => b.text)
-    .join('\n')
-}
-
-/** Truncate large objects for display */
-function truncate(obj: unknown, maxLen = 500): string {
-  const s = typeof obj === 'string' ? obj : JSON.stringify(obj)
-  if (s.length <= maxLen) return s
-  return s.slice(0, maxLen) + '…'
+/** Clean MCP tool name for status display */
+function cleanToolName(name: string): string {
+  return name.replace(/^mcp__[^_]+__/, '').replace(/^dental-billing:/, '')
 }
 
 export function createBillingCoach(emitter?: ProgressEmitter) {
@@ -82,10 +81,10 @@ export function createBillingCoach(emitter?: ProgressEmitter) {
     async analyze(request: AnalysisRequest): Promise<AnalysisResult> {
       const dateInfo = request.analysisDate ? `Abrechnungsdatum: ${request.analysisDate}` : 'Kein spezifisches Datum'
       const historySection = request.history?.length
-        ? `\n## Bisherige Abrechnungshistorie (${request.history.length} Positionen vor ${request.analysisDate || 'heute'})\nDiese Daten sind für Frequenzprüfungen relevant:\n${JSON.stringify(request.history)}`
+        ? `\n## Bisherige Abrechnungshistorie (${request.history.length} Positionen vor ${request.analysisDate || 'heute'})\n${JSON.stringify(request.history)}`
         : '\n## Abrechnungshistorie\nKeine bisherigen Abrechnungen bekannt.'
 
-      const prompt = `Analysiere die Abrechnung für Patient ${request.patientId}.
+      const prompt = `Analysiere die Rechnung für Patient ${request.patientId}.
 ${dateInfo}
 
 ## Abrechnungspositionen (zu prüfen)
@@ -96,11 +95,14 @@ ${formatBillingItemsJson(request.billingItems)}
 ${historySection}
 
 ## Auftrag
-1. Rufe zuerst get_case_context auf mit patientId "${request.patientId}"${request.analysisDate ? ` und beforeDate "${request.analysisDate}"` : ''} um den Patientenkontext zu laden.
-2. Delegiere dann an alle 4 Sub-Agenten (compliance, documentation, optimization, practice_rules).
-   Gib jedem Agent die Abrechnungspositionen UND relevante Patientendaten (Versicherungstyp, Befunde, Historie) als Text mit.
-   WICHTIG: Übergib auch die Abrechnungshistorie an den Compliance-Agenten für Frequenzprüfungen.
-3. Sammle die Ergebnisse und erstelle den finalen ComplianceReport.`
+Rufe zuerst get_case_context auf mit patientId "${request.patientId}"${request.analysisDate ? ` und beforeDate "${request.analysisDate}"` : ''}.
+Analysiere dann die Rechnung direkt mit den verfügbaren Tools:
+1. validate_billing für Regelprüfung
+2. check_documentation für jeden Code
+3. match_patterns für Optimierung
+4. lookup_catalog_code für Erlösberechnung
+
+Erstelle den finalen ComplianceReport.`
 
       const options: Options = {
         model: managerAgent.model,
@@ -118,16 +120,11 @@ ${historySection}
           'dental-billing:match_patterns',
           'dental-billing:check_documentation',
           'dental-billing:lookup_catalog_code',
-          'dental-billing:get_practice_rules',
-          'Agent',
         ],
         permissionMode: 'bypassPermissions',
         allowDangerouslySkipPermissions: true,
-        tools: ['Agent'],
+        disallowedTools: ['Bash', 'Read', 'Write', 'Edit', 'Glob', 'Grep', 'WebFetch', 'WebSearch', 'NotebookEdit', 'Agent'],
         persistSession: false,
-        stderr: (data: string) => {
-          console.error('[agent-stderr]', data)
-        },
       }
 
       emitter?.emit('analysis_start', {
@@ -137,111 +134,47 @@ ${historySection}
 
       let report: ComplianceReport | null = null
       let costUsd = 0
+      let lastStatus = ''
 
-      // Track active sub-agents by task_id
-      const agentTasks = new Map<string, string>()
+      function emitStatus(label: string) {
+        if (label !== lastStatus) {
+          lastStatus = label
+          emitter?.emit('analysis_status', { label })
+        }
+      }
 
       try {
-        console.log('[agent] Starting query...')
         const q = query({ prompt, options })
 
         for await (const message of q) {
-          console.log(`[agent] Message: type=${message.type}${(message as any).subtype ? ' subtype='+(message as any).subtype : ''}`)
-
-          // --- Assistant messages (manager or sub-agent thinking + tool calls) ---
+          // Tool calls → emit status based on tool name
           if (message.type === 'assistant') {
-            const isSubAgent = message.parent_tool_use_id !== null
-            const text = extractText(message)
             const toolCalls = extractToolCalls(message)
-
-            if (text && !isSubAgent) {
-              emitter?.emit('manager_thinking', { text: truncate(text, 1000) })
-            }
-
             for (const tc of toolCalls) {
-              if (tc.name === 'Agent') {
-                // Manager is delegating to a sub-agent
-                const agentInput = tc.input as any
-                emitter?.emit('agent_start', {
-                  agent: agentInput?.description || agentInput?.subagent_type || 'unknown',
-                  prompt: truncate(agentInput?.prompt || '', 500),
-                })
-              } else if (isSubAgent) {
-                // Sub-agent calling a tool
-                emitter?.emit('agent_tool_call', {
-                  tool: tc.name,
-                  input: truncate(tc.input),
-                })
-              } else {
-                // Manager calling a tool directly
-                emitter?.emit('manager_tool_call', {
-                  tool: tc.name,
-                  input: truncate(tc.input),
-                })
+              const name = cleanToolName(tc.name)
+              if (name === 'get_case_context') {
+                emitStatus('Kontext wird geladen...')
+              } else if (name === 'validate_billing') {
+                emitStatus('Abrechnung wird geprüft...')
+              } else if (name === 'check_documentation') {
+                emitStatus('Dokumentation wird geprüft...')
               }
+              // lookup_catalog_code and match_patterns keep the current label
             }
           }
 
-          // --- User messages (tool results coming back) ---
-          if (message.type === 'user' && message.tool_use_result !== undefined) {
-            const isSubAgent = message.parent_tool_use_id !== null
-            if (!isSubAgent) {
-              emitter?.emit('manager_tool_result', {
-                result: truncate(message.tool_use_result),
-              })
-            }
-          }
-
-          // --- Sub-agent lifecycle (task events) ---
-          if (message.type === 'system') {
-            const sys = message as any
-            if (sys.subtype === 'task_started') {
-              agentTasks.set(sys.task_id, sys.description || 'Sub-Agent')
-              emitter?.emit('agent_start', {
-                taskId: sys.task_id,
-                agent: sys.description || sys.task_type || 'unknown',
-                prompt: truncate(sys.prompt || '', 500),
-              })
-            }
-
-            if (sys.subtype === 'task_progress') {
-              emitter?.emit('agent_progress', {
-                taskId: sys.task_id,
-                agent: agentTasks.get(sys.task_id) || 'Sub-Agent',
-                lastTool: sys.last_tool_name || null,
-                summary: sys.summary || null,
-                toolUses: sys.usage?.tool_uses ?? 0,
-              })
-            }
-
-            if (sys.subtype === 'task_notification') {
-              emitter?.emit('agent_complete', {
-                taskId: sys.task_id,
-                agent: agentTasks.get(sys.task_id) || 'Sub-Agent',
-                status: sys.status,
-                summary: sys.summary || '',
-                toolUses: sys.usage?.tool_uses ?? 0,
-                tokens: sys.usage?.total_tokens ?? 0,
-              })
-              agentTasks.delete(sys.task_id)
-            }
-          }
-
-          // --- Tool progress (long-running tool calls) ---
-          if (message.type === 'tool_progress') {
-            const tp = message as any
-            emitter?.emit('agent_tool_call', {
-              tool: tp.tool_name,
-              elapsed: tp.elapsed_time_seconds,
-              taskId: tp.task_id || null,
-            })
-          }
-
-          // --- Final result ---
+          // Final result
           if (message.type === 'result') {
+            emitStatus('Vorschläge werden erstellt...')
             costUsd = message.total_cost_usd
             if (message.subtype === 'success' && message.structured_output) {
               report = message.structured_output as ComplianceReport
+              if (report.proposals) {
+                const claimItems = request.billingItems.map((i) => ({
+                  code: i.code, system: i.system, tooth: i.teeth?.[0] ?? null, session: i.session ?? null,
+                }))
+                report.proposals = normalizeProposals(report.proposals, claimItems)
+              }
             }
           }
         }

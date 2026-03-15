@@ -7,7 +7,7 @@ const engine = new RuleEngine()
 
 const billingItemSchema = z.object({
   code: z.string(),
-  system: z.enum(['GOZ', 'BEMA']),
+  system: z.enum(['GOZ', 'BEMA', 'GOÄ']),
   multiplier: z.number().optional(),
   teeth: z.array(z.number()).optional(),
   date: z.string().optional(),
@@ -33,9 +33,11 @@ export const validateBilling = tool(
     // Add frequency checks if history is provided
     if (history && history.length > 0) {
       for (const item of items) {
+        // GOÄ codes don't have frequency rules in our engine
+        if (item.system !== 'GOZ' && item.system !== 'BEMA') continue
         const freqCheck = engine.checkFrequency(
           item.code,
-          item.system,
+          item.system as 'GOZ' | 'BEMA',
           history as BillingHistory,
         )
         if (!freqCheck.allowed) {
