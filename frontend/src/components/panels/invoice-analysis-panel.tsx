@@ -2,7 +2,7 @@ import { useCallback, useState, useRef, useEffect } from 'react'
 import {
   Loader2, ChevronRight, ChevronDown, FileText, ClipboardList,
   AlertCircle, AlertTriangle, Lightbulb, Info, Check, X, Plus, Minus, RefreshCw,
-  User, Search
+  User, Search, Bot, Database, ShieldCheck, FileSearch, Sparkles
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -178,77 +178,33 @@ export function InvoiceAnalysisPanel() {
       {/* ── Clinical documentation ── */}
       {claim && (procedures.length > 0 || encounters.length > 0) && (
         <section className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-          <div className="flex items-center gap-2 px-5 py-3 bg-emerald-50 border-b border-emerald-200">
-            <ClipboardList size={15} className="text-emerald-700" />
-            <span className="text-xs font-bold text-emerald-900 uppercase tracking-wide">Klinische Dokumentation</span>
-            <span className="text-[0.65rem] text-emerald-600 ml-auto">{selectedClaimDate}</span>
+          <div className="flex items-center gap-1.5 px-4 py-2 bg-emerald-50 border-b border-emerald-200">
+            <ClipboardList size={13} className="text-emerald-700" />
+            <span className="text-[0.65rem] font-bold text-emerald-900 uppercase tracking-wide">Klinische Dokumentation</span>
+            <span className="text-[0.6rem] text-emerald-600 ml-auto">{selectedClaimDate}</span>
           </div>
 
           {/* Encounter reason */}
           {encounters.length > 0 && (
-            <div className="px-5 pt-4 pb-2">
+            <div className="px-4 pt-2.5 pb-1">
               {encounters.map((enc) => (
-                <div key={enc.id} className="flex items-start gap-3">
-                  <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-wider shrink-0 mt-0.5 w-16">Anlass</span>
-                  <div className="text-sm text-slate-700">
+                <div key={enc.id} className="flex items-start gap-2">
+                  <span className="text-[0.55rem] font-bold text-slate-400 uppercase tracking-wider shrink-0 mt-0.5 w-12">Anlass</span>
+                  <div className="text-xs text-slate-700">
                     {enc.reason ?? '—'}
-                    {enc.tooth ? <span className="ml-2 text-xs text-slate-400">Zahn {enc.tooth}</span> : null}
+                    {enc.tooth ? <span className="ml-1.5 text-[0.65rem] text-slate-400">Zahn {enc.tooth}</span> : null}
                   </div>
                 </div>
               ))}
             </div>
           )}
 
-          {/* Procedures as individual cards */}
+          {/* Procedures — compact with expandable notes */}
           {procedures.length > 0 && (
-            <div className="px-5 py-3 space-y-3">
-              {procedures.map((proc) => {
-                // Split long display into a short title + detail parts
-                const parts = (proc.display ?? '').split(',').map((s) => s.trim()).filter(Boolean)
-                const title = parts[0] || proc.display
-                const details = parts.slice(1)
-                // Split notes on sentence boundaries for readability
-                const sentences = proc.notes.flatMap((n) =>
-                  n.split(/(?<=\.)\s+/).map((s) => s.trim()).filter(Boolean)
-                )
-                return (
-                  <div key={proc.id} className="bg-slate-50 rounded-lg border border-slate-100 p-4">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-semibold text-sm text-slate-900">{title}</span>
-                      {proc.code && (
-                        <code className="text-[0.65rem] px-1.5 py-0.5 rounded bg-slate-200 text-slate-600 font-mono">{proc.code}</code>
-                      )}
-                      {proc.tooth && (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-medium">Zahn {proc.tooth}</span>
-                      )}
-                      <span className={cn(
-                        'text-[0.6rem] px-2 py-0.5 rounded-full font-medium ml-auto',
-                        proc.status === 'completed' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700',
-                      )}>
-                        {proc.status}
-                      </span>
-                    </div>
-
-                    {/* Detail parts from the display string */}
-                    {details.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mb-3">
-                        {details.map((d, i) => (
-                          <span key={i} className="text-[0.7rem] px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-600">{d}</span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Clinical notes split into individual sentences */}
-                    {sentences.length > 0 && (
-                      <div className="space-y-1 mt-2 pl-3 border-l-2 border-emerald-300">
-                        {sentences.map((s, i) => (
-                          <p key={i} className="text-xs text-slate-600 leading-relaxed">{s}</p>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
+            <div className="px-4 py-2 space-y-0.5">
+              {procedures.map((proc) => (
+                <ProcedureRow key={proc.id} proc={proc} />
+              ))}
             </div>
           )}
 
@@ -264,13 +220,13 @@ export function InvoiceAnalysisPanel() {
       {/* ── Billing table ── */}
       {claim && (
         <section className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-          <div className="flex items-center gap-2 px-5 py-3 bg-slate-50 border-b border-slate-200">
-            <FileText size={15} className="text-blue-600" />
-            <span className="text-xs font-bold text-slate-800 uppercase tracking-wide">Rechnung</span>
-            <span className="text-xs text-slate-500">{selectedClaimDate}</span>
-            <span className="ml-auto text-xs text-slate-400">
+          <div className="flex items-center gap-1.5 px-4 py-2 bg-slate-50 border-b border-slate-200">
+            <FileText size={13} className="text-blue-600" />
+            <span className="text-[0.65rem] font-bold text-slate-800 uppercase tracking-wide">Rechnung</span>
+            <span className="text-[0.65rem] text-slate-500">{selectedClaimDate}</span>
+            <span className="ml-auto text-[0.65rem] text-slate-400">
               {claim.itemCount} Pos. · {claim.provider}
-              {patient && <span className="ml-2">{patient.coverageType === 'PKV' ? '🔒 PKV' : '🏥 GKV'}{patient.bonusPercent > 0 ? ` · ${patient.bonusPercent}% Bonus` : ''}</span>}
+              {patient && <span className="ml-1.5">{patient.coverageType === 'PKV' ? '🔒 PKV' : '🏥 GKV'}{patient.bonusPercent > 0 ? ` · ${patient.bonusPercent}% Bonus` : ''}</span>}
             </span>
           </div>
 
@@ -302,9 +258,9 @@ export function InvoiceAnalysisPanel() {
 
           {/* Total */}
           {claim.total > 0 && (
-            <div className="flex items-center justify-between px-5 py-3 bg-slate-50 border-t border-slate-200">
-              <span className="text-sm font-bold text-slate-700">Gesamt</span>
-              <span className="text-sm font-bold text-slate-900">{claim.total.toFixed(2)} €</span>
+            <div className="flex items-center justify-between px-4 py-2 bg-slate-50 border-t border-slate-200">
+              <span className="text-xs font-bold text-slate-700">Gesamt</span>
+              <span className="text-xs font-bold text-slate-900 tabular-nums">{claim.total.toFixed(2)} €</span>
             </div>
           )}
 
@@ -330,6 +286,54 @@ function EmptyState({ icon, title, description }: { icon: React.ReactNode; title
       <div className="text-gray-300 mb-3">{icon}</div>
       <h3 className="text-sm font-semibold text-gray-500 mb-1">{title}</h3>
       <p className="text-xs text-gray-400 max-w-sm">{description}</p>
+    </div>
+  )
+}
+
+function ProcedureRow({ proc }: { proc: import('@/types').Procedure }) {
+  const [expanded, setExpanded] = useState(false)
+  const parts = (proc.display ?? '').split(',').map((s) => s.trim()).filter(Boolean)
+  const title = parts[0] || proc.display
+  const details = parts.slice(1)
+  const sentences = proc.notes.flatMap((n) =>
+    n.split(/(?<=\.)\s+/).map((s) => s.trim()).filter(Boolean)
+  )
+  const hasNotes = sentences.length > 0
+
+  return (
+    <div className="rounded hover:bg-slate-50 transition-colors">
+      <button
+        onClick={() => hasNotes && setExpanded(!expanded)}
+        className={cn('w-full text-left flex items-center gap-1.5 px-2 py-1.5', hasNotes && 'cursor-pointer')}
+      >
+        {hasNotes && (
+          expanded
+            ? <ChevronDown size={12} className="text-slate-400 shrink-0" />
+            : <ChevronRight size={12} className="text-slate-400 shrink-0" />
+        )}
+        {!hasNotes && <span className="w-3 shrink-0" />}
+        <span className="font-medium text-xs text-slate-900">{title}</span>
+        {details.length > 0 && (
+          <span className="text-[0.65rem] text-slate-400 truncate">{details.join(', ')}</span>
+        )}
+        {proc.tooth && (
+          <span className="text-[0.6rem] px-1.5 py-px rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-medium shrink-0">Z.{proc.tooth}</span>
+        )}
+        <span className={cn(
+          'text-[0.55rem] px-1.5 py-px rounded-full font-medium ml-auto shrink-0',
+          proc.status === 'completed' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700',
+        )}>
+          {proc.status}
+        </span>
+      </button>
+
+      {expanded && sentences.length > 0 && (
+        <div className="pl-8 pr-2 pb-2 space-y-0.5 border-l-2 border-emerald-300 ml-4">
+          {sentences.map((s, i) => (
+            <p key={i} className="text-[0.7rem] text-slate-600 leading-relaxed">{s}</p>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -430,34 +434,34 @@ function BillingRow({ item, index, hasIssue }: { item: ClaimItem; index: number;
   const hasDetails = item.tooth || item.surfaces.length > 0 || item.note
   return (
     <div className={cn(
-      'px-5 py-3 transition-colors',
+      'px-4 py-2 transition-colors',
       hasIssue ? 'bg-red-50/60' : 'hover:bg-slate-50/50',
     )}>
       {/* Main row */}
-      <div className="flex items-center gap-2.5">
-        <span className="text-[0.65rem] text-slate-300 w-5 text-right shrink-0 font-mono">{index + 1}</span>
-        <span className={cn('px-1.5 py-0.5 rounded text-[0.6rem] font-bold shrink-0', SYS_CLS[item.system] || 'bg-gray-100 text-gray-600')}>{item.system}</span>
-        <code className="font-bold text-slate-800 w-12 shrink-0 text-sm">{item.code}</code>
-        <span className="text-sm text-slate-700 flex-1">{item.display}</span>
-        {hasIssue && <AlertCircle size={14} className="text-red-400 shrink-0" />}
+      <div className="flex items-center gap-2">
+        <span className="text-[0.6rem] text-slate-300 w-4 text-right shrink-0 font-mono">{index + 1}</span>
+        <span className={cn('px-1 py-px rounded text-[0.55rem] font-bold shrink-0', SYS_CLS[item.system] || 'bg-gray-100 text-gray-600')}>{item.system}</span>
+        <code className="font-bold text-slate-800 w-10 shrink-0 text-xs">{item.code}</code>
+        <span className="text-xs text-slate-700 flex-1">{item.display}</span>
+        {hasIssue && <AlertCircle size={12} className="text-red-400 shrink-0" />}
         {item.price > 0 && (
-          <span className="text-sm font-medium text-slate-500 shrink-0 tabular-nums">{item.price.toFixed(2)} €</span>
+          <span className="text-xs font-medium text-slate-500 shrink-0 tabular-nums">{item.price.toFixed(2)} €</span>
         )}
       </div>
 
       {/* Detail row: tooth, surfaces, notes — fully visible */}
       {hasDetails && (
-        <div className="flex items-center gap-2 mt-1.5 ml-[5.5rem]">
+        <div className="flex items-center gap-1.5 mt-1 ml-[4.25rem]">
           {item.tooth && (
-            <span className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-medium">Zahn {item.tooth}</span>
+            <span className="text-[0.6rem] px-1.5 py-px rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-medium">Z.{item.tooth}</span>
           )}
           {item.surfaces.length > 0 && (
-            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200 font-medium">
+            <span className="text-[0.6rem] px-1.5 py-px rounded-full bg-slate-100 text-slate-600 border border-slate-200 font-medium">
               {item.surfaces.join(', ')}
             </span>
           )}
           {item.note && (
-            <span className="text-xs text-slate-500 italic">{item.note}</span>
+            <span className="text-[0.65rem] text-slate-400 italic">{item.note}</span>
           )}
         </div>
       )}
@@ -533,10 +537,20 @@ function PriorLink({ claims, beforeDate }: { claims: any[]; beforeDate: string }
   )
 }
 
+const STEP_ICONS: Record<string, React.ReactNode> = {
+  'Patientenkontext wird geladen...': <Database size={12} />,
+  'Abrechnungsregeln werden geprüft...': <ShieldCheck size={12} />,
+  'Dokumentation wird geprüft...': <FileSearch size={12} />,
+  'Abrechnungsmuster werden abgeglichen...': <Search size={12} />,
+  'Katalog wird abgefragt...': <FileText size={12} />,
+  'Vorschläge werden erstellt...': <Sparkles size={12} />,
+  'Analyse abgeschlossen': <Check size={12} />,
+}
+
 function AnalyzeBtn() {
   const {
-    selectedPatientId, selectedClaimDate, billingItems, priorHistory, isAnalyzing, analysisStatus,
-    setIsAnalyzing, addLogEntry, clearLog, setAnalysisStatus, setReport, resetAnalysis,
+    selectedPatientId, selectedClaimDate, billingItems, priorHistory, isAnalyzing, analysisSteps,
+    setIsAnalyzing, addLogEntry, clearLog, setAnalysisStatus, addAnalysisStep, setReport, resetAnalysis,
   } = useBillingStore()
   const { data: pd } = usePatients()
   const name = pd?.patients.find((p) => p.id === selectedPatientId)?.name
@@ -547,6 +561,7 @@ function AnalyzeBtn() {
     if (!items.length) return
     resetAnalysis(); setIsAnalyzing(true); clearLog()
     setAnalysisStatus(`Analyse für ${name}...`)
+    addAnalysisStep(`Analyse für ${name} wird gestartet...`)
     try {
       const res = await apiFetch<{ sessionId: string; streamUrl: string }>('/api/agent/analyze', {
         method: 'POST',
@@ -560,22 +575,74 @@ function AnalyzeBtn() {
         }),
       })
       const es = new EventSource(res.streamUrl)
-      es.addEventListener('analysis_status', (e) => { const d = JSON.parse(e.data); setAnalysisStatus(d.label || 'Analyse läuft...') })
-      es.addEventListener('analysis_complete', (e) => { const d = JSON.parse(e.data); setIsAnalyzing(false); setAnalysisStatus(''); if (d.report) setReport(d.report); es.close() })
+      es.addEventListener('analysis_status', (e) => {
+        const d = JSON.parse(e.data)
+        const label = d.label || 'Analyse läuft...'
+        setAnalysisStatus(label)
+        addAnalysisStep(label)
+      })
+      es.addEventListener('analysis_complete', (e) => {
+        const d = JSON.parse(e.data)
+        addAnalysisStep('Analyse abgeschlossen')
+        // Small delay so the user sees the final step before results appear
+        setTimeout(() => {
+          setIsAnalyzing(false); setAnalysisStatus('')
+          if (d.report) setReport(d.report)
+        }, 400)
+        es.close()
+      })
       es.addEventListener('analysis_error', (e) => { const d = JSON.parse(e.data); addLogEntry('error', d.error); setIsAnalyzing(false); setAnalysisStatus(''); es.close() })
       es.onerror = () => { setIsAnalyzing(false); setAnalysisStatus('') }
     } catch (err) { addLogEntry('error', (err as Error).message); setIsAnalyzing(false); setAnalysisStatus('') }
-  }, [selectedPatientId, selectedClaimDate, billingItems, priorHistory, isAnalyzing, name, resetAnalysis, setIsAnalyzing, clearLog, setAnalysisStatus, addLogEntry, setReport])
+  }, [selectedPatientId, selectedClaimDate, billingItems, priorHistory, isAnalyzing, name, resetAnalysis, setIsAnalyzing, clearLog, setAnalysisStatus, addAnalysisStep, addLogEntry, setReport])
 
   return (
-    <div className="space-y-2">
-      <Button className="w-full py-3 text-sm" onClick={run} disabled={!selectedPatientId || !selectedClaimDate || isAnalyzing}>
-        {isAnalyzing ? (
-          <span className="flex items-center gap-2"><Loader2 size={16} className="animate-spin" />{analysisStatus || 'Analyse läuft...'}</span>
-        ) : (
-          <span className="flex items-center gap-2"><Search size={16} />Rechnung analysieren</span>
-        )}
-      </Button>
+    <div>
+      {!isAnalyzing && (
+        <Button className="w-full py-2.5 text-xs" onClick={run} disabled={!selectedPatientId || !selectedClaimDate || isAnalyzing}>
+          <span className="flex items-center gap-2"><Search size={14} />Rechnung analysieren</span>
+        </Button>
+      )}
+
+      {isAnalyzing && (
+        <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+          <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 border-b border-blue-200">
+            <Bot size={14} className="text-blue-600" />
+            <span className="text-[0.65rem] font-bold text-blue-900 uppercase tracking-wide">Billing Coach Agent</span>
+            <Loader2 size={12} className="animate-spin text-blue-500 ml-auto" />
+          </div>
+          <div className="px-4 py-3">
+            <div className="space-y-0">
+              {analysisSteps.map((step, i) => (
+                <div key={i} className="flex items-center gap-2.5 py-1.5">
+                  <div className={cn(
+                    'w-5 h-5 rounded-full flex items-center justify-center shrink-0',
+                    step.status === 'done'
+                      ? 'bg-emerald-100 text-emerald-600'
+                      : 'bg-blue-100 text-blue-600',
+                  )}>
+                    {step.status === 'done' ? (
+                      <Check size={11} />
+                    ) : (
+                      STEP_ICONS[step.label] || <Loader2 size={11} className="animate-spin" />
+                    )}
+                  </div>
+                  {/* Connector line */}
+                  {i < analysisSteps.length - 1 && (
+                    <div className="absolute ml-2.5 mt-7 w-px h-3 bg-slate-200" />
+                  )}
+                  <span className={cn(
+                    'text-xs',
+                    step.status === 'done' ? 'text-slate-500' : 'text-slate-800 font-medium',
+                  )}>
+                    {step.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

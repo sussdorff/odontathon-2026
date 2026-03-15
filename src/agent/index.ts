@@ -96,11 +96,11 @@ ${historySection}
 
 ## Auftrag
 Rufe zuerst get_case_context auf mit patientId "${request.patientId}"${request.analysisDate ? ` und beforeDate "${request.analysisDate}"` : ''}.
-Analysiere dann die Rechnung direkt mit den verfügbaren Tools:
+Analysiere dann die Rechnung mit minimalen Tool-Aufrufen:
 1. validate_billing für Regelprüfung
-2. check_documentation für jeden Code
+2. check_documentation mit ALLEN Codes als Array in EINEM Aufruf
 3. match_patterns für Optimierung
-4. lookup_catalog_code für Erlösberechnung
+4. lookup_catalog_code nur bei Bedarf
 
 Erstelle den finalen ComplianceReport.`
 
@@ -153,13 +153,16 @@ Erstelle den finalen ComplianceReport.`
             for (const tc of toolCalls) {
               const name = cleanToolName(tc.name)
               if (name === 'get_case_context') {
-                emitStatus('Kontext wird geladen...')
+                emitStatus('Patientenkontext wird geladen...')
               } else if (name === 'validate_billing') {
-                emitStatus('Abrechnung wird geprüft...')
+                emitStatus('Abrechnungsregeln werden geprüft...')
               } else if (name === 'check_documentation') {
                 emitStatus('Dokumentation wird geprüft...')
+              } else if (name === 'match_patterns') {
+                emitStatus('Abrechnungsmuster werden abgeglichen...')
+              } else if (name === 'lookup_catalog_code') {
+                emitStatus('Katalog wird abgefragt...')
               }
-              // lookup_catalog_code and match_patterns keep the current label
             }
           }
 
@@ -167,7 +170,10 @@ Erstelle den finalen ComplianceReport.`
           if (message.type === 'result') {
             emitStatus('Vorschläge werden erstellt...')
             costUsd = message.total_cost_usd
-            if (message.subtype === 'success' && message.structured_output) {
+            if (message.subtype !== 'success') {
+              console.error(`[BillingCoach] Result subtype: ${message.subtype}`, JSON.stringify(message).slice(0, 500))
+            }
+            if (message.structured_output) {
               report = message.structured_output as ComplianceReport
               if (report.proposals) {
                 const claimItems = request.billingItems.map((i) => ({
@@ -175,6 +181,8 @@ Erstelle den finalen ComplianceReport.`
                 }))
                 report.proposals = normalizeProposals(report.proposals, claimItems)
               }
+            } else {
+              console.error(`[BillingCoach] No structured_output. subtype=${message.subtype}`)
             }
           }
         }

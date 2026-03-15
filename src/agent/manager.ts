@@ -17,7 +17,7 @@ Du analysierst eine Rechnung und produzierst konkrete Änderungsvorschläge für
    - frequency: Maximale Häufigkeit pro Zeitraum
    - multiplier: GOZ-Faktor innerhalb min/Schwellenwert/max
 
-3. **Dokumentation**: Rufe check_documentation für jeden Abrechnungscode auf.
+3. **Dokumentation**: Rufe check_documentation EIN MAL mit ALLEN Codes als Array auf (nicht einzeln!).
    Vergleiche mit Encounters/Procedures aus dem Kontext:
    - Dokumentierte aber nicht abgerechnete Leistungen → Erlösverlust
    - Abgerechnete aber nicht dokumentierte Leistungen → Compliance-Risiko
@@ -26,6 +26,12 @@ Du analysierst eine Rechnung und produzierst konkrete Änderungsvorschläge für
 4. **Optimierung**: Rufe match_patterns mit den Befunden auf.
    Prüfe fehlende optionale Codes. Rufe lookup_catalog_code für Erlösberechnung auf.
    Bei PKV: Prüfe ob Steigerungsfaktoren optimiert werden können.
+
+## Wichtig: Minimiere Tool-Aufrufe!
+- check_documentation: Immer ALLE Codes in einem einzigen Aufruf als Array übergeben.
+- lookup_catalog_code: Immer ALLE benötigten Codes in einem einzigen Aufruf als Array übergeben (codes-Parameter).
+- NIEMALS Tools einzeln pro Code aufrufen — immer batchen!
+- Ziel: Maximal 5-6 Tool-Aufrufe insgesamt.
 
 5. **Vorschläge erstellen**: Erstelle konkrete Proposals im ComplianceReport-Format.
 
@@ -80,6 +86,6 @@ Dein finaler Output muss ein valides ComplianceReport JSON sein.`
 export const managerAgent: AgentDefinition = {
   description: 'Billing Coach — analyzes invoices and produces concrete change proposals for billing and documentation.',
   model: 'claude-sonnet-4-6',
-  maxTurns: 8,
+  maxTurns: 10,
   prompt: managerPrompt,
 }

@@ -22,6 +22,7 @@ interface BillingState {
   isAnalyzing: boolean
   analysisLog: LogEntry[]
   analysisStatus: string
+  analysisSteps: Array<{ label: string; status: 'done' | 'active' }>
   report: AnalysisReport | null
   proposalDecisions: Record<string, 'approve' | 'reject'>
 
@@ -44,6 +45,7 @@ interface BillingState {
   addLogEntry: (severity: Severity, message: string) => void
   clearLog: () => void
   setAnalysisStatus: (status: string) => void
+  addAnalysisStep: (label: string) => void
   setReport: (report: AnalysisReport | null) => void
   setProposalDecision: (id: string, decision: 'approve' | 'reject' | null) => void
   resetAnalysis: () => void
@@ -64,6 +66,7 @@ export const useBillingStore = create<BillingState>((set) => ({
   isAnalyzing: false,
   analysisLog: [],
   analysisStatus: '',
+  analysisSteps: [],
   report: null,
   proposalDecisions: {},
 
@@ -98,6 +101,12 @@ export const useBillingStore = create<BillingState>((set) => ({
     })),
   clearLog: () => set({ analysisLog: [] }),
   setAnalysisStatus: (status) => set({ analysisStatus: status }),
+  addAnalysisStep: (label) => set((s) => ({
+    analysisSteps: [
+      ...s.analysisSteps.map((step) => ({ ...step, status: 'done' as const })),
+      { label, status: 'active' as const },
+    ],
+  })),
   setReport: (report) => set({ report, proposalDecisions: {} }),
   setProposalDecision: (id, decision) =>
     set((s) => {
@@ -106,5 +115,5 @@ export const useBillingStore = create<BillingState>((set) => ({
       return { proposalDecisions: next }
     }),
   resetAnalysis: () =>
-    set({ isAnalyzing: false, analysisLog: [], analysisStatus: '', report: null, proposalDecisions: {} }),
+    set({ isAnalyzing: false, analysisLog: [], analysisStatus: '', analysisSteps: [], report: null, proposalDecisions: {} }),
 }))

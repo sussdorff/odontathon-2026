@@ -118,7 +118,7 @@ But it cannot answer:
 - is this rule actually hard law or only a practice habit?
 - does the proposal have chart evidence?
 - is the legal context wrong because insurance was misread?
-- is the code combination disputed and therefore not suitable for auto-fix?
+- is the code combination disputed and therefore not suitable for auto-apply?
 
 That validation must happen before proposal output, not after.
 
@@ -171,7 +171,7 @@ Each finding should include:
 - `evidence`
 - `authorityLevel`
 - `confidence`
-- `autoFixEligible`
+- `autoApplyEligible`
 
 Example:
 
@@ -181,7 +181,7 @@ Example:
   "type": "disputed-constellation",
   "authorityLevel": "interpretive",
   "confidence": "medium",
-  "autoFixEligible": false,
+  "autoApplyEligible": false,
   "evidence": [
     "Claim contains GOZ 0090 and GOZ 0100 on tooth 46",
     "Mandibular conduction anesthesia note present",
@@ -198,7 +198,7 @@ Before any fix is generated, apply deterministic policy rules:
 - suppress revenue suggestions without chart evidence of the underlying act
 - downgrade disputed GOZ combinations to manual review
 - downgrade missing-field findings when field state is inferred rather than observed
-- block auto-fix if target resource binding is ambiguous
+- block auto-apply if target resource binding is ambiguous
 
 This is where the Lukas Berg false positives should have been stopped.
 
@@ -246,13 +246,13 @@ type Finding = {
   type: 'rule-hit' | 'documentation-gap' | 'practice-pattern' | 'disputed-constellation' | 'possible-unbilled-service'
   authorityLevel: 'primary' | 'interpretive' | 'practice' | 'heuristic'
   confidence: 'high' | 'medium' | 'low'
-  autoFixEligible: boolean
+  autoApplyEligible: boolean
   evidence: Array<{
     kind: 'claim' | 'procedure' | 'template' | 'history' | 'rule'
     ref: string
     summary: string
   }>
-  recommendedActionClass: 'auto-fix' | 'manual-review' | 'documentation-only' | 'suppress'
+  recommendedActionClass: 'auto-apply' | 'manual-review' | 'documentation-only' | 'suppress'
 }
 ```
 
@@ -328,11 +328,17 @@ Required proposal additions:
 
 Right now the schema pushes toward direct mutation. You need a first-class non-mutating proposal type:
 
-- `request_justification`
-- `request_missing_evidence`
-- `manual_review`
+- `request-justification`
+- `request-missing-evidence`
+- `manual-review`
 
 That is the right output for many legally disputed or poorly documented cases.
+
+Important:
+
+- review-only proposals should not reuse `billingChange` as a display hint
+- if the product wants to show the likely next billing step on a review card, add a display-only text field such as `suggestedActionSummary`
+- keep machine-executable mutation fields reserved for `auto-apply` proposals
 
 ### 4. Add a strict proposal action matrix
 
@@ -364,7 +370,14 @@ Current tool behavior is too easy to misuse. Replace the single flow with:
 1. `extract_documentation_state(procedureId | patientId + date)`
 2. `check_documentation(code, system, filledFields)`
 
-The second tool should fail or explicitly warn if `filledFields` is omitted. It should not silently assume that all required fields are missing.
+The second tool should not silently assume that all required fields are missing when `filledFields` is omitted.
+
+Preferred compatibility behavior:
+
+- return `observedFieldState: false`
+- return `complete: null`
+- return no hard missing-field conclusion
+- optionally include a warning message that field-state extraction is required before compliance conclusions
 
 ### 2. Add a `bind_targets` step before proposal creation
 
@@ -388,14 +401,14 @@ Examples:
 - `disputed-constellation` cannot emit `add_code` or `remove_code` without explicit human confirmation
 - `possible-unbilled-service` cannot mutate Claim directly unless chart evidence is marked high-confidence
 
-### 4. Use two LLM passes at most
+### 4. Prefer one synthesis pass; allow a second pass only if needed
 
 Recommended shape:
 
-- pass 1: summarize evidence and cluster findings
-- pass 2: write final human-facing proposals from gated findings
+- preferred: one synthesis pass that writes final human-facing proposals from gated findings
+- optional second pass: review/QA pass that checks policy compliance and explanation quality only
 
-Do not let pass 2 call tools freely again. Otherwise it can drift and re-invent logic already filtered out.
+Do not let any synthesis/review pass call tools freely again. Otherwise it can drift and re-invent logic already filtered out.
 
 ### 5. Move core Abrechnung checks out of the model
 
@@ -433,10 +446,10 @@ Improved flow:
 
 1. deterministic detector flags same-session anesthesia constellation
 2. authority label marks it as interpretive/disputed, not hard exclusion
-3. policy gate marks `autoFixEligible = false`
+3. policy gate marks `autoApplyEligible = false`
 4. model emits:
-   - `manual_review`
-   - `request_justification`
+   - `manual-review`
+   - `request-justification`
    - optional documentation suggestion to merge anesthesia note
 
 ### P2: GOZ 2197 -> add 2020
@@ -504,8 +517,9 @@ Required changes:
 1. Add optional fields: `findingId`, `authorityLevel`, `confidence`, `actionClass`, `preconditions`, `applyTarget`, `autoApplyAllowed`.
 2. Add review-only proposal support:
    - proposals without `billingChange` or `documentationChange` must be allowed if `actionClass` is review-oriented.
-3. Update normalizer rules:
-   - drop any proposal with `autoApplyAllowed = false` from auto-apply payload generation
+3. Update normalizer and apply-payload rules:
+   - keep review-only and non-auto-apply proposals in the analysis report
+   - exclude proposals with `autoApplyAllowed = false` from the auto-apply payload builder
    - dedupe by `findingId` first when present
    - treat same code on different sessions as distinct if `applyTarget.session` differs
 4. Apply route must reject:
@@ -535,10 +549,10 @@ Required changes:
 2. `caseState` must contain:
    - `coverageType`
    - `claimId`
-   - `claimItems[]` with stable `claimItemId`
+   - `claimItems[]` with stable analysis-scoped `claimItemId`
    - `procedureState[]` with `procedureId`, date, tooth, session, extracted fields
    - `billingHistory[]`
-   - `findings[]` and `conditions[]`
+   - `clinicalFindings[]` and `conditions[]`
 3. Claim items must preserve:
    - `system`, `code`, `multiplier`, `tooth`, `session`, `quantity`, `note`, `sequence`
 4. Stop using array position as the primary mutation handle in analysis.
@@ -546,7 +560,18 @@ Required changes:
 Recommended `claimItemId` strategy:
 
 - if FHIR item IDs exist, use them
-- otherwise derive a stable synthetic key from `Claim/{id}#sequence:{n}`
+- otherwise derive an analysis-scoped fingerprint from:
+  - `claimId`
+  - `sequence`
+  - `system`
+  - `code`
+  - `tooth`
+  - `session`
+
+Important:
+
+- do not treat a synthetic `claimItemId` as a permanent FHIR identity
+- apply preflight must rebind the target against live claim facts using the fingerprint fields
 
 Definition of done:
 
@@ -582,7 +607,9 @@ Required changes:
    - `actionClass = request-missing-evidence`
 4. Practice-pattern output must be tagged explicitly as `practice`, never as `primary`.
 
-Strict tool contracts:
+These should be implemented as orchestrator-internal services first. Exposing them as LLM-callable tools is optional and should only be done for debugging or reuse, not as the primary runtime path.
+
+Strict service contracts:
 
 ```ts
 extract_documentation_state({
@@ -650,6 +677,7 @@ Prompt contract:
 Du erhältst ausschließlich bereits geprüfte Findings.
 Für jedes Finding darfst du nur einen Vorschlag erzeugen, der innerhalb der erlaubten actionClass bleibt.
 Wenn actionClass nicht `auto-apply` ist, darfst du keine billingChange erzeugen.
+Wenn für einen Review-Fall eine Handlungsempfehlung angezeigt werden soll, formuliere sie nur als Text und nicht als maschinenlesbare Mutation.
 Wenn authorityLevel `practice` oder `heuristic` ist, darfst du keine remove_code-Proposals erzeugen.
 Du darfst keine neuen Abrechnungsregeln erfinden.
 ```

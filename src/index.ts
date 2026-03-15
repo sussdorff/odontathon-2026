@@ -12,7 +12,6 @@ import {
 import { RuleEngine } from './lib/billing/engine'
 import { calculateGOZPrice, calculateBEMAPrice, calculatePatientShare } from './lib/billing/calculator'
 import { agentRoutes } from './api/agent-routes'
-import { practiceRulesRoutes } from './api/practice-rules-routes'
 import { applyRoutes } from './api/apply-routes'
 import { AidboxClient } from './fhir/client'
 import { resolveCoverageType } from './lib/fhir/coverage-type'
@@ -610,7 +609,6 @@ app.post('/api/hkp/draft', async (c) => {
 // Agent & practice rules API
 app.route('/api/agent', agentRoutes)
 app.route('/api/claims', applyRoutes)
-app.route('/api/practice-rules', practiceRulesRoutes)
 
 app.all('/fhir/*', async (c) => {
   const subPath = c.req.path.replace(/^\/fhir/, '')

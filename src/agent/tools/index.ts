@@ -4,7 +4,6 @@ import { validateBilling } from './billing-validation'
 import { matchPatterns } from './pattern-matching'
 import { checkDocumentation } from './documentation-check'
 import { lookupCatalogCode } from './catalog-lookup'
-import { getPracticeRules } from './practice-rules-lookup'
 
 export const allTools = [
   getCaseContext,
@@ -12,7 +11,6 @@ export const allTools = [
   matchPatterns,
   checkDocumentation,
   lookupCatalogCode,
-  getPracticeRules,
 ]
 
 export function createToolServer() {
