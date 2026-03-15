@@ -71,7 +71,7 @@ export function ReportPanel() {
 
             {/* Findings */}
             <div className="space-y-2 max-h-[400px] overflow-y-auto pr-1">
-              {report.findings.map((f, i) => {
+              {(report.proposals ?? []).map((f, i) => {
                 const cfg = severityConfig[f.severity]
                 return (
                   <div key={i} className={cn('p-3 rounded-lg border-l-4', cfg.bar, cfg.bg)}>
@@ -87,43 +87,17 @@ export function ReportPanel() {
                       <h4 className="text-xs font-semibold text-gray-800">{f.title}</h4>
                     </div>
                     <p className="text-xs text-gray-600">{f.description}</p>
-                    {f.codes.length > 0 && (
-                      <div className="mt-1 flex flex-wrap gap-1">
-                        {f.codes.map((c) => (
-                          <span key={c} className="text-[0.65rem] font-mono bg-white border border-gray-200 px-1.5 py-0.5 rounded">
-                            {c}
-                          </span>
-                        ))}
-                      </div>
+                    {f.billingChange && (
+                      <div className="mt-1 text-xs text-gray-500">{f.billingChange.code} ({f.billingChange.system})</div>
                     )}
-                    <div className="text-xs font-semibold text-gray-700 mt-1.5">→ {f.action}</div>
                   </div>
                 )
               })}
             </div>
 
             {/* Recommended codes */}
-            {report.recommendedCodes.length > 0 && (
-              <>
-                <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide pt-2 border-t border-gray-100">
-                  Empfohlene Codes
-                </h3>
-                <div className="space-y-2">
-                  {report.recommendedCodes.map((r, i) => (
-                    <div key={i} className="p-3 rounded-lg border-l-4 border-l-green-500 bg-green-50">
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <span className="text-xs font-bold font-mono bg-white border border-green-200 px-1.5 py-0.5 rounded">
-                          {r.system} {r.code}
-                        </span>
-                        <span className="text-[0.65rem] text-green-600 font-medium">
-                          {r.isNew ? '✦ neu' : '↻ Anpassung'}
-                        </span>
-                      </div>
-                      <p className="text-xs text-gray-600">{r.reason}</p>
-                    </div>
-                  ))}
-                </div>
-              </>
+            {false && report && (
+              <></>
             )}
           </div>
         )}

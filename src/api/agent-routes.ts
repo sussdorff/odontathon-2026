@@ -1,7 +1,12 @@
 import { Hono } from 'hono'
 import { randomUUID } from 'node:crypto'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import { createBillingCoach } from '../agent'
 import { ProgressEmitter } from '../agent/hooks/progress'
+
+const FIXTURE_MODE = process.env.AGENT_FIXTURE_MODE === 'true'
+const FIXTURES_DIR = join(import.meta.dir, '../../data/fixtures')
 import { BillingAgent } from '../agent/billing-agent'
 import type { ConversationState } from '../agent/billing-agent'
 
@@ -56,7 +61,7 @@ agentRoutes.post('/chat', async (c) => {
 
 agentRoutes.post('/analyze', async (c) => {
   const body = await c.req.json()
-  const { patientId, billingItems } = body
+  const { patientId, billingItems, history, analysisDate } = body
 
   if (!patientId) {
     return c.json({ error: 'patientId ist erforderlich' }, 400)
@@ -69,15 +74,39 @@ agentRoutes.post('/analyze', async (c) => {
   // Clean up after 5 minutes
   setTimeout(() => sessions.delete(sessionId), 5 * 60 * 1000)
 
-  // Run analysis in background
+  // Fixture mode: return pre-recorded report
+  if (FIXTURE_MODE && analysisDate) {
+    const fixturePath = join(FIXTURES_DIR, patientId, `${analysisDate}.json`)
+    ;(async () => {
+      emitter.emit('analysis_start', { patientId, itemCount: (billingItems ?? []).length })
+      try {
+        const raw = await readFile(fixturePath, 'utf-8')
+        const report = JSON.parse(raw)
+        // Simulate status progression so fixture-mode E2E exercises the status UI
+        emitter.emit('analysis_status', { label: 'Patientenkontext wird geladen...' })
+        await new Promise(r => setTimeout(r, 300))
+        emitter.emit('analysis_status', { label: 'Abrechnungsregeln werden geprüft...' })
+        await new Promise(r => setTimeout(r, 300))
+        emitter.emit('analysis_status', { label: 'Dokumentation wird geprüft...' })
+        await new Promise(r => setTimeout(r, 300))
+        emitter.emit('analysis_status', { label: 'Abrechnungsmuster werden abgeglichen...' })
+        await new Promise(r => setTimeout(r, 200))
+        emitter.emit('analysis_status', { label: 'Vorschläge werden erstellt...' })
+        await new Promise(r => setTimeout(r, 150))
+        emitter.emit('analysis_complete', { report, costUsd: 0 })
+      } catch {
+        emitter.emit('analysis_error', { error: `Fixture nicht gefunden: ${fixturePath}` })
+      }
+    })()
+
+    return c.json({ sessionId, streamUrl: `/api/agent/stream/${sessionId}` })
+  }
+
+  // Run real analysis in background
+  // Note: createBillingCoach emits analysis_complete/analysis_error internally — no need to re-emit here
   const coach = createBillingCoach(emitter)
-  coach.analyze({ patientId, billingItems: billingItems ?? [] }).then(result => {
-    if (result.report) {
-      emitter.emit('analysis_complete', { report: result.report, costUsd: result.costUsd })
-    } else if (result.error) {
-      emitter.emit('analysis_error', { error: result.error })
-    }
-  }).catch(err => {
+  coach.analyze({ patientId, billingItems: billingItems ?? [], history: history ?? [], analysisDate: analysisDate ?? undefined }).catch(err => {
+    // Only emit error if the coach didn't already (e.g. unhandled exception in setup)
     emitter.emit('analysis_error', { error: String(err) })
   })
 

@@ -6,15 +6,27 @@ import { managerAgent } from './manager'
 import { reportToJsonSchema } from './report-schema'
 import type { ComplianceReport } from './report-schema'
 import type { ProgressEmitter } from './hooks/progress'
+import { normalizeProposals } from './proposal-normalizer'
 
 export interface AnalysisRequest {
   patientId: string
   billingItems: Array<{
     code: string
-    system: 'GOZ' | 'BEMA'
+    system: 'GOZ' | 'BEMA' | 'GOÄ'
     multiplier?: number
     teeth?: number[]
+    index?: number
+    session?: number | null
+    note?: string | null
+    quantity?: number
   }>
+  history?: Array<{
+    code: string
+    system: string
+    date: string
+    tooth?: number | null
+  }>
+  analysisDate?: string
 }
 
 export interface AnalysisResult {
@@ -25,21 +37,41 @@ export interface AnalysisResult {
 
 function formatBillingItems(items: AnalysisRequest['billingItems']): string {
   if (items.length === 0) return '(keine Positionen übergeben)'
-  return items.map(i => {
-    const parts = [`${i.system} ${i.code}`]
+  return items.map((i, idx) => {
+    const parts = [`[${i.index ?? idx}] ${i.system} ${i.code}`]
     if (i.multiplier) parts.push(`Faktor ${i.multiplier}x`)
     if (i.teeth?.length) parts.push(`Zahn ${i.teeth.join(', ')}`)
+    if (i.session != null) parts.push(`Sitzung ${i.session}`)
+    if (i.note) parts.push(`(${i.note})`)
     return `- ${parts.join(' | ')}`
   }).join('\n')
 }
 
 function formatBillingItemsJson(items: AnalysisRequest['billingItems']): string {
-  return JSON.stringify(items.map(i => ({
+  return JSON.stringify(items.map((i, idx) => ({
+    index: i.index ?? idx,
     code: i.code,
     system: i.system,
     ...(i.multiplier ? { multiplier: i.multiplier } : {}),
     ...(i.teeth?.length ? { teeth: i.teeth } : {}),
+    ...(i.session != null ? { session: i.session } : {}),
+    ...(i.note ? { note: i.note } : {}),
+    ...(i.quantity && i.quantity > 1 ? { quantity: i.quantity } : {}),
   })))
+}
+
+/** Extract tool_use blocks from an assistant message's content */
+function extractToolCalls(message: any): Array<{ name: string; input: unknown }> {
+  const content = message?.message?.content
+  if (!Array.isArray(content)) return []
+  return content
+    .filter((b: any) => b.type === 'tool_use')
+    .map((b: any) => ({ name: b.name, input: b.input }))
+}
+
+/** Clean MCP tool name for status display */
+function cleanToolName(name: string): string {
+  return name.replace(/^mcp__[^_]+__/, '').replace(/^dental-billing:/, '')
 }
 
 export function createBillingCoach(emitter?: ProgressEmitter) {
@@ -47,19 +79,30 @@ export function createBillingCoach(emitter?: ProgressEmitter) {
 
   return {
     async analyze(request: AnalysisRequest): Promise<AnalysisResult> {
-      const prompt = `Analysiere die Abrechnung für Patient ${request.patientId}.
+      const dateInfo = request.analysisDate ? `Abrechnungsdatum: ${request.analysisDate}` : 'Kein spezifisches Datum'
+      const historySection = request.history?.length
+        ? `\n## Bisherige Abrechnungshistorie (${request.history.length} Positionen vor ${request.analysisDate || 'heute'})\n${JSON.stringify(request.history)}`
+        : '\n## Abrechnungshistorie\nKeine bisherigen Abrechnungen bekannt.'
 
-## Abrechnungspositionen
+      const prompt = `Analysiere die Rechnung für Patient ${request.patientId}.
+${dateInfo}
+
+## Abrechnungspositionen (zu prüfen)
 ${formatBillingItems(request.billingItems)}
 
 ## Positionen als JSON (für Tool-Aufrufe)
 ${formatBillingItemsJson(request.billingItems)}
+${historySection}
 
 ## Auftrag
-1. Rufe zuerst get_case_context auf mit patientId "${request.patientId}" um den vollständigen Patientenkontext zu laden.
-2. Delegiere dann an alle 4 Sub-Agenten (compliance, documentation, optimization, practice_rules).
-   Gib jedem Agent die Abrechnungspositionen UND relevante Patientendaten (Versicherungstyp, Befunde, Historie) als Text mit.
-3. Sammle die Ergebnisse und erstelle den finalen ComplianceReport.`
+Rufe zuerst get_case_context auf mit patientId "${request.patientId}"${request.analysisDate ? ` und beforeDate "${request.analysisDate}"` : ''}.
+Analysiere dann die Rechnung mit minimalen Tool-Aufrufen:
+1. validate_billing für Regelprüfung
+2. check_documentation mit ALLEN Codes als Array in EINEM Aufruf
+3. match_patterns für Optimierung
+4. lookup_catalog_code nur bei Bedarf
+
+Erstelle den finalen ComplianceReport.`
 
       const options: Options = {
         model: managerAgent.model,
@@ -77,34 +120,69 @@ ${formatBillingItemsJson(request.billingItems)}
           'dental-billing:match_patterns',
           'dental-billing:check_documentation',
           'dental-billing:lookup_catalog_code',
-          'dental-billing:get_practice_rules',
-          'Agent',
         ],
         permissionMode: 'bypassPermissions',
         allowDangerouslySkipPermissions: true,
-        tools: [],
+        disallowedTools: ['Bash', 'Read', 'Write', 'Edit', 'Glob', 'Grep', 'WebFetch', 'WebSearch', 'NotebookEdit', 'Agent'],
         persistSession: false,
       }
 
-      emitter?.emit('analysis_start', { patientId: request.patientId })
+      emitter?.emit('analysis_start', {
+        patientId: request.patientId,
+        itemCount: request.billingItems.length,
+      })
 
       let report: ComplianceReport | null = null
       let costUsd = 0
+      let lastStatus = ''
+
+      function emitStatus(label: string) {
+        if (label !== lastStatus) {
+          lastStatus = label
+          emitter?.emit('analysis_status', { label })
+        }
+      }
 
       try {
         const q = query({ prompt, options })
 
         for await (const message of q) {
+          // Tool calls → emit status based on tool name
           if (message.type === 'assistant') {
-            emitter?.emit('agent_progress', {
-              message: 'Manager verarbeitet...',
-            })
+            const toolCalls = extractToolCalls(message)
+            for (const tc of toolCalls) {
+              const name = cleanToolName(tc.name)
+              if (name === 'get_case_context') {
+                emitStatus('Patientenkontext wird geladen...')
+              } else if (name === 'validate_billing') {
+                emitStatus('Abrechnungsregeln werden geprüft...')
+              } else if (name === 'check_documentation') {
+                emitStatus('Dokumentation wird geprüft...')
+              } else if (name === 'match_patterns') {
+                emitStatus('Abrechnungsmuster werden abgeglichen...')
+              } else if (name === 'lookup_catalog_code') {
+                emitStatus('Katalog wird abgefragt...')
+              }
+            }
           }
 
+          // Final result
           if (message.type === 'result') {
+            emitStatus('Vorschläge werden erstellt...')
             costUsd = message.total_cost_usd
-            if (message.subtype === 'success' && message.structured_output) {
+            if (message.subtype !== 'success') {
+              console.error(`[BillingCoach] Result subtype: ${message.subtype}`, JSON.stringify(message).slice(0, 500))
+            }
+            if (message.structured_output) {
               report = message.structured_output as ComplianceReport
+              if (report.proposals) {
+                const claimItems = request.billingItems.map((i) => ({
+                  code: i.code, system: i.system, tooth: i.teeth?.[0] ?? null, session: i.session ?? null,
+                }))
+                report.proposals = normalizeProposals(report.proposals, claimItems)
+              }
+            } else {
+              console.error(`[BillingCoach] No structured_output. subtype=${message.subtype}`)
             }
           }
         }
@@ -114,7 +192,7 @@ ${formatBillingItemsJson(request.billingItems)}
         return { report: null, error: errorMsg, costUsd }
       }
 
-      emitter?.emit('analysis_complete', { report })
+      emitter?.emit('analysis_complete', { report, costUsd })
       return { report, costUsd }
     },
   }

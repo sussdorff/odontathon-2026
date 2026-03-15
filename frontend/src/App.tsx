@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { InputPanel } from '@/components/panels/input-panel'
-import { ProgressPanel } from '@/components/panels/progress-panel'
-import { ReportPanel } from '@/components/panels/report-panel'
-import { RulesPanel } from '@/components/panels/rules-panel'
+import { InvoiceAnalysisPanel } from '@/components/panels/invoice-analysis-panel'
 import { SessionLayout } from '@/components/session/session-layout'
 
 const queryClient = new QueryClient({
@@ -73,14 +70,7 @@ export default function App() {
           {activeTab === 'session' ? (
             <SessionLayout />
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <InputPanel />
-              <div className="space-y-4">
-                <ProgressPanel />
-                <ReportPanel />
-                <RulesPanel />
-              </div>
-            </div>
+            <InvoiceAnalysisPanel />
           )}
         </main>
       </div>

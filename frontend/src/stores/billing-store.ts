@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { BillingItem, CostResult, AnalysisReport, Severity } from '@/types'
+import type { BillingItem, CostResult, AnalysisReport, Severity, HistoryEntry } from '@/types'
 
 interface LogEntry {
   id: string
@@ -10,6 +10,8 @@ interface LogEntry {
 
 interface BillingState {
   selectedPatientId: string | null
+  selectedClaimDate: string | null
+  priorHistory: HistoryEntry[]
   billingItems: BillingItem[]
   costResult: CostResult | null
   kassenart: string
@@ -20,10 +22,14 @@ interface BillingState {
   isAnalyzing: boolean
   analysisLog: LogEntry[]
   analysisStatus: string
+  analysisSteps: Array<{ label: string; status: 'done' | 'active' }>
   report: AnalysisReport | null
+  proposalDecisions: Record<string, 'approve' | 'reject'>
 
   // Actions
   setSelectedPatientId: (id: string | null) => void
+  setSelectedClaimDate: (date: string | null) => void
+  setPriorHistory: (history: HistoryEntry[]) => void
   setBillingItems: (items: BillingItem[]) => void
   addBillingItem: (item: BillingItem) => void
   removeBillingItem: (id: string) => void
@@ -39,7 +45,9 @@ interface BillingState {
   addLogEntry: (severity: Severity, message: string) => void
   clearLog: () => void
   setAnalysisStatus: (status: string) => void
+  addAnalysisStep: (label: string) => void
   setReport: (report: AnalysisReport | null) => void
+  setProposalDecision: (id: string, decision: 'approve' | 'reject' | null) => void
   resetAnalysis: () => void
 }
 
@@ -47,6 +55,8 @@ let logCounter = 0
 
 export const useBillingStore = create<BillingState>((set) => ({
   selectedPatientId: null,
+  selectedClaimDate: null,
+  priorHistory: [],
   billingItems: [],
   costResult: null,
   kassenart: '',
@@ -56,9 +66,13 @@ export const useBillingStore = create<BillingState>((set) => ({
   isAnalyzing: false,
   analysisLog: [],
   analysisStatus: '',
+  analysisSteps: [],
   report: null,
+  proposalDecisions: {},
 
-  setSelectedPatientId: (id) => set({ selectedPatientId: id, costResult: null }),
+  setSelectedPatientId: (id) => set({ selectedPatientId: id, selectedClaimDate: null, priorHistory: [], costResult: null, report: null, isAnalyzing: false, analysisLog: [], analysisStatus: '' }),
+  setSelectedClaimDate: (date) => set({ selectedClaimDate: date, costResult: null, report: null, isAnalyzing: false, analysisLog: [], analysisStatus: '' }),
+  setPriorHistory: (history) => set({ priorHistory: history }),
   setBillingItems: (items) => set({ billingItems: items, costResult: null }),
   addBillingItem: (item) => set((s) => ({ billingItems: [...s.billingItems, item], costResult: null })),
   removeBillingItem: (id) => set((s) => ({ billingItems: s.billingItems.filter((i) => i.id !== id), costResult: null })),
@@ -87,7 +101,19 @@ export const useBillingStore = create<BillingState>((set) => ({
     })),
   clearLog: () => set({ analysisLog: [] }),
   setAnalysisStatus: (status) => set({ analysisStatus: status }),
-  setReport: (report) => set({ report }),
+  addAnalysisStep: (label) => set((s) => ({
+    analysisSteps: [
+      ...s.analysisSteps.map((step) => ({ ...step, status: 'done' as const })),
+      { label, status: 'active' as const },
+    ],
+  })),
+  setReport: (report) => set({ report, proposalDecisions: {} }),
+  setProposalDecision: (id, decision) =>
+    set((s) => {
+      const next = { ...s.proposalDecisions }
+      if (decision === null) { delete next[id] } else { next[id] = decision }
+      return { proposalDecisions: next }
+    }),
   resetAnalysis: () =>
-    set({ isAnalyzing: false, analysisLog: [], analysisStatus: '', report: null }),
+    set({ isAnalyzing: false, analysisLog: [], analysisStatus: '', analysisSteps: [], report: null, proposalDecisions: {} }),
 }))

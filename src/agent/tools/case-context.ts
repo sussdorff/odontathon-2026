@@ -1,6 +1,7 @@
 import { z } from 'zod/v4'
 import { tool } from '@anthropic-ai/claude-agent-sdk'
 import { aidboxConfig } from '../../lib/config'
+import { resolveCoverageType } from '../../lib/fhir/coverage-type'
 
 async function fhirGet(path: string) {
   const res = await fetch(`${aidboxConfig.fhirBaseUrl}/${path}`, {
@@ -12,9 +13,12 @@ async function fhirGet(path: string) {
 
 export const getCaseContext = tool(
   'get_case_context',
-  'Retrieve denormalized patient context: demographics, coverage (GKV/PKV), bonus %, Pflegegrad, dental findings, and billing history.',
-  { patientId: z.string().describe('FHIR Patient resource ID') },
-  async ({ patientId }) => {
+  'Retrieve denormalized patient context: demographics, coverage (GKV/PKV), bonus %, Pflegegrad, dental findings, and billing history. Optionally filter billing history to only include entries before a given date.',
+  {
+    patientId: z.string().describe('FHIR Patient resource ID'),
+    beforeDate: z.string().optional().describe('If provided, only include billing history entries before this ISO date (YYYY-MM-DD). Used for date-specific analysis.'),
+  },
+  async ({ patientId, beforeDate }) => {
     const [patient, coverageBundle, conditionBundle, observationBundle, claimBundle] =
       await Promise.all([
         fhirGet(`Patient/${patientId}`),
@@ -25,9 +29,7 @@ export const getCaseContext = tool(
       ])
 
     const coverages = (coverageBundle.entry ?? []).map((e: any) => e.resource)
-    const coverageType = coverages.some((c: any) =>
-      c.type?.coding?.some((cd: any) => cd.code === 'SEL' || cd.code === 'PPO')
-    ) ? 'PKV' : 'GKV'
+    const coverageType = resolveCoverageType(coverages)
 
     const bonusExt = patient.extension?.find((e: any) =>
       e.url?.includes('ze-bonus-prozent')
@@ -63,13 +65,54 @@ export const getCaseContext = tool(
       display: e.resource.code?.coding?.[0]?.display ?? e.resource.code?.text,
     }))
 
-    const billingHistory = (claimBundle.entry ?? [])
+    const allHistory = (claimBundle.entry ?? [])
       .flatMap((e: any) => (e.resource.item ?? []).map((item: any) => ({
         code: item.productOrService?.coding?.[0]?.code,
-        system: item.productOrService?.coding?.[0]?.system?.includes('goz') ? 'GOZ' : 'BEMA',
+        system: (() => { const s = item.productOrService?.coding?.[0]?.system ?? ''; return s.includes('goz') ? 'GOZ' : s.includes('goae') ? 'GOÄ' : 'BEMA' })(),
         date: e.resource.created ?? e.resource.billablePeriod?.start,
         tooth: item.bodySite?.coding?.[0]?.code ? parseInt(item.bodySite.coding[0].code) : undefined,
       })))
+
+    // Filter by beforeDate if provided (only prior history for frequency checks)
+    const billingHistory = beforeDate
+      ? allHistory.filter((h: any) => h.date && h.date < beforeDate)
+      : allHistory
+
+    // Fetch Encounters and Procedures for clinical documentation context
+    const [encounterBundle, procedureBundle] = await Promise.all([
+      fhirGet(`Encounter?subject=Patient/${patientId}&_count=50&_sort=-date`),
+      fhirGet(`Procedure?subject=Patient/${patientId}&_count=50&_sort=-date`),
+    ])
+
+    const encounters = (encounterBundle.entry ?? []).map((e: any) => {
+      const enc = e.resource
+      const encDate = enc.period?.start ?? enc.meta?.lastUpdated
+      if (beforeDate && encDate && encDate > beforeDate) return null
+      return {
+        id: enc.id,
+        date: encDate,
+        status: enc.status,
+        reason: enc.reasonCode?.[0]?.text ?? enc.reasonCode?.[0]?.coding?.[0]?.display ?? null,
+        tooth: enc.extension?.find((ex: any) => ex.url?.includes('fdi-tooth-number'))?.valueInteger ?? null,
+      }
+    }).filter(Boolean)
+
+    const procedures = (procedureBundle.entry ?? []).map((e: any) => {
+      const proc = e.resource
+      const procDate = proc.performedDateTime ?? proc.performedPeriod?.start
+      if (beforeDate && procDate && procDate > beforeDate) return null
+      return {
+        id: proc.id,
+        date: procDate,
+        status: proc.status,
+        code: proc.code?.coding?.[0]?.code ?? null,
+        display: proc.code?.coding?.[0]?.display ?? proc.code?.text ?? null,
+        tooth: proc.bodySite?.find((bs: any) =>
+          bs.coding?.some((c: any) => c.system?.includes('fdi-tooth-number'))
+        )?.coding?.[0]?.code ?? null,
+        notes: proc.note?.map((n: any) => n.text).filter(Boolean) ?? [],
+      }
+    }).filter(Boolean)
 
     const context = {
       patient: {
@@ -84,6 +127,8 @@ export const getCaseContext = tool(
       findings,
       conditions,
       billingHistory,
+      encounters,
+      procedures,
     }
 
     return { content: [{ type: 'text' as const, text: JSON.stringify(context, null, 2) }] }

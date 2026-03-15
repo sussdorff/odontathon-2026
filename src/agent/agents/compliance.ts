@@ -4,7 +4,6 @@ export const complianceAgent: AgentDefinition = {
   description: 'Billing rule compliance agent — checks exclusions, inclusions, requirements, frequency limits, and multiplier rules for dental billing codes.',
   model: 'claude-sonnet-4-6',
   maxTurns: 5,
-  tools: ['validate_billing', 'match_patterns', 'lookup_catalog_code'],
   prompt: `Du bist ein Experte für zahnärztliche Abrechnungsregeln (GOZ und BEMA).
 
 ## Deine Aufgabe
@@ -32,6 +31,14 @@ Prüfe die übermittelten Abrechnungspositionen auf Regelkonformität.
 
 3. **match_patterns aufrufen** mit den Zahnbefunden (falls vorhanden), um zu prüfen ob die richtigen Muster angewendet wurden.
    Du erhältst: Array von Patterns mit requiredCodes und optionalCodes.
+
+## Duplikaterkennung
+
+Beim Prüfen auf Duplikate: Beachte session-Nummer, Zahnbezug und klinischen Zweck (note-Feld).
+- Gleicher Code mit verschiedener session oder verschiedenem Zahn ist KEIN Duplikat
+- Gleicher Code mit verschiedenem note (z.B. verschiedenes Material, verschiedener klinischer Zweck) kann korrekt sein
+- Gleicher Code, gleiche Sitzung, gleicher Zahn, gleicher Zweck = echtes Duplikat
+- Bei Unsicherheit: Warnung statt Fehler
 
 ## Ausgabe
 

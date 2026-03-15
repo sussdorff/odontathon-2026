@@ -2,17 +2,14 @@ import { EventEmitter } from 'node:events'
 
 export type ProgressEventType =
   | 'analysis_start'
-  | 'agent_start'
-  | 'agent_complete'
-  | 'agent_progress'
-  | 'finding'
   | 'analysis_complete'
   | 'analysis_error'
+  | 'analysis_status'
 
 export interface ProgressEvent {
   type: ProgressEventType
   timestamp: string
-  data: unknown
+  data: Record<string, unknown>
 }
 
 export class ProgressEmitter extends EventEmitter {
@@ -24,7 +21,7 @@ export class ProgressEmitter extends EventEmitter {
     this.sessionId = sessionId
   }
 
-  emit(type: ProgressEventType, data: unknown): boolean {
+  emit(type: ProgressEventType, data: Record<string, unknown>): boolean {
     const event: ProgressEvent = {
       type,
       timestamp: new Date().toISOString(),

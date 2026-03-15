@@ -13,7 +13,8 @@
   </header>
 
   <main>
-    <section class="panel" id="input-panel">
+    <!-- Full-width top: Patient & Billing -->
+    <section class="panel full-width" id="input-panel">
       <h2>Patient & Abrechnung</h2>
 
       <div class="form-group">
@@ -25,77 +26,78 @@
 
       <div id="patient-info" class="patient-info hidden"></div>
 
-      <div id="findings-section" class="hidden">
+      <div id="case-context" class="hidden">
         <div class="form-group">
-          <label>Zahnbefunde</label>
-          <div id="findings-list" class="findings-grid"></div>
+          <label>
+            Fallkontext
+            <button class="btn-toggle" id="context-toggle" onclick="toggleContext()">▼</button>
+          </label>
+          <div id="case-context-body" class="case-context-body">
+            <div class="context-grid">
+              <div id="context-coverage" class="context-section"></div>
+              <div id="context-findings" class="context-section"></div>
+              <div id="context-conditions" class="context-section"></div>
+              <div id="context-history" class="context-section"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group half">
-          <label for="kassenart-select">Kassenart (BEMA)</label>
-          <select id="kassenart-select">
-            <option value="">— Nur für GKV —</option>
-            <option value="AOK">AOK</option>
-            <option value="BKK">BKK</option>
-            <option value="IKK">IKK</option>
-            <option value="vdek">vdek</option>
-          </select>
-        </div>
-        <div class="form-group half">
-          <label for="bonus-select">Bonusstufe (ZE)</label>
-          <select id="bonus-select">
-            <option value="60pct">Kein Bonus (60%)</option>
-            <option value="70pct">5 Jahre (70%)</option>
-            <option value="75pct">10 Jahre (75%)</option>
-            <option value="100pct">Härtefall (100%)</option>
+      <div id="date-section" class="hidden">
+        <div class="form-group">
+          <label for="date-select">Rechnung zur Analyse auswählen</label>
+          <select id="date-select">
+            <option value="">— Rechnung wählen —</option>
           </select>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="festzuschuss-input">Festzuschuss-Befundklasse (z.B. 1.1)</label>
-        <input type="text" id="festzuschuss-input" placeholder="z.B. 1.1 — leer für Privatpatienten">
-      </div>
+      <div id="billing-section" class="hidden">
+        <div id="selected-claim-header" class="selected-claim-header"></div>
 
-      <div class="form-group">
-        <label>Abrechnungspositionen</label>
-        <div id="suggestions-hint" class="suggestions-hint hidden"></div>
-        <div id="billing-items"></div>
-        <div class="billing-actions">
-          <button class="btn-secondary" onclick="addBillingRow()">+ Manuelle Position</button>
-          <button class="btn-secondary" id="suggest-btn" onclick="loadSuggestions()" disabled>Vorschläge laden</button>
+        <div class="form-group">
+          <label>Positionen zur Prüfung</label>
+          <div id="billing-items"></div>
+          <div class="billing-actions">
+            <button class="btn-secondary" onclick="addBillingRow()">+ Manuelle Position</button>
+          </div>
         </div>
-      </div>
 
-      <div id="cost-summary" class="cost-summary hidden"></div>
+        <div id="prior-history" class="hidden">
+          <label>Vorige Abrechnungen <span class="ctx-count">(für Frequenzprüfung)</span></label>
+          <div id="prior-history-content"></div>
+        </div>
 
-      <div class="button-row">
-        <button class="btn-primary" id="calculate-btn" onclick="calculateCosts()">Kosten berechnen</button>
-        <button class="btn-primary" id="analyze-btn" onclick="startAnalysis()">Analyse starten</button>
-      </div>
-    </section>
-
-    <section class="panel" id="progress-panel">
-      <h2>Analyse</h2>
-      <div id="progress-log"></div>
-      <div id="status-bar" class="hidden">
-        <div class="spinner"></div>
-        <span id="status-text">Wird analysiert...</span>
+        <button class="btn-primary" id="analyze-btn" onclick="startAnalysis()" disabled>Analyse starten</button>
       </div>
     </section>
 
-    <section class="panel" id="report-panel">
-      <h2>Ergebnis</h2>
-      <div id="report-content"></div>
-    </section>
+    <!-- Bottom row: Flow + Report + Rules -->
+    <div class="bottom-row">
+      <section class="panel" id="flow-panel">
+        <h2>
+          Ausführungsablauf
+          <span id="flow-status" class="flow-status hidden">
+            <span class="spinner-sm"></span>
+            <span id="flow-status-text"></span>
+          </span>
+        </h2>
+        <div id="flow-timeline"></div>
+      </section>
 
-    <section class="panel" id="rules-panel">
-      <h2>Praxisregeln</h2>
-      <div id="rules-list"></div>
-      <button class="btn-secondary" onclick="loadRules()">Regeln laden</button>
-    </section>
+      <div class="bottom-right">
+        <section class="panel" id="report-panel">
+          <h2>Ergebnis</h2>
+          <div id="report-content"><p class="muted">Analyse starten um Ergebnis zu sehen.</p></div>
+        </section>
+
+        <section class="panel" id="rules-panel">
+          <h2>Praxisregeln</h2>
+          <div id="rules-list"></div>
+          <button class="btn-secondary" onclick="loadRules()">Regeln laden</button>
+        </section>
+      </div>
+    </div>
   </main>
 
   <script src="/app.js"></script>
