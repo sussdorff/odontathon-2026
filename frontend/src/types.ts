@@ -33,6 +33,7 @@ export interface ClaimItem {
   quantity: number
   session: number | null
   note: string | null
+  price: number
 }
 
 export interface Claim {
@@ -42,6 +43,7 @@ export interface Claim {
   itemCount: number
   teeth: number[]
   items: ClaimItem[]
+  total: number
 }
 
 export interface HistoryEntry {
@@ -101,7 +103,7 @@ export interface BillingSuggestion {
 export interface BillingItem {
   id: string
   code: string
-  system: 'GOZ' | 'BEMA'
+  system: 'GOZ' | 'BEMA' | 'GOÄ'
   multiplier?: number
   teeth: number[]
   description: string
@@ -109,6 +111,9 @@ export interface BillingItem {
   patternId?: string
   patternName?: string
   isRequired?: boolean
+  session?: number | null
+  note?: string | null
+  originalIndex?: number
 }
 
 export interface CostBreakdownItem {
@@ -161,6 +166,7 @@ export interface BillingChange {
   existingItemIndex?: number
   currentMultiplier?: number
   newMultiplier?: number
+  session?: number | null
   reason: string
   estimatedRevenueDelta?: number
 }
@@ -173,12 +179,13 @@ export interface DocumentationChange {
   fieldId?: string
   fieldLabel?: string
   suggestedValue?: string
+  procedureId?: string
   reason: string
 }
 
 export interface ApplyResult {
-  applied: Array<{ id: string; status: 'ok' | 'error'; message: string }>
-  updatedClaimId: string | null
+  applied: Array<{ id: string; status: 'ok' | 'error'; message: string; resource?: string }>
+  updatedResources: string[]
 }
 
 export interface PracticeRule {

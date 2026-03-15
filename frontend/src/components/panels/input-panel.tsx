@@ -40,7 +40,6 @@ export function InputPanel() {
     selectedClaimDate,
     billingItems,
     setBillingItems,
-    addBillingItem,
     costResult,
     setCostResult,
     kassenart,
@@ -261,14 +260,6 @@ export function InputPanel() {
             <BillingRow key={item.id} item={item} />
           ))}
 
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => addBillingItem(createEmptyItem())}
-            className="text-xs mt-1"
-          >
-            + Manuelle Position
-          </Button>
         </div>
 
         {/* Cost summary */}

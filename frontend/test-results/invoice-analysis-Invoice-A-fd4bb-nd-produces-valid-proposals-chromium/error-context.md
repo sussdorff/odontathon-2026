@@ -1,0 +1,125 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - img "Zahn" [ref=e5]: 🦷
+    - generic [ref=e6]:
+      - heading "Billing Coach" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Zahnaerztliche Abrechnungspruefung - Odontathon 2026
+    - generic [ref=e10]: GOZ - BEMA
+  - generic [ref=e12]:
+    - button "Session" [ref=e13]
+    - button "Abrechnung" [ref=e14]
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic:
+        - generic:
+          - generic: Patient
+          - combobox [disabled]:
+            - option "— Patient wählen —"
+            - option "Fatima Al-Hassan · GKV · 8 Befunde"
+            - option "Hans-Jürgen Becker · GKV · 13 Befunde"
+            - option "Lukas Berg · PKV · 4 Befunde" [selected]
+            - option "Sophie Braun · GKV · 3 Befunde"
+            - option "Monika Fischer · GKV · 13 Befunde"
+            - option "Rainer Hoffmann · PKV · 14 Befunde"
+            - option "Gerda Klein · GKV · 12 Befunde"
+            - option "Anna Müller · GKV · 7 Befunde"
+            - option "Erika Richter · GKV · 14 Befunde"
+            - option "Klaus Schmidt · GKV · 7 Befunde"
+            - option "Wolfgang Schulz · PKV · 14 Befunde"
+            - option "Hildegard Vogel · GKV · 14 Befunde"
+            - option "Petra Wagner · GKV · 9 Befunde"
+            - option "Stefan Weber · PKV · 10 Befunde"
+            - option "Mehmet Yılmaz · GKV · 7 Befunde"
+        - generic:
+          - generic: Rechnung
+          - combobox [disabled]:
+            - option "— Rechnung wählen —"
+            - option "2026-03-10 · 9 Pos. · Z.46 (prac-weber)" [selected]
+            - option "2026-02-12 · 17 Pos. · Z.45 (prac-weber)"
+            - option "2026-02-04 · 7 Pos. · Z.47 (prac-koch)"
+            - option "2026-01-20 · 9 Pos. · Z.43,44,45 (prac-weber)"
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - img [ref=e19]
+          - generic [ref=e22]: Klinische Dokumentation
+          - generic [ref=e23]: 2026-03-10
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: Exkavation Sekundärkaries, indirekte Überkappung (cp Dycal), Kompositfüllung MOD Mehrschicht-/Mehrfarbtechnik, gnathologische Ausarbeitung, Duraphat-Schutzlack
+            - generic [ref=e28]: Z.46
+            - generic [ref=e29]: completed
+          - paragraph [ref=e30]: "Anästhesie: Infiltration bukkal + lingual (1 Amp. Ultracain) + Leitungsanästhesie (1 Amp. Ultracain). Alte Füllung entfernt, Karies vollständig exkaviert. Pulpa nicht eröffnet, aber freiliegend (pulpanah). Indirekte Überkappung mit Dycal (Calciumhydroxid). Kompositfüllung MOD in Mehrschicht- und Mehrfarbtechnik. Ausarbeitung nach gnathologischen Gesichtspunkten. Abschließend Duraphat-Schutzlack appliziert. Prognose positiv. Kontrolle beim nächsten Termin."
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - generic [ref=e36]: Rechnung
+          - generic [ref=e37]: 2026-03-10
+          - generic [ref=e38]: 9 Pos. · prac-weber🔒 PKV
+        - generic [ref=e39]:
+          - generic [ref=e41]:
+            - generic [ref=e42]: "1"
+            - generic [ref=e43]: GOZ
+            - code [ref=e44]: "0010"
+            - generic [ref=e45]: Eingehende Untersuchung
+          - generic [ref=e47]:
+            - generic [ref=e48]: "2"
+            - generic [ref=e49]: GOÄ
+            - code [ref=e50]: "5000"
+            - generic [ref=e51]: Zahnfilm
+            - generic [ref=e52]: Z.46
+          - generic [ref=e54]:
+            - generic [ref=e55]: "3"
+            - generic [ref=e56]: GOZ
+            - code [ref=e57]: "0090"
+            - generic [ref=e58]: Infiltrationsanästhesie
+            - generic [ref=e59]: Bukkal + lingual, 1 Amp. Ultracain D-S forte
+          - generic [ref=e61]:
+            - generic [ref=e62]: "4"
+            - generic [ref=e63]: GOZ
+            - code [ref=e64]: "0100"
+            - generic [ref=e65]: Leitungsanästhesie
+            - generic [ref=e66]: 1 Amp. Ultracain D-S forte
+          - generic [ref=e68]:
+            - generic [ref=e69]: "5"
+            - generic [ref=e70]: GOZ
+            - code [ref=e71]: "2330"
+            - generic [ref=e72]: Indirekte Überkappung der Pulpa (cp)
+            - generic [ref=e73]: "Material: Dycal (Calciumhydroxid)"
+            - generic [ref=e74]: Z.46
+          - generic [ref=e76]:
+            - generic [ref=e77]: "6"
+            - generic [ref=e78]: GOZ
+            - code [ref=e79]: "2100"
+            - generic [ref=e80]: Kompositfüllung dreiflächig (dentin-/schmelzadhäsiv)
+            - generic [ref=e81]: Mehrschicht- und Mehrfarbtechnik
+            - generic [ref=e82]: Z.46
+            - generic [ref=e83]: (M,O,D)
+          - generic [ref=e85]:
+            - generic [ref=e86]: "7"
+            - generic [ref=e87]: GOZ
+            - code [ref=e88]: "2197"
+            - generic [ref=e89]: Adhäsive Befestigung
+          - generic [ref=e91]:
+            - generic [ref=e92]: "8"
+            - generic [ref=e93]: GOZ
+            - code [ref=e94]: "8000"
+            - generic [ref=e95]: Funktionsanalytische Maßnahmen
+            - generic [ref=e96]: Ausarbeitung nach gnathologischen Gesichtspunkten, Okklusionskontrolle
+          - generic [ref=e98]:
+            - generic [ref=e99]: "9"
+            - generic [ref=e100]: GOZ
+            - code [ref=e101]: "1020"
+            - generic [ref=e102]: Lokale Fluoridierung mit individuellem Löffel
+            - generic [ref=e103]: Duraphat Schutzlack (Natriumfluorid 2,26%)
+            - generic [ref=e104]: Z.46
+        - button "33 vorige Positionen aus 3 Rechnungen (vor 2026-03-10)" [ref=e106]:
+          - img [ref=e107]
+          - text: 33 vorige Positionen aus 3 Rechnungen (vor 2026-03-10)
+      - button "Dokumentation wird geprüft..." [disabled] [ref=e110]:
+        - generic [ref=e111]:
+          - img [ref=e112]
+          - text: Dokumentation wird geprüft...
+```

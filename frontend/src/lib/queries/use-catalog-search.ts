@@ -3,7 +3,7 @@ import { apiFetch } from '@/lib/api'
 
 export interface CatalogEntry {
   code: string
-  system: 'GOZ' | 'BEMA'
+  system: 'GOZ' | 'BEMA' | 'GOÄ'
   title: string
   punktzahl?: number
 }
@@ -12,7 +12,7 @@ interface CatalogSearchResponse {
   results: CatalogEntry[]
 }
 
-export function useCatalogSearch(query: string, system?: 'GOZ' | 'BEMA') {
+export function useCatalogSearch(query: string, system?: 'GOZ' | 'BEMA' | 'GOÄ') {
   return useQuery({
     queryKey: ['catalog-search', query, system],
     queryFn: () => {

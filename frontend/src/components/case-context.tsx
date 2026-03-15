@@ -162,7 +162,7 @@ function FindingsInline({ findings }: { findings: Patient['findings'] }) {
     <div className="flex flex-wrap gap-1">
       {sorted.map((f) => (
         <span
-          key={f.tooth}
+          key={`${f.tooth}-${f.status}`}
           className={`inline-flex items-center gap-0.5 text-[0.62rem] px-1.5 py-0.5 rounded border font-medium ${STATUS_COLORS[f.status] || 'bg-gray-50 border-gray-200 text-gray-600'}`}
           title={`${f.tooth}: ${STATUS_LABELS[f.status] || f.status}${f.surfaces.length ? ` (${f.surfaces.join(',')})` : ''}`}
         >

@@ -23,6 +23,7 @@ interface BillingState {
   analysisLog: LogEntry[]
   analysisStatus: string
   report: AnalysisReport | null
+  proposalDecisions: Record<string, 'approve' | 'reject'>
 
   // Actions
   setSelectedPatientId: (id: string | null) => void
@@ -44,6 +45,7 @@ interface BillingState {
   clearLog: () => void
   setAnalysisStatus: (status: string) => void
   setReport: (report: AnalysisReport | null) => void
+  setProposalDecision: (id: string, decision: 'approve' | 'reject' | null) => void
   resetAnalysis: () => void
 }
 
@@ -63,9 +65,10 @@ export const useBillingStore = create<BillingState>((set) => ({
   analysisLog: [],
   analysisStatus: '',
   report: null,
+  proposalDecisions: {},
 
-  setSelectedPatientId: (id) => set({ selectedPatientId: id, selectedClaimDate: null, priorHistory: [], costResult: null }),
-  setSelectedClaimDate: (date) => set({ selectedClaimDate: date, costResult: null }),
+  setSelectedPatientId: (id) => set({ selectedPatientId: id, selectedClaimDate: null, priorHistory: [], costResult: null, report: null, isAnalyzing: false, analysisLog: [], analysisStatus: '' }),
+  setSelectedClaimDate: (date) => set({ selectedClaimDate: date, costResult: null, report: null, isAnalyzing: false, analysisLog: [], analysisStatus: '' }),
   setPriorHistory: (history) => set({ priorHistory: history }),
   setBillingItems: (items) => set({ billingItems: items, costResult: null }),
   addBillingItem: (item) => set((s) => ({ billingItems: [...s.billingItems, item], costResult: null })),
@@ -95,7 +98,13 @@ export const useBillingStore = create<BillingState>((set) => ({
     })),
   clearLog: () => set({ analysisLog: [] }),
   setAnalysisStatus: (status) => set({ analysisStatus: status }),
-  setReport: (report) => set({ report }),
+  setReport: (report) => set({ report, proposalDecisions: {} }),
+  setProposalDecision: (id, decision) =>
+    set((s) => {
+      const next = { ...s.proposalDecisions }
+      if (decision === null) { delete next[id] } else { next[id] = decision }
+      return { proposalDecisions: next }
+    }),
   resetAnalysis: () =>
-    set({ isAnalyzing: false, analysisLog: [], analysisStatus: '', report: null }),
+    set({ isAnalyzing: false, analysisLog: [], analysisStatus: '', report: null, proposalDecisions: {} }),
 }))

@@ -9,7 +9,7 @@ function claimItemToBillingItem(claim: Claim): BillingItem[] {
   return claim.items.map((it) => ({
     id: `claim-${++itemCounter}`,
     code: it.code ?? '',
-    system: it.system === 'GOÄ' ? 'BEMA' as const : it.system as 'GOZ' | 'BEMA',
+    system: it.system as 'GOZ' | 'BEMA' | 'GOÄ',
     multiplier: it.system === 'GOZ' ? 2.3 : undefined,
     teeth: it.tooth ? [it.tooth] : [],
     description: [
