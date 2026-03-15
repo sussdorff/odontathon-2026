@@ -146,6 +146,20 @@ applyRoutes.post('/apply', async (c) => {
             break
           }
 
+          case 'update_tooth': {
+            const idx = bc.existingItemIndex
+            if (idx != null && claim.item?.[idx] && bc.teeth?.length) {
+              claim.item[idx].bodySite = {
+                coding: [{ system: 'https://mira.cognovis.de/fhir/CodeSystem/fdi-tooth-number', code: String(bc.teeth[0]) }],
+              }
+              claimModified = true
+              results.push({ id: proposal.id, status: 'ok', message: `${bc.system} ${bc.code}: Zahn ${bc.teeth[0]} zugeordnet`, resource: `Claim/${claimId}` })
+            } else {
+              results.push({ id: proposal.id, status: 'error', message: `Position ${idx ?? '?'} nicht gefunden oder keine Zahnangabe` })
+            }
+            break
+          }
+
           default:
             results.push({ id: proposal.id, status: 'error', message: `Unbekannter Typ: ${bc.type}` })
         }

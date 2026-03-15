@@ -30,6 +30,7 @@ export function InvoiceAnalysisPanel() {
   } = useBillingStore()
 
   const [pickerOpen, setPickerOpen] = useState(false)
+  const [applyResult, setApplyResult] = useState<ApplyResult | null>(null)
   const [pickerSearch, setPickerSearch] = useState('')
   const pickerRef = useRef<HTMLDivElement>(null)
 
@@ -46,6 +47,9 @@ export function InvoiceAnalysisPanel() {
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
   }, [])
+
+  // Clear apply result when patient/claim changes
+  useEffect(() => { setApplyResult(null) }, [selectedPatientId, selectedClaimDate])
 
   const patient = patients.find((p) => p.id === selectedPatientId) ?? null
   const claim = patient?.claims.find((c) => c.date === selectedClaimDate)
@@ -270,10 +274,12 @@ export function InvoiceAnalysisPanel() {
       )}
 
       {/* ── Analyze button — hidden when report exists (user should review proposals first) ── */}
-      {claim && !report && <AnalyzeBtn />}
+      {claim && !report && !applyResult && <AnalyzeBtn />}
 
-      {/* ── Apply bar ── */}
-      {report && report.proposals.length > 0 && <ApplyBar />}
+      {/* ── Apply bar / result ── */}
+      {(report?.proposals?.length || applyResult) && (
+        <ApplyBar externalResult={applyResult} onResult={setApplyResult} />
+      )}
     </div>
   )
 }
@@ -647,17 +653,14 @@ function AnalyzeBtn() {
   )
 }
 
-function ApplyBar() {
+function ApplyBar({ externalResult, onResult }: { externalResult: ApplyResult | null; onResult: (r: ApplyResult | null) => void }) {
   const { report, selectedPatientId, selectedClaimDate, proposalDecisions } = useBillingStore()
   const { data: pd, refetch: refetchPatients } = usePatients()
   const claimId = pd?.patients.find((p) => p.id === selectedPatientId)?.claims.find((c) => c.date === selectedClaimDate)?.id
   const [applying, setApplying] = useState(false)
-  const [result, setResult] = useState<ApplyResult | null>(null)
   const [appliedDelta, setAppliedDelta] = useState(0)
   const [appliedCount, setAppliedCount] = useState(0)
-
-  // Show result even after report is cleared post-apply
-  if (!report && !result) return null
+  const result = externalResult
   const proposals = report?.proposals ?? []
   const approved = proposals.filter((p) => proposalDecisions[p.id] === 'approve')
   const rejected = proposals.filter((p) => proposalDecisions[p.id] === 'reject')
@@ -680,14 +683,14 @@ function ApplyBar() {
           approvedProposals: approved.map((p) => ({ id: p.id, billingChange: p.billingChange, documentationChange: p.documentationChange })),
         }),
       })
-      setResult(r)
+      onResult(r)
       // Refresh patient data to show updated billing items and clinical docs
       await refetchPatients()
       // Clear the report so stale proposals don't remain clickable next to updated data
       useBillingStore.getState().setReport(null)
     } catch (err) { console.error(err) }
     finally { setApplying(false) }
-  }, [claimId, selectedPatientId, selectedClaimDate, approved, delta, refetchPatients])
+  }, [claimId, selectedPatientId, selectedClaimDate, approved, delta, refetchPatients, onResult])
 
   const okCount = result?.applied.filter((r) => r.status === 'ok').length ?? 0
   const errCount = result?.applied.filter((r) => r.status === 'error').length ?? 0
