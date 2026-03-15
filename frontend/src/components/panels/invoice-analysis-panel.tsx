@@ -653,6 +653,8 @@ function ApplyBar() {
   const claimId = pd?.patients.find((p) => p.id === selectedPatientId)?.claims.find((c) => c.date === selectedClaimDate)?.id
   const [applying, setApplying] = useState(false)
   const [result, setResult] = useState<ApplyResult | null>(null)
+  const [appliedDelta, setAppliedDelta] = useState(0)
+  const [appliedCount, setAppliedCount] = useState(0)
 
   // Show result even after report is cleared post-apply
   if (!report && !result) return null
@@ -667,6 +669,9 @@ function ApplyBar() {
   const handleApply = useCallback(async () => {
     if (!claimId || approved.length === 0) return
     setApplying(true)
+    // Capture before report is cleared
+    setAppliedDelta(delta)
+    setAppliedCount(approved.length)
     try {
       const r = await apiFetch<ApplyResult>('/api/claims/apply', {
         method: 'POST',
@@ -682,50 +687,109 @@ function ApplyBar() {
       useBillingStore.getState().setReport(null)
     } catch (err) { console.error(err) }
     finally { setApplying(false) }
-  }, [claimId, selectedPatientId, selectedClaimDate, approved, refetchPatients])
+  }, [claimId, selectedPatientId, selectedClaimDate, approved, delta, refetchPatients])
+
+  const okCount = result?.applied.filter((r) => r.status === 'ok').length ?? 0
+  const errCount = result?.applied.filter((r) => r.status === 'error').length ?? 0
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-      <div className="flex items-center justify-between">
-        <div>
-          <span className="text-sm font-bold text-gray-800">{proposals.length} Vorschläge</span>
-          <div className="flex gap-3 text-[0.65rem] text-gray-400 mt-0.5">
-            {approved.length > 0 && <span className="text-green-600">{approved.length} genehmigt</span>}
-            {rejected.length > 0 && <span className="text-red-500">{rejected.length} abgelehnt</span>}
-            {pending > 0 && <span>{pending} offen</span>}
-            <span className="text-gray-300">|</span>
-            {errors > 0 && <span className="text-red-500">{errors} Fehler</span>}
-            {warnings > 0 && <span className="text-amber-500">{warnings} Warnungen</span>}
-          </div>
-        </div>
-        <div className="text-right">
-          <span className={`text-lg font-bold ${delta >= 0 ? 'text-green-600' : 'text-red-500'}`}>
-            {delta >= 0 ? '+' : ''}{delta.toFixed(2)}€
-          </span>
-          <div className="text-[0.6rem] text-gray-400">Erlösdelta</div>
-        </div>
-      </div>
-
+    <div className="space-y-3">
+      {/* Summary bar */}
       {!result && (
-        <Button className="w-full mt-3" onClick={handleApply} disabled={applying || approved.length === 0}>
-          {applying ? <span className="flex items-center gap-2"><Loader2 size={14} className="animate-spin" />Wird angewendet...</span>
-            : <span className="flex items-center gap-2"><Check size={14} />{approved.length} Änderung{approved.length !== 1 ? 'en' : ''} anwenden</span>}
-        </Button>
+        <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-xs font-bold text-slate-800">{proposals.length} Vorschläge</span>
+              <div className="flex gap-2 text-[0.6rem] text-slate-400 mt-0.5">
+                {approved.length > 0 && <span className="text-green-600">{approved.length} genehmigt</span>}
+                {rejected.length > 0 && <span className="text-red-500">{rejected.length} abgelehnt</span>}
+                {pending > 0 && <span>{pending} offen</span>}
+                <span className="text-slate-200">|</span>
+                {errors > 0 && <span className="text-red-500">{errors} Fehler</span>}
+                {warnings > 0 && <span className="text-amber-500">{warnings} Warnungen</span>}
+              </div>
+            </div>
+            <div className="text-right">
+              <span className={cn('text-base font-bold', delta >= 0 ? 'text-green-600' : 'text-red-500')}>
+                {delta >= 0 ? '+' : ''}{delta.toFixed(2)} €
+              </span>
+              <div className="text-[0.55rem] text-slate-400">Erlösdelta</div>
+            </div>
+          </div>
+
+          <Button className="w-full mt-3 py-2 text-xs" onClick={handleApply} disabled={applying || approved.length === 0}>
+            {applying ? <span className="flex items-center gap-2"><Loader2 size={12} className="animate-spin" />Wird angewendet...</span>
+              : <span className="flex items-center gap-2"><Check size={12} />{approved.length} Änderung{approved.length !== 1 ? 'en' : ''} anwenden</span>}
+          </Button>
+        </div>
       )}
 
+      {/* Post-apply result */}
       {result && (
-        <div className="mt-3 p-3 bg-green-50 rounded-lg border border-green-200 space-y-1.5">
-          <p className="text-xs font-semibold text-green-800">Änderungen angewendet</p>
-          {result.applied.map((r) => (
-            <div key={r.id} className={`text-[0.68rem] flex items-center gap-1.5 ${r.status === 'ok' ? 'text-green-700' : 'text-red-600'}`}>
-              {r.status === 'ok' ? <Check size={10} /> : <X size={10} />}
-              <span>{r.message}</span>
-              {r.resource && <span className="text-[0.58rem] text-gray-400 ml-auto">{r.resource}</span>}
+        <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+          {/* Success header */}
+          <div className={cn(
+            'px-5 py-4 flex items-center gap-3',
+            errCount === 0 ? 'bg-emerald-50 border-b border-emerald-200' : 'bg-amber-50 border-b border-amber-200',
+          )}>
+            <div className={cn(
+              'w-10 h-10 rounded-full flex items-center justify-center shrink-0',
+              errCount === 0 ? 'bg-emerald-100 text-emerald-600' : 'bg-amber-100 text-amber-600',
+            )}>
+              {errCount === 0 ? <Check size={20} /> : <AlertTriangle size={20} />}
             </div>
-          ))}
+            <div>
+              <h3 className="text-sm font-bold text-slate-900">
+                {errCount === 0
+                  ? `${appliedCount} Änderung${appliedCount !== 1 ? 'en' : ''} erfolgreich angewendet`
+                  : `${okCount} von ${okCount + errCount} Änderungen angewendet`}
+              </h3>
+              <p className="text-xs text-slate-500 mt-0.5">
+                {okCount} erfolgreich{errCount > 0 ? ` · ${errCount} fehlgeschlagen` : ''} · FHIR-Daten aktualisiert
+              </p>
+            </div>
+            {appliedDelta !== 0 && (
+              <div className="ml-auto text-right">
+                <span className={cn('text-lg font-bold', appliedDelta >= 0 ? 'text-emerald-600' : 'text-red-500')}>
+                  {appliedDelta >= 0 ? '+' : ''}{appliedDelta.toFixed(2)} €
+                </span>
+                <div className="text-[0.55rem] text-slate-400">Erlösdelta</div>
+              </div>
+            )}
+          </div>
+
+          {/* Applied changes list */}
+          <div className="divide-y divide-slate-100">
+            {result.applied.map((r) => (
+              <div key={r.id} className={cn(
+                'flex items-start gap-2.5 px-5 py-2.5',
+                r.status === 'ok' ? '' : 'bg-red-50/50',
+              )}>
+                <div className={cn(
+                  'w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5',
+                  r.status === 'ok' ? 'bg-emerald-100 text-emerald-600' : 'bg-red-100 text-red-600',
+                )}>
+                  {r.status === 'ok' ? <Check size={11} /> : <X size={11} />}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-slate-700">{r.message}</p>
+                  {r.resource && (
+                    <code className="text-[0.6rem] text-slate-400 font-mono">{r.resource}</code>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Updated resources footer */}
           {result.updatedResources.length > 0 && (
-            <div className="text-[0.6rem] text-gray-500 pt-1 border-t border-green-200">
-              Aktualisiert: {result.updatedResources.join(', ')}
+            <div className="px-5 py-2.5 bg-slate-50 border-t border-slate-200 flex items-center gap-2">
+              <Database size={12} className="text-slate-400 shrink-0" />
+              <span className="text-[0.6rem] text-slate-500">
+                FHIR aktualisiert: {result.updatedResources.map((r) => (
+                  <code key={r} className="font-mono mx-0.5 px-1 py-px bg-white rounded border border-slate-200">{r}</code>
+                ))}
+              </span>
             </div>
           )}
         </div>
