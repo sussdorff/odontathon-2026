@@ -9,11 +9,28 @@ and this project uses [CalVer](https://calver.org/) versioning (YYYY.0M.MICRO).
 
 ### Added
 
+- **session**: Add patient picker with live FHIR data
+- **api**: Billing history analysis
+- **api**: Billing analysis apply fixes
+- **api**: Billing analysis apply fixes
+- **api**: Billing analysis apply fixes
+- **api**: Billing analysis apply fixes
+- **api**: Billing analysis apply fixes
+- **api**: Billing analysis apply fixes
+
+## [2026.03.14] - 2026-03-14
+
+### Added
+
 - **agent**: Add FHIR data access tools for billing gap analysis
 
 ### Fixed
 
 - **billing**: GOZ 0070+2030 aus KCH-Pattern entfernt — Agent findet via Doku-Abgleich
+
+### Maintenance
+
+- VERSION v2026.03.14 + changelog
 
 ## [2026.03.13] - 2026-03-14
 
